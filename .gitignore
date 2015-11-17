@@ -119,4 +119,4 @@ Carthage/Build
 
 ### Objective-C Patch ###
 *.xcscmblueprint
-
+*.pbxproj
