@@ -39,5 +39,26 @@ class ParseService {
         }
     }
     
+    class func loadEvent(eventID: String, completion: (success: Bool, event: Event?)->()) {
+        let query = PFQuery(className: "Event")
+        query.getObjectInBackgroundWithId(eventID) { (object, error) -> Void in
+            if let object = object {
+                guard let id = object.objectId else { return }
+                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], phones = object["phoneNumbers"] as? [String] {
+                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phones)
+                    completion(success: true, event: event)
+                }
+            } else {
+                if let error = error {
+                    print("Error: \(error.code)")
+            }
+            completion(success: false, event: nil)
+        }
+    }
+    
+    
+    
+    
+    
     
 }
