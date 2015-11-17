@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import MessageUI
 
-class CreateEventViewController: MFMessageComposeViewController, MFMessageComposeViewControllerDelegate {
+class CreateEventViewController: UIViewController {
+    
+    let messageService = MessageService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,13 @@ class CreateEventViewController: MFMessageComposeViewController, MFMessageCompos
         super.didReceiveMemoryWarning()
     }
     
-    func sendInvitationMessage(event: Event, completion: ()->()) {
-        if MFMessageComposeViewController.canSendText() {
-            
+    func sendMessage(event: Event) {
+        if messageService.canSendText() {
+            let messageViewController = messageService.configureMessageComposeViewController(event)
+            self.presentViewController(messageViewController, animated: true, completion: nil)
+        } else {
+            print("Can't send message.  Check your settings")
         }
-    }
-    
-    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
-        //
     }
 
 }
