@@ -29,6 +29,7 @@
 		90E672831BFBC1F600725EFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672821BFBC1F600725EFD /* SystemConfiguration.framework */; };
 		90E672851BFBC1FC00725EFD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672841BFBC1FC00725EFD /* libz.tbd */; };
 		90E672871BFBC20400725EFD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672861BFBC20400725EFD /* libsqlite3.tbd */; };
+		90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E672891BFBC2FB00725EFD /* ParseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		90E672821BFBC1F600725EFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		90E672841BFBC1FC00725EFD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		90E672861BFBC20400725EFD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		90E672891BFBC2FB00725EFD /* ParseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				90E672691BFBBDF400725EFD /* Event.swift */,
+				90E672891BFBC2FB00725EFD /* ParseService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E6723C1BFBBB7100725EFD /* ViewController.swift in Sources */,
+				90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
 			);
