@@ -9,6 +9,8 @@
 import UIKit
 
 class GroupDecisionsTableViewController: UITableViewController {
+    
+//    var events = [Event]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,6 @@ class GroupDecisionsTableViewController: UITableViewController {
         return 0
     }
 
- 
+
 
 }
