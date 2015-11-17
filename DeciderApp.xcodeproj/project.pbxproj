@@ -31,6 +31,7 @@
 		90E672871BFBC20400725EFD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672861BFBC20400725EFD /* libsqlite3.tbd */; };
 		90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E672891BFBC2FB00725EFD /* ParseService.swift */; };
 		90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */; };
+		E185F6671BFBCF01004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6661BFBCF01004D9EF9 /* GroupDecisionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		90E672861BFBC20400725EFD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		90E672891BFBC2FB00725EFD /* ParseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseService.swift; sourceTree = "<group>"; };
 		90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
+		E185F6661BFBCF01004D9EF9 /* GroupDecisionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				90E672391BFBBB7100725EFD /* AppDelegate.swift */,
 				90E6723B1BFBBB7100725EFD /* ViewController.swift */,
 				90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */,
+				E185F6661BFBCF01004D9EF9 /* GroupDecisionsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
+				E185F6671BFBCF01004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +596,7 @@
 				90E672601BFBBB7200725EFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90E672611BFBBB7200725EFD /* Build configuration list for PBXNativeTarget "DeciderAppTests" */ = {
 			isa = XCConfigurationList;
@@ -600,6 +605,7 @@
 				90E672631BFBBB7200725EFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90E672641BFBBB7200725EFD /* Build configuration list for PBXNativeTarget "DeciderAppUITests" */ = {
 			isa = XCConfigurationList;
@@ -608,6 +614,7 @@
 				90E672661BFBBB7200725EFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
