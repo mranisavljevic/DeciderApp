@@ -57,4 +57,8 @@ class ParseService {
         }
     }
     
+    class func loadEventFromOpenURL(code: String, completion: ()->()) {
+        
+    }
+    
 }
