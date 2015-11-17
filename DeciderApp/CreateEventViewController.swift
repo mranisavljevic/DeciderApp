@@ -36,7 +36,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
             
         }
         // Enable the Save button only if the text field has a valid Meal name.
-        checkValidEventParameters()
+//        checkValidEventParameters()
 
     }
 
@@ -53,20 +53,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        checkValidEventParameters()
+//        checkValidEventParameters()
         navigationItem.title = textField.text
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        // Disable the Create button while editing.
-        createEventButtonPressed.enabled = false
-    }
-    
-    func checkValidEventParameters() {
-        // Disable the Create button if the text field is empty.
-        let text = titleTextField.text ?? ""
-        createEventButtonPressed.enabled = !text.isEmpty
-    }
+//    func textFieldDidBeginEditing(textField: UITextField) {
+//        // Disable the Create button while editing.
+//        createEventButtonPressed.enabled = false
+//    }
+//    
+//    func checkValidEventParameters() {
+//        // Disable the Create button if the text field is empty.
+//        let text = titleTextField.text ?? ""
+//        createEventButtonPressed.enabled = !text.isEmpty
+//    }
     
     
     //MARK: Custom Functions
@@ -84,15 +84,15 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    // This method lets you configure a view controller before it's presented.
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if createEventButtonPressed === sender {
-            let name = titleTextField.text ?? ""
-            let description = descriptionTextField.text ?? ""
-            
-            // Set the event to be passed to GroupDecisionTableViewController after the unwind segue.
-            event = Event(eventID: String, eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], groupPhoneNumbers: [String])        }
-    }
+//    // This method lets you configure a view controller before it's presented.
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if createEventButtonPressed === sender {
+//            let name = titleTextField.text ?? ""
+//            let description = descriptionTextField.text ?? ""
+//            
+//            // Set the event to be passed to GroupDecisionTableViewController after the unwind segue.
+//            event = Event(eventID: String, eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], groupPhoneNumbers: [String])        }
+//    }
     
 
     //MARK: Actions
