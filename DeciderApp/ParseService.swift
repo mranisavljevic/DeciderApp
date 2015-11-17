@@ -51,14 +51,10 @@ class ParseService {
             } else {
                 if let error = error {
                     print("Error: \(error.code)")
+                }
+                completion(success: false, event: nil)
             }
-            completion(success: false, event: nil)
         }
     }
-    
-    
-    
-    
-    
     
 }
