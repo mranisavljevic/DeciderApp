@@ -12,7 +12,12 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     var myPhone = "2064272503" //This needs to be replaced with the user's phone number
     
-    var events = [Event]()
+    var events = [Event]() {
+        didSet {
+            print(events.count)
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
