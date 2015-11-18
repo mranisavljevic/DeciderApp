@@ -47,17 +47,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let stringURL = "\(url)"
         let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
         Archiver.saveNewEventID(parseID)
-        displayDetailViewController()
+        displayDetailViewController(parseID)
         return true
     }
     
-    func displayDetailViewController() {
+    func displayDetailViewController(eventID: String) {
         if let rootVC = self.window?.rootViewController as? UINavigationController, storyboard = rootVC.storyboard {
             if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
                 rootVC.addChildViewController(homeVC)
                 rootVC.view.addSubview(homeVC.view)
                 homeVC.didMoveToParentViewController(rootVC)
-                homeVC.performSegueWithIdentifier("DecisionDetailViewController", sender: self)
+                let detailVC = storyboard.instantiateViewControllerWithIdentifier("DecisionDetailViewController") as! DecisionDetailViewController
+                ParseService.loadEvent(eventID, completion: { (success, event) -> () in
+                    if success {
+                        guard let event = event else { return }
+                        detailVC.event = event
+                        homeVC.presentViewController(detailVC, animated: true, completion: nil)
+                    }
+                })
             }
         }
     }
