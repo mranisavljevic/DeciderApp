@@ -75,6 +75,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YlY-Vz-i5b">
                                 <rect key="frame" x="0.0" y="181" width="600" height="345"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.94581732429999998" green="0.94581732429999998" blue="0.94581732429999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EjN-8Y-h6U">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
