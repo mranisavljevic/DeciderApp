@@ -105,4 +105,25 @@ class ParseService {
         object.deleteInBackground()
     }
     
+    class func updateVotes(eventID: String, venues: [(String, Int)], completion: (success: Bool)->()) {
+        var venueObject = [String : Int]()
+        for venue in venues {
+            venueObject[venue.0] = venue.1
+        }
+        let parseObject = PFObject(className: "Event")
+        parseObject.objectId = eventID
+        parseObject.setValue(venueObject, forKey: "venues")
+        parseObject.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success {
+                completion(success: true)
+            } else {
+                if let error = error {
+                    print("Error: \(error.code)")
+                }
+                completion(success: false)
+            }
+        }
+        
+    }
+    
 }

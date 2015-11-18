@@ -64,7 +64,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func addNewCellSelection(venueRow: Int) {
-        print("New cell added")
         let selectionCount = self.selectedVenues.count
         switch selectionCount {
         case 0...2:
@@ -75,6 +74,9 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
             self.selectedVenues.append(venueRow)
             self.venues[venueRow].1++
+            if self.selectedVenues.count == 3 {
+                venues[0].1--
+            }
         default:
             for i in 1...2 {
                 if venueRow == self.selectedVenues[i] {
@@ -83,21 +85,15 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
             var tempArray = self.selectedVenues
             tempArray[0] = tempArray[1]
-            print(venues[tempArray[0]].0 + "is going down")
             venues[tempArray[0]].1--
             tempArray[1] = tempArray[2]
-            print(venues[tempArray[1]].0 + "is going up")
-            venues[tempArray[1]].1++
             tempArray[2] = venueRow
-            print(venues[tempArray[2]].0 + "is going up")
             venues[tempArray[2]].1++
             self.selectedVenues = tempArray
         }
-//        self.venuesCollectionView.reloadData()
     }
     
     func addNewCellSelectionIndex(venueIndex: NSIndexPath) {
-        print("New cell added")
         let selectionCount = self.selectedVenueIndexPaths.count
         switch selectionCount {
         case 0...2:
@@ -124,6 +120,16 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     
     @IBAction func voteButtonPressed(sender: UIButton) {
+        guard let event = self.event else { return }
+        if self.venues.count > 0 {
+            ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
+                if success {
+                    print("Successfully updated votes")
+                } else {
+                    print("Voting unsuccessful")
+                }
+            })
+        }
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -144,17 +150,14 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         case 3:
             if indexPath.row == self.selectedVenues[0] {
                 cell.selectionIndicatorLabel.hidden = true
-                print("Turning icon off for row: \(indexPath.row)")
             }
             if indexPath.row == self.selectedVenues[1] || indexPath.row == self.selectedVenues[2] {
                 cell.selectionIndicatorLabel.hidden = false
-                print("Turning icon on for row: \(indexPath.row)")
             }
         case 1...2:
             for i in 0...self.selectedVenues.count - 1 {
                 if indexPath.row == self.selectedVenues[i] {
                     cell.selectionIndicatorLabel.hidden = false
-                    print("Turning icon on for row: \(indexPath.row)")
                 }
             }
         default:
