@@ -12,7 +12,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     
-    @IBOutlet weak var addFriendsButtonPressed: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -67,12 +66,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Custom Functions
 
-    func sendMessage(event: Event) {
+    func sendMessage(event: Event, completion: (sent: Bool)->()) {
         if messageService.canSendText() {
             let messageViewController = messageService.configureMessageComposeViewController(event)
+            messageService.completion = { (sent) -> () in
+                if sent {
+                    completion(sent: true)
+                } else {
+                    completion(sent: false)
+                }
+            }
             self.presentViewController(messageViewController, animated: true, completion: nil)
         } else {
             print("Can't send message.  Check your settings")
+            completion(sent: false)
         }
     }
     
@@ -104,13 +111,22 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
             return
         }
         let dateTime = datePicker.date
-        let venues = ["mcdonalds":1,"dumbos":1,"tacos":1,"teds":1]
+        let venues = ["One Place":0,"Another Place":0,"Some Place":0,"Food Place":0,"Blue Place":0,"Bad Place":0,"Mysterious Place":0]
         
         ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, completion: { (success, event) -> () in
             if success {
                 if let event = event {
-                    self.sendMessage(event)
-                    Archiver.saveNewEventID(event.eventID)
+                    self.sendMessage(event, completion: { (sent) -> () in
+                        if sent {
+                            Archiver.saveNewEventID(event.eventID)
+                            if let parentVC = self.parentViewController as? GroupDecisionsTableViewController {
+                                parentVC.tableView.reloadData()
+                                parentVC.dismissViewControllerAnimated(true, completion: nil)
+                            }
+                        } else {
+                            ParseService.deleteEventWithID(event.eventID)
+                        }
+                    })
                 }
             } else {
                 // create an alert

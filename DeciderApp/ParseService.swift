@@ -99,4 +99,10 @@ class ParseService {
         }
     }
     
+    class func deleteEventWithID(eventID: String) {
+        let object = PFObject(className: "Event")
+        object.objectId = eventID
+        object.deleteInBackground()
+    }
+    
 }

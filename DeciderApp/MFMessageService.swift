@@ -9,7 +9,11 @@
 import Foundation
 import MessageUI
 
+typealias MessageServiceCompletion = (sent: Bool)->()
+
 class MessageService: NSObject, MFMessageComposeViewControllerDelegate {
+    
+    var completion: MessageServiceCompletion?
     
     func canSendText() -> Bool {
         return MFMessageComposeViewController.canSendText()
@@ -25,6 +29,14 @@ class MessageService: NSObject, MFMessageComposeViewControllerDelegate {
     
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        if let completion = self.completion {
+            switch result {
+            case MessageComposeResultSent:
+                completion(sent: true)
+            default:
+                completion(sent: false)
+            }
+        }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
