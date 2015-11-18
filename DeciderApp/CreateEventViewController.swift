@@ -95,9 +95,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
             let description = descriptionTextField.text!
             let dateTime = datePicker.date
             let venues = ["mcdonalds":1,"dumbos":1,"tacos":1,"teds":1]
-            let phoneNumbers = ["2147081160","2147081160","2147081160"]
             
-            ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phoneNumbers, completion: { (success, event) -> () in
+            ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, completion: { (success, event) -> () in
                 
                 if success {
                     

@@ -10,8 +10,6 @@ import UIKit
 
 class GroupDecisionsTableViewController: UITableViewController {
     
-    var myPhone = "2147081160" //This needs to be replaced with the user's phone number
-    
     var events = [Event]() {
         didSet {
             self.tableView.reloadData()
@@ -24,7 +22,7 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        fetchMyEvents()
+//        fetchMyEvents()
         
         // Set up the refresh control
         self.setupRefreshControl()
@@ -34,17 +32,17 @@ class GroupDecisionsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func fetchMyEvents() {
-        ParseService.loadMyEvents(self.myPhone) { (success, events) -> () in
-            if success {
-                if let events = events {
-                    self.events = events
-                }
-            } else {
-                print("Error - did not retrieve events")
-            }
-        }
-    }
+//    func fetchMyEvents() {
+//        ParseService.loadMyEvents(self.myPhone) { (success, events) -> () in
+//            if success {
+//                if let events = events {
+//                    self.events = events
+//                }
+//            } else {
+//                print("Error - did not retrieve events")
+//            }
+//        }
+//    }
     
     // MARK: - Table view data source
     
