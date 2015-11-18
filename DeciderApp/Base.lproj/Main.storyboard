@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jUV-dh-M7M">
-                                <rect key="frame" x="0.0" y="132" width="560" height="348"/>
+                                <rect key="frame" x="0.0" y="132" width="560" height="392"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Ms-NhF">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
@@ -102,14 +102,21 @@
                                             <!--2015-11-17 22:14:22 +0000-->
                                         </date>
                                     </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHH-Bu-aKm">
+                                        <rect key="frame" x="0.0" y="362" width="560" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="Add Places"/>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <constraints>
                                     <constraint firstItem="iv0-4N-aH7" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="6Su-rS-3Ed"/>
                                     <constraint firstAttribute="trailing" secondItem="iv0-4N-aH7" secondAttribute="trailing" id="6cM-Km-ima"/>
                                     <constraint firstAttribute="trailing" secondItem="YqU-jE-k4p" secondAttribute="trailing" id="DzS-Un-Kxj"/>
+                                    <constraint firstItem="uHH-Bu-aKm" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="L12-8q-BWe"/>
                                     <constraint firstItem="cdF-Ms-NhF" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="Lim-G8-4hE"/>
                                     <constraint firstAttribute="trailing" secondItem="cdF-Ms-NhF" secondAttribute="trailing" id="Pd6-qz-50J"/>
+                                    <constraint firstAttribute="trailing" secondItem="uHH-Bu-aKm" secondAttribute="trailing" id="WtO-TB-1PT"/>
                                     <constraint firstItem="YqU-jE-k4p" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="k30-IB-kF1"/>
                                     <constraint firstItem="MFt-bn-9a8" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="orv-BT-wOp"/>
                                     <constraint firstAttribute="trailing" secondItem="MFt-bn-9a8" secondAttribute="trailing" id="yzA-2G-DPz"/>
@@ -131,14 +138,16 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="KVG-M4-61m">
                             <connections>
-                                <action selector="createEventButtonPressed:" destination="Dgv-yq-uaZ" id="yvL-EP-N9k"/>
+                                <action selector="createButtonPressed:" destination="Dgv-yq-uaZ" id="xhc-TT-cVd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addFriendsButtonPressed" destination="cdF-Ms-NhF" id="gDL-Ez-NRI"/>
+                        <outlet property="createEventButtonPressed" destination="KVG-M4-61m" id="Vqp-a9-l76"/>
                         <outlet property="datePicker" destination="MFt-bn-9a8" id="IBr-Rn-Qd4"/>
                         <outlet property="descriptionTextField" destination="iv0-4N-aH7" id="btk-OC-DZv"/>
+                        <outlet property="searchAPIButtonPressed" destination="uHH-Bu-aKm" id="PLo-ic-lDp"/>
                         <outlet property="titleTextField" destination="YqU-jE-k4p" id="rWH-UD-fVk"/>
                     </connections>
                 </viewController>
