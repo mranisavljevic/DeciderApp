@@ -36,8 +36,8 @@ class ParseService {
                 query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
                     if let object = object {
                         guard let id = object.objectId else { return }
-                        if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int] {
-                            let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues)
+                        if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], closed = object["closed"] as? Bool {
+                            let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
                             completion(success: true, event: event)
                         }
                     }
@@ -56,8 +56,8 @@ class ParseService {
         query.getObjectInBackgroundWithId(eventID) { (object, error) -> Void in
             if let object = object {
                 guard let id = object.objectId else { return }
-                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int] {
-                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues)
+                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], closed = object["closed"] as? Bool {
+                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
                     completion(success: true, event: event)
                 }
             } else {
@@ -82,8 +82,8 @@ class ParseService {
             if let events = objects {
                 for event in events {
                     guard let id = event.objectId else { return }
-                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int] {
-                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues)
+                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int], closed = event["closed"] as? Bool {
+                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
                             eventsArray.append(parsedEvent)
                     }
                     if eventsArray.count > 0 {

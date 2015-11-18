@@ -121,6 +121,11 @@
                                     <action selector="voteButtonPressed:" destination="wre-Q1-KS3" eventType="touchUpInside" id="ShF-nG-JGe"/>
                                 </connections>
                             </button>
+                            <view userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fy-F3-7um">
+                                <rect key="frame" x="0.0" y="185.5" width="600" height="368.5"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -132,13 +137,17 @@
                             <constraint firstItem="YlY-Vz-i5b" firstAttribute="top" secondItem="pNH-l1-iLM" secondAttribute="bottom" constant="8" symbolic="YES" id="Dw3-Mg-Wss"/>
                             <constraint firstItem="JhR-Ou-8Tp" firstAttribute="centerX" secondItem="8kR-0d-YPZ" secondAttribute="centerX" id="Ffa-qs-wU4"/>
                             <constraint firstItem="As8-j3-m4w" firstAttribute="centerX" secondItem="pNH-l1-iLM" secondAttribute="centerX" id="POV-fW-VA6"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="bottom" secondItem="YlY-Vz-i5b" secondAttribute="bottom" id="R2e-U3-b2e"/>
                             <constraint firstItem="4Ss-1M-zzw" firstAttribute="top" secondItem="JhR-Ou-8Tp" secondAttribute="bottom" constant="8" symbolic="YES" id="RiM-3d-1lp"/>
                             <constraint firstItem="6nv-Sg-dF5" firstAttribute="centerX" secondItem="4Rd-dV-sHI" secondAttribute="centerX" id="UXK-x9-frY"/>
                             <constraint firstItem="As8-j3-m4w" firstAttribute="top" secondItem="4Rd-dV-sHI" secondAttribute="bottom" constant="8" symbolic="YES" id="Va8-2J-NHN"/>
                             <constraint firstAttribute="trailing" secondItem="YlY-Vz-i5b" secondAttribute="trailing" id="WTk-FU-Y6Z"/>
                             <constraint firstItem="YlY-Vz-i5b" firstAttribute="leading" secondItem="8kR-0d-YPZ" secondAttribute="leading" id="gm0-lB-4Ag"/>
                             <constraint firstItem="6nv-Sg-dF5" firstAttribute="top" secondItem="5LX-ml-9jO" secondAttribute="bottom" constant="8" symbolic="YES" id="j81-UJ-3L8"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="top" secondItem="YlY-Vz-i5b" secondAttribute="top" id="mn5-xQ-ISL"/>
                             <constraint firstItem="4Rd-dV-sHI" firstAttribute="centerX" secondItem="As8-j3-m4w" secondAttribute="centerX" id="q5I-ln-DX7"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="leading" secondItem="YlY-Vz-i5b" secondAttribute="leading" id="ta2-mX-CS8"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="trailing" secondItem="YlY-Vz-i5b" secondAttribute="trailing" id="v81-jV-3mU"/>
                             <constraint firstItem="4Rd-dV-sHI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8kR-0d-YPZ" secondAttribute="leadingMargin" constant="8" id="xhE-69-nOE"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="4Rd-dV-sHI" secondAttribute="trailing" constant="8" id="yfY-AT-NJE"/>
                         </constraints>
@@ -146,6 +155,7 @@
                     <connections>
                         <outlet property="dateTimeLabel" destination="As8-j3-m4w" id="6Rz-Pw-XOf"/>
                         <outlet property="descriptionLabel" destination="4Rd-dV-sHI" id="DYQ-sn-BZp"/>
+                        <outlet property="greyOutView" destination="7Fy-F3-7um" id="4Vm-jZ-Uao"/>
                         <outlet property="titleLabel" destination="6nv-Sg-dF5" id="ta2-Jd-eML"/>
                         <outlet property="venuesCollectionView" destination="YlY-Vz-i5b" id="PkZ-5W-pFX"/>
                         <outlet property="voteButton" destination="JhR-Ou-8Tp" id="9O5-h2-fhg"/>

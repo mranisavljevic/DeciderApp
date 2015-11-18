@@ -15,14 +15,31 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
+    @IBOutlet weak var greyOutView: UIView!
+    
     
     let finalPollButton = UIBarButtonItem(title: "Finalize", style: UIBarButtonItemStyle.Done, target: nil, action: "finishButtonPressed")
     
     var event: Event?
     
-    var venues = [(String, Int)]()
+    var venues = [(String, Int)]() {
+        didSet {
+            guard let event = self.event else { return }
+            if event.closed == true {
+                self.greyOutView.hidden = false
+                self.greyOutView.alpha = 0.65
+                self.voteButton.enabled = false
+            }
+        }
+    }
     
-    var selectedVenues = [Int]()
+    var selectedVenues = [Int]() {
+        didSet {
+            if self.selectedVenues.count > 0 {
+                navigationItem.rightBarButtonItem?.enabled = false
+            }
+        }
+    }
     
     var selectedVenueIndexPaths = [NSIndexPath]() {
         didSet {
@@ -54,6 +71,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         guard let event = self.event else { return }
         self.titleLabel.text = event.eventTitle
         self.descriptionLabel.text = event.eventDescription
+        self.greyOutView.hidden = true
+        self.greyOutView.alpha = 0.0
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
         for venue in event.venues {
             self.venues.append(venue.0,venue.1)
@@ -152,6 +171,12 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func unhideFinalizeButtonIfNeeded() {
+        if let event = self.event {
+            if event.closed == true {
+                navigationItem.rightBarButtonItem?.enabled = false
+                return
+            }
+        }
         var voteCount = 0
         for venue in self.venues {
             voteCount += venue.1
@@ -166,7 +191,14 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         guard let event = self.event else { return }
         ParseService.closeEvent(event.eventID) { (success) -> () in
             if success {
+                event.closed = true
                 print("The voting has been closed")
+                self.greyOutView.hidden = false
+                self.unhideFinalizeButtonIfNeeded()
+                self.voteButton.enabled = false
+                UIView.animateWithDuration(0.4, animations: { () -> Void in
+                    self.greyOutView.alpha = 0.65
+                })
             }
         }
     }
@@ -228,6 +260,11 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let event = self.event {
+            if event.closed == true {
+                return
+            }
+        }
         self.addNewCellSelection(indexPath.row)
         self.addNewCellSelectionIndex(indexPath)
     }
