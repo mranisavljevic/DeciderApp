@@ -11,10 +11,22 @@ import Parse
 
 class ParseService {
     
+//    class func saveOneEventForTesting() {
+//        let title = "Dinner"
+//        let eventDescription = "Let's get dinner after class!"
+//        let eventDateTime = NSDate()
+//        let venues = ["IHOP":1,"Taco Bell":1,"Burger King":1,"Other Gross Stuff":1]
+//        let groupPhones = ["2064272503","5555555555","5551234567"]
+//        ParseService.saveEvent(title, eventDescription: eventDescription, eventDateTime: eventDateTime, venues: venues, groupPhoneNumbers: groupPhones) { (success, event) -> () in
+//            print("Success: \(success)")
+//            print("Error: \(event?.eventID)")
+//        }
+//    }
+    
     class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], groupPhoneNumbers: [String], completion: (success: Bool, event: Event?)->()) {
         let eventObject = PFObject(className: "Event")
         eventObject["title"] = eventTitle
-        eventObject["descripton"] = eventDescription
+        eventObject["description"] = eventDescription
         eventObject["dateTime"] = eventDateTime
         eventObject["venues"] = venues
         eventObject["phoneNumbers"] = groupPhoneNumbers
@@ -53,6 +65,41 @@ class ParseService {
                     print("Error: \(error.code)")
                 }
                 completion(success: false, event: nil)
+            }
+        }
+    }
+    
+    class func loadEventFromOpenURL(code: String, completion: ()->()) {
+        
+    }
+    
+    class func loadMyEvents(myPhone: String, completion: (success: Bool, events: [Event]?)->()) {
+        var eventsArray = [Event]()
+        let query = PFQuery(className: "Event")
+        query.whereKey("phoneNumbers", equalTo: myPhone)
+        query.whereKey("dateTime", greaterThanOrEqualTo: NSDate())
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if let events = objects {
+                for event in events {
+                    guard let id = event.objectId else { return }
+                    print(event["title"])
+                    print(event["description"])
+                    print(event["dateTime"])
+                    print(event["venues"])
+                    print(event["phoneNumbers"])
+                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int], phones = event["phoneNumbers"] as? [String] {
+                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phones)
+                            eventsArray.append(parsedEvent)
+                    }
+                    if eventsArray.count > 0 {
+                        completion(success: true, events: eventsArray)
+                    }
+                }
+            } else {
+                if let error = error {
+                    print("Error: \(error.code)")
+                }
+                completion(success: false, events: nil)
             }
         }
     }
