@@ -15,7 +15,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
+    
+    let finalPollButton = UIBarButtonItem(title: "Finalize", style: UIBarButtonItemStyle.Done, target: nil, action: "finishButtonPressed")
     
     var event: Event?
     
@@ -57,7 +58,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         for venue in event.venues {
             self.venues.append(venue.0,venue.1)
         }
+        if let _ = self.navigationController {
+            navigationItem.rightBarButtonItem = self.finalPollButton
+            self.finalPollButton.target = self
+            navigationItem.rightBarButtonItem?.enabled = false
+        }
         self.venuesCollectionView.reloadData()
+        self.unhideFinalizeButtonIfNeeded()
     }
     
     func formatDateToString(date: NSDate) -> String {
@@ -126,6 +133,38 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         return sortedVenues
     }
     
+    func selectFinalVenue() -> String {
+        let sortedVenues = sortVenuesByPopularity()
+        var topVenues = [(String, Int)]()
+        for venue in sortedVenues {
+            if topVenues.count > 0 {
+                if venue.1 > topVenues.first!.1 {
+                    topVenues = [venue]
+                } else if venue.1 == topVenues.first!.1 {
+                    topVenues.append(venue)
+                }
+            } else {
+                topVenues = [venue]
+            }
+        }
+        let randomIndex = Int(rand()) % topVenues.count
+        return topVenues[randomIndex].0
+    }
+    
+    func unhideFinalizeButtonIfNeeded() {
+        var voteCount = 0
+        for venue in self.venues {
+            voteCount += venue.1
+        }
+        if voteCount >= 4 {
+            navigationItem.rightBarButtonItem?.enabled = true
+        }
+    }
+    
+    func finishButtonPressed() {
+        print("The winning venue is: \(selectFinalVenue())")
+    }
+    
     @IBAction func voteButtonPressed(sender: UIButton) {
         guard let event = self.event else { return }
         if self.venues.count > 0 {
@@ -135,6 +174,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                     self.selectedVenues = [Int]()
                     self.selectedVenueIndexPaths = [NSIndexPath]()
                     self.venuesCollectionView.reloadItemsAtIndexPaths(self.venuesCollectionView.indexPathsForVisibleItems())
+                    self.unhideFinalizeButtonIfNeeded()
                 } else {
                     print("Voting unsuccessful")
                 }
