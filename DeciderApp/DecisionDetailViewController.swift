@@ -21,11 +21,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     var venues = [(String, Int)]()
     
-    var selectedVenues = [Int]() {
-        didSet {
-            print(selectedVenues)
-        }
-    }
+    var selectedVenues = [Int]()
     
     var selectedVenueIndexPaths = [NSIndexPath]() {
         didSet {
@@ -136,7 +132,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
                     self.venues = self.sortVenuesByPopularity()
-                    print("Successfully updated votes")
                     self.selectedVenues = [Int]()
                     self.selectedVenueIndexPaths = [NSIndexPath]()
                     self.venuesCollectionView.reloadItemsAtIndexPaths(self.venuesCollectionView.indexPathsForVisibleItems())
