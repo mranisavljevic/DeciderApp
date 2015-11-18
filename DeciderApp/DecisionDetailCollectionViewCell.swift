@@ -20,22 +20,12 @@ class DecisionDetailCollectionViewCell: UICollectionViewCell {
         return "DecisionDetailCollectionViewCell"
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let tapGesture = UITapGestureRecognizer(target: self, action: "toggleSelectionIcon")
-        self.addGestureRecognizer(tapGesture)
-    }
-    
     var venue: (String, Int)? {
         didSet {
             guard let venue = self.venue else { return }
             self.venueNameLabel.text = venue.0
             self.venueVotesLabel.text = "\(venue.1)"
         }
-    }
-    
-    func toggleSelectionIcon() {
-        self.selectionIndicatorLabel.hidden = !self.selectionIndicatorLabel.hidden
     }
     
 }

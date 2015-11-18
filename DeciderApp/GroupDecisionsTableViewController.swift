@@ -12,7 +12,6 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     var events = [Event]() {
         didSet {
-            print(events.count)
             self.tableView.reloadData()
         }
     }
