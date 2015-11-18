@@ -23,21 +23,20 @@ class ParseService {
 //        }
 //    }
     
-    class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], groupPhoneNumbers: [String], completion: (success: Bool, event: Event?)->()) {
+    class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], completion: (success: Bool, event: Event?)->()) {
         let eventObject = PFObject(className: "Event")
         eventObject["title"] = eventTitle
         eventObject["description"] = eventDescription
         eventObject["dateTime"] = eventDateTime
         eventObject["venues"] = venues
-        eventObject["phoneNumbers"] = groupPhoneNumbers
         eventObject.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 let query = PFQuery(className: "Event")
                 query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
                     if let object = object {
                         guard let id = object.objectId else { return }
-                        if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], phones = object["phoneNumbers"] as? [String] {
-                            let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phones)
+                        if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int] {
+                            let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues)
                             completion(success: true, event: event)
                         }
                     }
@@ -56,8 +55,8 @@ class ParseService {
         query.getObjectInBackgroundWithId(eventID) { (object, error) -> Void in
             if let object = object {
                 guard let id = object.objectId else { return }
-                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], phones = object["phoneNumbers"] as? [String] {
-                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phones)
+                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int] {
+                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues)
                     completion(success: true, event: event)
                 }
             } else {
@@ -76,14 +75,14 @@ class ParseService {
     class func loadMyEvents(myPhone: String, completion: (success: Bool, events: [Event]?)->()) {
         var eventsArray = [Event]()
         let query = PFQuery(className: "Event")
-        query.whereKey("phoneNumbers", equalTo: myPhone)
+//        query.whereKey("phoneNumbers", equalTo: myPhone)
         query.whereKey("dateTime", greaterThanOrEqualTo: NSDate())
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if let events = objects {
                 for event in events {
                     guard let id = event.objectId else { return }
-                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int], phones = event["phoneNumbers"] as? [String] {
-                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phones)
+                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int] {
+                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues)
                             eventsArray.append(parsedEvent)
                     }
                     if eventsArray.count > 0 {

@@ -19,7 +19,6 @@ class MessageService: NSObject, MFMessageComposeViewControllerDelegate {
         let messageComposeViewController = MFMessageComposeViewController()
         let url = "decider://id=\(event.eventID)"
         messageComposeViewController.messageComposeDelegate = self
-        messageComposeViewController.recipients = event.groupPhoneNumbers
         messageComposeViewController.body = "Hey, you've been invited to an event by your Decider friends!  Please follow the link to join: \(url)"
         return messageComposeViewController
     }
