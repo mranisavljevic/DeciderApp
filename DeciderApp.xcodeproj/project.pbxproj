@@ -36,6 +36,9 @@
 		90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */; };
 		90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */; };
 		E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */; };
+		E185F6751BFD0E8E004D9EF9 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6741BFD0E8E004D9EF9 /* SearchCell.swift */; };
+		E185F6771BFD0F0B004D9EF9 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6761BFD0F0B004D9EF9 /* SearchController.swift */; };
+		E185F6791BFD1440004D9EF9 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6781BFD1440004D9EF9 /* Venue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,9 @@
 		90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveService.swift; sourceTree = "<group>"; };
 		E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewController.swift; sourceTree = "<group>"; };
+		E185F6741BFD0E8E004D9EF9 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		E185F6761BFD0F0B004D9EF9 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		E185F6781BFD1440004D9EF9 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +199,8 @@
 				902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */,
 				902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */,
 				90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */,
+				E185F6761BFD0F0B004D9EF9 /* SearchController.swift */,
+				E185F6741BFD0E8E004D9EF9 /* SearchCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 				90E672891BFBC2FB00725EFD /* ParseService.swift */,
 				90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */,
 				90E6728F1BFBCD5000725EFD /* MFMessageService.swift */,
+				E185F6781BFD1440004D9EF9 /* Venue.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 				TargetAttributes = {
 					90E672351BFBBB7100725EFD = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 663S48QXDX;
 					};
 					90E672491BFBBB7200725EFD = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -369,14 +379,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */,
+				E185F6751BFD0E8E004D9EF9 /* SearchCell.swift in Sources */,
 				90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */,
 				90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */,
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */,
+				E185F6771BFD0F0B004D9EF9 /* SearchController.swift in Sources */,
 				90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
+				E185F6791BFD1440004D9EF9 /* Venue.swift in Sources */,
 				902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,13 +532,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DeciderApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.creeperspeak.DeciderApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trub.DeciderApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -534,13 +548,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DeciderApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.creeperspeak.DeciderApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trub.DeciderApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
