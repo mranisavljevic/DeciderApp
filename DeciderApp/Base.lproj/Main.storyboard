@@ -58,22 +58,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Participants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YdW-xB-ODA">
-                                <rect key="frame" x="254" y="105" width="91" height="20.5"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vote for your favorite option:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pNH-l1-iLM">
-                                <rect key="frame" x="191" y="134" width="218" height="20.5"/>
+                                <rect key="frame" x="191" y="105.5" width="218" height="20.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YlY-Vz-i5b">
-                                <rect key="frame" x="0.0" y="162" width="600" height="354"/>
+                                <rect key="frame" x="0.0" y="133.5" width="600" height="382.5"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.94581732429999998" green="0.94581732429999998" blue="0.94581732429999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EjN-8Y-h6U">
@@ -159,31 +152,36 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="As8-j3-m4w" firstAttribute="centerX" secondItem="YdW-xB-ODA" secondAttribute="centerX" id="7id-nn-QJJ"/>
                             <constraint firstItem="pNH-l1-iLM" firstAttribute="centerX" secondItem="8kR-0d-YPZ" secondAttribute="centerX" id="9UW-YQ-7ys"/>
+                            <constraint firstItem="pNH-l1-iLM" firstAttribute="top" secondItem="As8-j3-m4w" secondAttribute="bottom" constant="8" symbolic="YES" id="BZ8-tS-Hlh"/>
                             <constraint firstItem="4Rd-dV-sHI" firstAttribute="top" secondItem="6nv-Sg-dF5" secondAttribute="bottom" constant="8" symbolic="YES" id="CDn-3c-2Rm"/>
                             <constraint firstItem="JhR-Ou-8Tp" firstAttribute="top" secondItem="YlY-Vz-i5b" secondAttribute="bottom" constant="8" symbolic="YES" id="Dk6-Ei-44U"/>
                             <constraint firstItem="YlY-Vz-i5b" firstAttribute="top" secondItem="pNH-l1-iLM" secondAttribute="bottom" constant="8" symbolic="YES" id="Dw3-Mg-Wss"/>
                             <constraint firstItem="4Ss-1M-zzw" firstAttribute="top" secondItem="rF9-fZ-E70" secondAttribute="bottom" constant="8" symbolic="YES" id="OdQ-zg-zPC"/>
+                            <constraint firstItem="As8-j3-m4w" firstAttribute="centerX" secondItem="pNH-l1-iLM" secondAttribute="centerX" id="POV-fW-VA6"/>
                             <constraint firstItem="rF9-fZ-E70" firstAttribute="top" secondItem="JhR-Ou-8Tp" secondAttribute="bottom" constant="8" symbolic="YES" id="UUT-yx-7Op"/>
+                            <constraint firstItem="6nv-Sg-dF5" firstAttribute="centerX" secondItem="4Rd-dV-sHI" secondAttribute="centerX" id="UXK-x9-frY"/>
                             <constraint firstItem="As8-j3-m4w" firstAttribute="top" secondItem="4Rd-dV-sHI" secondAttribute="bottom" constant="8" symbolic="YES" id="Va8-2J-NHN"/>
                             <constraint firstAttribute="trailing" secondItem="YlY-Vz-i5b" secondAttribute="trailing" id="WTk-FU-Y6Z"/>
-                            <constraint firstItem="YdW-xB-ODA" firstAttribute="top" secondItem="As8-j3-m4w" secondAttribute="bottom" constant="8" symbolic="YES" id="XcU-zL-uHX"/>
-                            <constraint firstItem="YdW-xB-ODA" firstAttribute="centerX" secondItem="pNH-l1-iLM" secondAttribute="centerX" id="aeP-xc-S3P"/>
                             <constraint firstItem="6nv-Sg-dF5" firstAttribute="centerX" secondItem="4Rd-dV-sHI" secondAttribute="centerX" id="bdb-WB-l0u"/>
                             <constraint firstItem="JhR-Ou-8Tp" firstAttribute="centerX" secondItem="rF9-fZ-E70" secondAttribute="centerX" id="bfY-bm-yyu"/>
                             <constraint firstItem="4Rd-dV-sHI" firstAttribute="centerX" secondItem="As8-j3-m4w" secondAttribute="centerX" id="d2E-lL-Pwl"/>
-                            <constraint firstItem="pNH-l1-iLM" firstAttribute="top" secondItem="YdW-xB-ODA" secondAttribute="bottom" constant="8" symbolic="YES" id="fTq-7X-K7X"/>
                             <constraint firstItem="YlY-Vz-i5b" firstAttribute="leading" secondItem="8kR-0d-YPZ" secondAttribute="leading" id="gm0-lB-4Ag"/>
                             <constraint firstItem="6nv-Sg-dF5" firstAttribute="top" secondItem="5LX-ml-9jO" secondAttribute="bottom" id="j81-UJ-3L8"/>
+                            <constraint firstItem="4Rd-dV-sHI" firstAttribute="centerX" secondItem="As8-j3-m4w" secondAttribute="centerX" id="q5I-ln-DX7"/>
                             <constraint firstItem="rF9-fZ-E70" firstAttribute="centerX" secondItem="8kR-0d-YPZ" secondAttribute="centerX" id="wVm-Ix-zVI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="d2E-lL-Pwl"/>
+                                <exclude reference="bdb-WB-l0u"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="rF9-fZ-E70" id="r32-K7-PAd"/>
                         <outlet property="dateTimeLabel" destination="As8-j3-m4w" id="6Rz-Pw-XOf"/>
                         <outlet property="descriptionLabel" destination="4Rd-dV-sHI" id="DYQ-sn-BZp"/>
-                        <outlet property="participantsCountLabel" destination="YdW-xB-ODA" id="vhT-V4-sBj"/>
                         <outlet property="titleLabel" destination="6nv-Sg-dF5" id="ta2-Jd-eML"/>
                         <outlet property="venuesCollectionView" destination="YlY-Vz-i5b" id="PkZ-5W-pFX"/>
                         <outlet property="voteButton" destination="JhR-Ou-8Tp" id="9O5-h2-fhg"/>

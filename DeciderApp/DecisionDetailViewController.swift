@@ -13,7 +13,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
-    @IBOutlet weak var participantsCountLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -48,7 +47,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         self.titleLabel.text = event.eventTitle
         self.descriptionLabel.text = event.eventDescription
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
-        self.participantsCountLabel.text = "\(event.groupPhoneNumbers.count)"
         for venue in event.venues {
             self.venues.append(venue.0,venue.1)
         }
