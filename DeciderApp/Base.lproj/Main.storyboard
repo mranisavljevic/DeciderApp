@@ -122,9 +122,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rF9-fZ-E70">
-                                <rect key="frame" x="277" y="562" width="46" height="30"/>
+                                <rect key="frame" x="276" y="562" width="48" height="30"/>
                                 <animations/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonPressed:" destination="wre-Q1-KS3" eventType="touchUpInside" id="bvW-Fr-iqd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -159,6 +162,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="rF9-fZ-E70" id="pKn-fr-2Qs"/>
                         <outlet property="dateTimeLabel" destination="As8-j3-m4w" id="6Rz-Pw-XOf"/>
                         <outlet property="descriptionLabel" destination="4Rd-dV-sHI" id="DYQ-sn-BZp"/>
                         <outlet property="titleLabel" destination="6nv-Sg-dF5" id="ta2-Jd-eML"/>
