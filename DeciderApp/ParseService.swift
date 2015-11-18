@@ -126,4 +126,20 @@ class ParseService {
         
     }
     
+    class func closeEvent(eventID: String, completion: (success: Bool)->()) {
+        let parseObject = PFObject(className: "Event")
+        parseObject.objectId = eventID
+        parseObject.setValue(true, forKey: "closed")
+        parseObject.saveInBackgroundWithBlock { (success, error) -> Void in
+            if success {
+                completion(success: true)
+            } else {
+                if let error = error {
+                    print("Error closing event with code: \(error.code)")
+                }
+                completion(success: false)
+            }
+        }
+    }
+    
 }
