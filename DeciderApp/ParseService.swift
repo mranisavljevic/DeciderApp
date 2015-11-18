@@ -32,6 +32,7 @@ class ParseService {
         eventObject.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 let query = PFQuery(className: "Event")
+                query.whereKey("dateTime", equalTo: eventDateTime)
                 query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
                     if let object = object {
                         guard let id = object.objectId else { return }

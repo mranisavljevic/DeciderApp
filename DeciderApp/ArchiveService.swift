@@ -41,6 +41,16 @@ class Archiver: NSObject, NSCoding {
         }
     }
     
+    class func saveNewEventID(eventID: String) {
+        if let existingEvents = Archiver.retrieveEventIDs() {
+            var events = existingEvents
+            events.append(eventID)
+            Archiver.saveEventIDs(events)
+        } else {
+            Archiver.saveEventIDs(["\(eventID)"])
+        }
+    }
+    
 }
 
 

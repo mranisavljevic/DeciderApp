@@ -29,6 +29,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
         // Handle the text field’s user input through delegate callbacks.
         titleTextField.delegate = self
         descriptionTextField.delegate = self
+        self.datePicker.minimumDate = NSDate()
 
         
         checkValidEventParameters()
@@ -90,33 +91,37 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func createButtonPressed(sender: UIBarButtonItem) {
-    
-            let title = titleTextField.text!
-            let description = descriptionTextField.text!
-            let dateTime = datePicker.date
-            let venues = ["mcdonalds":1,"dumbos":1,"tacos":1,"teds":1]
-            
-            ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, completion: { (success, event) -> () in
-                
-                if success {
-                    
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    
-                    
-                } else {
-                    // create an alert
-                    let alert = UIAlertController(title: "Oh No!", message: "You need to fill out all the information to create an event", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK :)", style: UIAlertActionStyle.Default, handler: nil))
-                    
-                    // show the alert
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    
-                    
-                }
-            })
         
+        guard let title = titleTextField.text, description = descriptionTextField.text else {
+            // create an alert
+            let alert = UIAlertController(title: "Oh No!", message: "You need to fill out all the information to create an event", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK :)", style: UIAlertActionStyle.Default, handler: nil))
+            
+            // show the alert
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        let dateTime = datePicker.date
+        let venues = ["mcdonalds":1,"dumbos":1,"tacos":1,"teds":1]
+        
+        ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, completion: { (success, event) -> () in
+            if success {
+                if let event = event {
+                    self.sendMessage(event)
+                }
+            } else {
+                // create an alert
+                let alert = UIAlertController(title: "Oh No!", message: "You need to fill out all the information to create an event", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK :)", style: UIAlertActionStyle.Default, handler: nil))
+                
+                // show the alert
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        })
     }
     
 

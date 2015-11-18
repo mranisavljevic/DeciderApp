@@ -46,9 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         let stringURL = "\(url)"
         let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
-        ParseService.loadEventFromOpenURL(parseID) { () -> () in
-            //Handle completion for load.
-        }
+        Archiver.saveNewEventID(parseID)
         return true
     }
 
