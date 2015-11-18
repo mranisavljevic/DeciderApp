@@ -15,13 +15,31 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var greyOutView: UIView!
+    
+    
+    let finalPollButton = UIBarButtonItem(title: "Finalize", style: UIBarButtonItemStyle.Done, target: nil, action: "finishButtonPressed")
     
     var event: Event?
     
-    var venues = [(String, Int)]()
+    var venues = [(String, Int)]() {
+        didSet {
+            guard let event = self.event else { return }
+            if event.closed == true {
+                self.greyOutView.hidden = false
+                self.greyOutView.alpha = 0.65
+                self.voteButton.enabled = false
+            }
+        }
+    }
     
-    var selectedVenues = [Int]()
+    var selectedVenues = [Int]() {
+        didSet {
+            if self.selectedVenues.count > 0 {
+                navigationItem.rightBarButtonItem?.enabled = false
+            }
+        }
+    }
     
     var selectedVenueIndexPaths = [NSIndexPath]() {
         didSet {
@@ -46,17 +64,26 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUpView()
+        self.venues = self.sortVenuesByPopularity()
     }
     
     func setUpView() {
         guard let event = self.event else { return }
         self.titleLabel.text = event.eventTitle
         self.descriptionLabel.text = event.eventDescription
+        self.greyOutView.hidden = true
+        self.greyOutView.alpha = 0.0
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
         for venue in event.venues {
             self.venues.append(venue.0,venue.1)
         }
+        if let _ = self.navigationController {
+            navigationItem.rightBarButtonItem = self.finalPollButton
+            self.finalPollButton.target = self
+            navigationItem.rightBarButtonItem?.enabled = false
+        }
         self.venuesCollectionView.reloadData()
+        self.unhideFinalizeButtonIfNeeded()
     }
     
     func formatDateToString(date: NSDate) -> String {
@@ -64,7 +91,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func addNewCellSelection(venueRow: Int) {
-        print("New cell added")
         let selectionCount = self.selectedVenues.count
         switch selectionCount {
         case 0...2:
@@ -75,6 +101,9 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
             self.selectedVenues.append(venueRow)
             self.venues[venueRow].1++
+            if self.selectedVenues.count == 3 {
+                venues[0].1--
+            }
         default:
             for i in 1...2 {
                 if venueRow == self.selectedVenues[i] {
@@ -83,21 +112,15 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
             var tempArray = self.selectedVenues
             tempArray[0] = tempArray[1]
-            print(venues[tempArray[0]].0 + "is going down")
             venues[tempArray[0]].1--
             tempArray[1] = tempArray[2]
-            print(venues[tempArray[1]].0 + "is going up")
-            venues[tempArray[1]].1++
             tempArray[2] = venueRow
-            print(venues[tempArray[2]].0 + "is going up")
             venues[tempArray[2]].1++
             self.selectedVenues = tempArray
         }
-//        self.venuesCollectionView.reloadData()
     }
     
     func addNewCellSelectionIndex(venueIndex: NSIndexPath) {
-        print("New cell added")
         let selectionCount = self.selectedVenueIndexPaths.count
         switch selectionCount {
         case 0...2:
@@ -122,8 +145,79 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
+    func sortVenuesByPopularity() -> [(String, Int)] {
+        let sortedVenues = self.venues.sort { (a, b) -> Bool in
+            return a.1 > b.1
+        }
+        return sortedVenues
+    }
+    
+    func selectFinalVenue() -> String {
+        let sortedVenues = sortVenuesByPopularity()
+        var topVenues = [(String, Int)]()
+        for venue in sortedVenues {
+            if topVenues.count > 0 {
+                if venue.1 > topVenues.first!.1 {
+                    topVenues = [venue]
+                } else if venue.1 == topVenues.first!.1 {
+                    topVenues.append(venue)
+                }
+            } else {
+                topVenues = [venue]
+            }
+        }
+        let randomIndex = Int(rand()) % topVenues.count
+        return topVenues[randomIndex].0
+    }
+    
+    func unhideFinalizeButtonIfNeeded() {
+        if let event = self.event {
+            if event.closed == true {
+                navigationItem.rightBarButtonItem?.enabled = false
+                return
+            }
+        }
+        var voteCount = 0
+        for venue in self.venues {
+            voteCount += venue.1
+        }
+        if voteCount >= 4 {
+            navigationItem.rightBarButtonItem?.enabled = true
+        }
+    }
+    
+    func finishButtonPressed() {
+        print("The winning venue is: \(selectFinalVenue())")
+        guard let event = self.event else { return }
+        ParseService.closeEvent(event.eventID) { (success) -> () in
+            if success {
+                event.closed = true
+                print("The voting has been closed")
+                self.greyOutView.hidden = false
+                self.unhideFinalizeButtonIfNeeded()
+                self.voteButton.enabled = false
+                UIView.animateWithDuration(0.4, animations: { () -> Void in
+                    self.greyOutView.alpha = 0.65
+                })
+            }
+        }
+    }
     
     @IBAction func voteButtonPressed(sender: UIButton) {
+        guard let event = self.event else { return }
+        if self.venues.count > 0 {
+            ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
+                if success {
+                    self.venues = self.sortVenuesByPopularity()
+                    self.selectedVenues = [Int]()
+                    self.selectedVenueIndexPaths = [NSIndexPath]()
+                    self.venuesCollectionView.reloadItemsAtIndexPaths(self.venuesCollectionView.indexPathsForVisibleItems())
+                    self.unhideFinalizeButtonIfNeeded()
+                } else {
+                    print("Voting unsuccessful")
+                }
+            })
+        }
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
@@ -144,17 +238,14 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         case 3:
             if indexPath.row == self.selectedVenues[0] {
                 cell.selectionIndicatorLabel.hidden = true
-                print("Turning icon off for row: \(indexPath.row)")
             }
             if indexPath.row == self.selectedVenues[1] || indexPath.row == self.selectedVenues[2] {
                 cell.selectionIndicatorLabel.hidden = false
-                print("Turning icon on for row: \(indexPath.row)")
             }
         case 1...2:
             for i in 0...self.selectedVenues.count - 1 {
                 if indexPath.row == self.selectedVenues[i] {
                     cell.selectionIndicatorLabel.hidden = false
-                    print("Turning icon on for row: \(indexPath.row)")
                 }
             }
         default:
@@ -169,6 +260,11 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if let event = self.event {
+            if event.closed == true {
+                return
+            }
+        }
         self.addNewCellSelection(indexPath.row)
         self.addNewCellSelectionIndex(indexPath)
     }
