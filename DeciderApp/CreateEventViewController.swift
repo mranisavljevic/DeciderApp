@@ -110,6 +110,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
             if success {
                 if let event = event {
                     self.sendMessage(event)
+                    Archiver.saveNewEventID(event.eventID)
                 }
             } else {
                 // create an alert

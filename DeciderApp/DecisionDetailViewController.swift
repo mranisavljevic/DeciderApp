@@ -61,8 +61,18 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         let selectionCount = self.selectedVenues.count
         switch selectionCount {
         case 0...2:
+            for path in self.selectedVenues {
+                if venuePath == path {
+                    return
+                }
+            }
             self.selectedVenues.append(venuePath)
         default:
+            for i in 0...1 {
+                if venuePath == self.selectedVenues[i] {
+                    return
+                }
+            }
             self.selectedVenues[2] = self.selectedVenues[1]
             self.selectedVenues[1] = self.selectedVenues[0]
             self.selectedVenues[0] = venuePath
