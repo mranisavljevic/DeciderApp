@@ -72,11 +72,11 @@ class ParseService {
         
     }
     
-    class func loadMyEvents(myPhone: String, completion: (success: Bool, events: [Event]?)->()) {
+    class func loadMyEvents(eventIDs: [String], completion: (success: Bool, events: [Event]?)->()) {
         var eventsArray = [Event]()
         let query = PFQuery(className: "Event")
-//        query.whereKey("phoneNumbers", equalTo: myPhone)
-        query.whereKey("dateTime", greaterThanOrEqualTo: NSDate())
+        query.whereKey("objectId", containedIn: eventIDs)
+//        query.whereKey("dateTime", greaterThanOrEqualTo: NSDate())
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if let events = objects {
                 for event in events {

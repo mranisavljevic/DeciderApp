@@ -22,7 +22,7 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        fetchMyEvents()
+        fetchMyEvents()
         
         // Set up the refresh control
 //        self.setupRefreshControl()
@@ -32,17 +32,25 @@ class GroupDecisionsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-//    func fetchMyEvents() {
-//        ParseService.loadMyEvents(self.myPhone) { (success, events) -> () in
-//            if success {
-//                if let events = events {
-//                    self.events = events
-//                }
-//            } else {
-//                print("Error - did not retrieve events")
-//            }
-//        }
-//    }
+    func fetchMyEvents() {
+        guard let eventIDs = self.unarchiveEventIDs() else { return }
+        ParseService.loadMyEvents(eventIDs) { (success, events) -> () in
+            if success {
+                if let events = events {
+                    self.events = events
+                }
+            } else {
+                print("Error - did not retrieve events")
+            }
+        }
+    }
+    
+    func unarchiveEventIDs() -> [String]? {
+        if let eventIDs = Archiver.retrieveEventIDs() {
+            return eventIDs
+        }
+        return nil
+    }
     
     // MARK: - Table view data source
     
