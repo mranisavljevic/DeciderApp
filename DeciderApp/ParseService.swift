@@ -26,7 +26,7 @@ class ParseService {
     class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], groupPhoneNumbers: [String], completion: (success: Bool, event: Event?)->()) {
         let eventObject = PFObject(className: "Event")
         eventObject["title"] = eventTitle
-        eventObject["descripton"] = eventDescription
+        eventObject["description"] = eventDescription
         eventObject["dateTime"] = eventDateTime
         eventObject["venues"] = venues
         eventObject["phoneNumbers"] = groupPhoneNumbers
@@ -77,6 +77,7 @@ class ParseService {
         var eventsArray = [Event]()
         let query = PFQuery(className: "Event")
         query.whereKey("phoneNumbers", equalTo: myPhone)
+        query.whereKey("dateTime", greaterThanOrEqualTo: NSDate())
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if let events = objects {
                 for event in events {
