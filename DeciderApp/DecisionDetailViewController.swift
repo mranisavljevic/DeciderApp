@@ -74,6 +74,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                 }
             }
             self.selectedVenues.append(venueRow)
+            self.venues[venueRow].1++
         default:
             for i in 1...2 {
                 if venueRow == self.selectedVenues[i] {
@@ -82,8 +83,14 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
             var tempArray = self.selectedVenues
             tempArray[0] = tempArray[1]
+            print(venues[tempArray[0]].0 + "is going down")
+            venues[tempArray[0]].1--
             tempArray[1] = tempArray[2]
+            print(venues[tempArray[1]].0 + "is going up")
+            venues[tempArray[1]].1++
             tempArray[2] = venueRow
+            print(venues[tempArray[2]].0 + "is going up")
+            venues[tempArray[2]].1++
             self.selectedVenues = tempArray
         }
 //        self.venuesCollectionView.reloadData()
