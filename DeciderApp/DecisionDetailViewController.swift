@@ -163,6 +163,12 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     func finishButtonPressed() {
         print("The winning venue is: \(selectFinalVenue())")
+        guard let event = self.event else { return }
+        ParseService.closeEvent(event.eventID) { (success) -> () in
+            if success {
+                print("The voting has been closed")
+            }
+        }
     }
     
     @IBAction func voteButtonPressed(sender: UIButton) {
