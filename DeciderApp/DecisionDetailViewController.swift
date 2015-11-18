@@ -46,6 +46,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUpView()
+        self.venues = self.sortVenuesByPopularity()
     }
     
     func setUpView() {
@@ -118,6 +119,12 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
+    func sortVenuesByPopularity() -> [(String, Int)] {
+        let sortedVenues = self.venues.sort { (a, b) -> Bool in
+            return a.1 > b.1
+        }
+        return sortedVenues
+    }
     
     @IBAction func voteButtonPressed(sender: UIButton) {
         guard let event = self.event else { return }
@@ -125,6 +132,10 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
                     print("Successfully updated votes")
+                    self.venues = self.sortVenuesByPopularity()
+                    self.selectedVenues = [Int]()
+                    self.selectedVenueIndexPaths = [NSIndexPath]()
+                    self.venuesCollectionView.reloadData()
                 } else {
                     print("Voting unsuccessful")
                 }
