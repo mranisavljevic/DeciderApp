@@ -119,9 +119,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
                     self.sendMessage(event, completion: { (sent) -> () in
                         if sent {
                             Archiver.saveNewEventID(event.eventID)
-                            if let parentVC = self.parentViewController as? GroupDecisionsTableViewController {
-                                parentVC.tableView.reloadData()
-                                parentVC.dismissViewControllerAnimated(true, completion: nil)
+                            if let navController = self.navigationController {
+                                if let parentNavController = navController.presentingViewController as? UINavigationController {
+                                    if let groupVC = parentNavController.viewControllers.last as? GroupDecisionsTableViewController {
+                                        groupVC.tableView.reloadData()
+                                        groupVC.dismissViewControllerAnimated(true, completion: nil)
+                                    }
+                                }
                             }
                         } else {
                             ParseService.deleteEventWithID(event.eventID)
