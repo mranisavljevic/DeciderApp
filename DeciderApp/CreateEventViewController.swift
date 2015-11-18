@@ -101,8 +101,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
                 
                 if success {
                     
-                    let event = self.event
-                    
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
                     
