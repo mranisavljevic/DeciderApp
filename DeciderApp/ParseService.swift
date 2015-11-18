@@ -82,11 +82,6 @@ class ParseService {
             if let events = objects {
                 for event in events {
                     guard let id = event.objectId else { return }
-                    print(event["title"])
-                    print(event["description"])
-                    print(event["dateTime"])
-                    print(event["venues"])
-                    print(event["phoneNumbers"])
                     if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int], phones = event["phoneNumbers"] as? [String] {
                             let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phones)
                             eventsArray.append(parsedEvent)
