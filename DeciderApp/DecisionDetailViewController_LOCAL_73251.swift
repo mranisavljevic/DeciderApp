@@ -21,24 +21,18 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     var venues = [(String, Int)]()
     
-    var selectedVenues = [Int]()
-    
-    var selectedVenueIndexPaths = [NSIndexPath]() {
-        didSet {
-            self.venuesCollectionView.reloadItemsAtIndexPaths(self.selectedVenueIndexPaths)
-        }
-    }
+    var selectedVenues = [NSIndexPath]()
     
     class func identifier() -> String {
         return "DecisionDetailViewController"
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.venuesCollectionView.dataSource = self
         self.venuesCollectionView.delegate = self
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -63,62 +57,25 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         return NSDateFormatter.localizedStringFromDate(date, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
     }
     
-    func addNewCellSelection(venueRow: Int) {
-        print("New cell added")
+    func addNewCellSelection(venuePath: NSIndexPath) {
         let selectionCount = self.selectedVenues.count
         switch selectionCount {
         case 0...2:
             for path in self.selectedVenues {
-                if venueRow == path {
+                if venuePath == path {
                     return
                 }
             }
-            self.selectedVenues.append(venueRow)
-            self.venues[venueRow].1++
+            self.selectedVenues.append(venuePath)
         default:
-            for i in 1...2 {
-                if venueRow == self.selectedVenues[i] {
+            for i in 0...1 {
+                if venuePath == self.selectedVenues[i] {
                     return
                 }
             }
-            var tempArray = self.selectedVenues
-            tempArray[0] = tempArray[1]
-            print(venues[tempArray[0]].0 + "is going down")
-            venues[tempArray[0]].1--
-            tempArray[1] = tempArray[2]
-            print(venues[tempArray[1]].0 + "is going up")
-            venues[tempArray[1]].1++
-            tempArray[2] = venueRow
-            print(venues[tempArray[2]].0 + "is going up")
-            venues[tempArray[2]].1++
-            self.selectedVenues = tempArray
-        }
-//        self.venuesCollectionView.reloadData()
-    }
-    
-    func addNewCellSelectionIndex(venueIndex: NSIndexPath) {
-        print("New cell added")
-        let selectionCount = self.selectedVenueIndexPaths.count
-        switch selectionCount {
-        case 0...2:
-            for path in self.selectedVenueIndexPaths {
-                if venueIndex == path {
-                    return
-                }
-            }
-            self.selectedVenueIndexPaths.append(venueIndex)
-        default:
-            for i in 1...2 {
-                if venueIndex == self.selectedVenueIndexPaths[i] {
-                    return
-                }
-            }
-            var tempArray = self.selectedVenueIndexPaths
-            tempArray[0] = tempArray[1]
-            tempArray[1] = tempArray[2]
-            tempArray[2] = venueIndex
-            self.selectedVenueIndexPaths = tempArray
-
+            self.selectedVenues[2] = self.selectedVenues[1]
+            self.selectedVenues[1] = self.selectedVenues[0]
+            self.selectedVenues[0] = venuePath
         }
     }
     
@@ -142,19 +99,16 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         cell.venue = self.venues[indexPath.row]
         switch self.selectedVenues.count {
         case 3:
-            if indexPath.row == self.selectedVenues[0] {
+            if indexPath == self.selectedVenues[2] {
                 cell.selectionIndicatorLabel.hidden = true
-                print("Turning icon off for row: \(indexPath.row)")
             }
-            if indexPath.row == self.selectedVenues[1] || indexPath.row == self.selectedVenues[2] {
+            if indexPath == self.selectedVenues[1] || indexPath == self.selectedVenues[0] {
                 cell.selectionIndicatorLabel.hidden = false
-                print("Turning icon on for row: \(indexPath.row)")
             }
         case 1...2:
             for i in 0...self.selectedVenues.count - 1 {
-                if indexPath.row == self.selectedVenues[i] {
+                if indexPath == self.selectedVenues[i] {
                     cell.selectionIndicatorLabel.hidden = false
-                    print("Turning icon on for row: \(indexPath.row)")
                 }
             }
         default:
@@ -169,8 +123,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.addNewCellSelection(indexPath.row)
-        self.addNewCellSelectionIndex(indexPath)
+        self.addNewCellSelection(indexPath)
+        self.venuesCollectionView.reloadItemsAtIndexPaths(selectedVenues)
     }
-    
+
 }

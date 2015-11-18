@@ -9,7 +9,11 @@
 import Foundation
 import MessageUI
 
+typealias MessageServiceCompletion = (sent: Bool)->()
+
 class MessageService: NSObject, MFMessageComposeViewControllerDelegate {
+    
+    var completion: MessageServiceCompletion?
     
     func canSendText() -> Bool {
         return MFMessageComposeViewController.canSendText()
@@ -19,13 +23,20 @@ class MessageService: NSObject, MFMessageComposeViewControllerDelegate {
         let messageComposeViewController = MFMessageComposeViewController()
         let url = "decider://id=\(event.eventID)"
         messageComposeViewController.messageComposeDelegate = self
-        messageComposeViewController.recipients = event.groupPhoneNumbers
         messageComposeViewController.body = "Hey, you've been invited to an event by your Decider friends!  Please follow the link to join: \(url)"
         return messageComposeViewController
     }
     
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        if let completion = self.completion {
+            switch result {
+            case MessageComposeResultSent:
+                completion(sent: true)
+            default:
+                completion(sent: false)
+            }
+        }
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     

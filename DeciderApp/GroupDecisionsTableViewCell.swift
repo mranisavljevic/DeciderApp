@@ -17,7 +17,6 @@ class GroupDecisionsTableViewCell: UITableViewCell {
     var event: Event? {
         didSet {
             guard let event = self.event else { return }
-            print(event)
             self.textLabel?.text = event.eventTitle
         }
     }
