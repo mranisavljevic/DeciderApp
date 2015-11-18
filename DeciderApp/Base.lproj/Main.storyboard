@@ -160,35 +160,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jUV-dh-M7M">
-                                <rect key="frame" x="0.0" y="132" width="560" height="392"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jUV-dh-M7M">
+                                <rect key="frame" x="20" y="124" width="560" height="348"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdF-Ms-NhF">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YqU-jE-k4p">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                         <animations/>
-                                        <state key="normal" title="Add Friends"/>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YqU-jE-k4p">
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iv0-4N-aH7">
                                         <rect key="frame" x="0.0" y="44" width="560" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iv0-4N-aH7">
-                                        <rect key="frame" x="0.0" y="88" width="560" height="30"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MFt-bn-9a8">
-                                        <rect key="frame" x="0.0" y="132" width="560" height="216"/>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MFt-bn-9a8">
+                                        <rect key="frame" x="0.0" y="88" width="560" height="216"/>
                                         <animations/>
                                         <date key="date" timeIntervalSinceReferenceDate="469491262.03441501">
                                             <!--2015-11-17 22:14:22 +0000-->
                                         </date>
                                     </datePicker>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHH-Bu-aKm">
-                                        <rect key="frame" x="0.0" y="362" width="560" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uHH-Bu-aKm">
+                                        <rect key="frame" x="0.0" y="318" width="560" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Add Places"/>
                                     </button>
@@ -199,8 +194,6 @@
                                     <constraint firstAttribute="trailing" secondItem="iv0-4N-aH7" secondAttribute="trailing" id="6cM-Km-ima"/>
                                     <constraint firstAttribute="trailing" secondItem="YqU-jE-k4p" secondAttribute="trailing" id="DzS-Un-Kxj"/>
                                     <constraint firstItem="uHH-Bu-aKm" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="L12-8q-BWe"/>
-                                    <constraint firstItem="cdF-Ms-NhF" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="Lim-G8-4hE"/>
-                                    <constraint firstAttribute="trailing" secondItem="cdF-Ms-NhF" secondAttribute="trailing" id="Pd6-qz-50J"/>
                                     <constraint firstAttribute="trailing" secondItem="uHH-Bu-aKm" secondAttribute="trailing" id="WtO-TB-1PT"/>
                                     <constraint firstItem="YqU-jE-k4p" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="k30-IB-kF1"/>
                                     <constraint firstItem="MFt-bn-9a8" firstAttribute="leading" secondItem="jUV-dh-M7M" secondAttribute="leading" id="orv-BT-wOp"/>
@@ -213,6 +206,7 @@
                         <constraints>
                             <constraint firstItem="jUV-dh-M7M" firstAttribute="leading" secondItem="DUS-J1-08s" secondAttribute="leadingMargin" id="3Xy-TX-cdO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jUV-dh-M7M" secondAttribute="trailing" id="YwB-Gn-7oN"/>
+                            <constraint firstItem="jUV-dh-M7M" firstAttribute="top" secondItem="wrJ-Dq-pMq" secondAttribute="bottom" constant="60" id="fxG-ai-Fqy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Event" id="KNJ-AP-5rr">
@@ -228,7 +222,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addFriendsButtonPressed" destination="cdF-Ms-NhF" id="gDL-Ez-NRI"/>
                         <outlet property="createEventButtonPressed" destination="KVG-M4-61m" id="Vqp-a9-l76"/>
                         <outlet property="datePicker" destination="MFt-bn-9a8" id="IBr-Rn-Qd4"/>
                         <outlet property="descriptionTextField" destination="iv0-4N-aH7" id="btk-OC-DZv"/>
