@@ -21,6 +21,10 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         fetchMyEvents()
     }
     
@@ -51,6 +55,15 @@ class GroupDecisionsTableViewController: UITableViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(GroupDecisionsTableViewCell.identifier(), forIndexPath: indexPath) as! GroupDecisionsTableViewCell
         cell.event = self.events[indexPath.row]
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == DecisionDetailViewController.identifier() {
+            let destination = segue.destinationViewController as! DecisionDetailViewController
+            if let cell = sender as? GroupDecisionsTableViewCell {
+                destination.event = cell.event
+            }
+        }
     }
     
 }
