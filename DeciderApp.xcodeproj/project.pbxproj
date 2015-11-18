@@ -36,7 +36,6 @@
 		90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6728F1BFBCD5000725EFD /* MFMessageService.swift */; };
 		90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */; };
 		E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */; };
-		E185F66C1BFBFA51004D9EF9 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F66B1BFBFA51004D9EF9 /* Contacts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +91,6 @@
 		90E6728F1BFBCD5000725EFD /* MFMessageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFMessageService.swift; sourceTree = "<group>"; };
 		90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewController.swift; sourceTree = "<group>"; };
-		E185F66B1BFBFA51004D9EF9 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,7 +209,6 @@
 		90E6726B1BFBBE0100725EFD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E185F66A1BFBFA44004D9EF9 /* Contacts */,
 				90E672691BFBBDF400725EFD /* Event.swift */,
 				90E672891BFBC2FB00725EFD /* ParseService.swift */,
 				90E6728F1BFBCD5000725EFD /* MFMessageService.swift */,
@@ -238,14 +235,6 @@
 				90E672701BFBC1B800725EFD /* Accounts.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E185F66A1BFBFA44004D9EF9 /* Contacts */ = {
-			isa = PBXGroup;
-			children = (
-				E185F66B1BFBFA51004D9EF9 /* Contacts.swift */,
-			);
-			name = Contacts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,7 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E185F66C1BFBFA51004D9EF9 /* Contacts.swift in Sources */,
 				90E6723C1BFBBB7100725EFD /* ViewController.swift in Sources */,
 				90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */,
 				90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */,

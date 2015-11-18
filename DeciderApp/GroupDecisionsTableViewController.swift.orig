@@ -31,6 +31,11 @@ class GroupDecisionsTableViewController: UITableViewController {
         self.setupRefreshControl()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchMyEvents()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -60,6 +65,7 @@ class GroupDecisionsTableViewController: UITableViewController {
         return cell
     }
     
+<<<<<<< HEAD
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == DecisionDetailViewController.identifier() {
             let destination = segue.destinationViewController as! DecisionDetailViewController
@@ -67,8 +73,7 @@ class GroupDecisionsTableViewController: UITableViewController {
                 destination.event = cell.event
             }
         }
-    }
-    
+=======
     //MARK: - Refresh properties
     
     var refreshLoadingView : UIView!
@@ -203,6 +208,7 @@ class GroupDecisionsTableViewController: UITableViewController {
                 }
             }
         )
+>>>>>>> master
     }
     
 }
