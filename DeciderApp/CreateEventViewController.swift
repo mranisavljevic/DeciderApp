@@ -16,7 +16,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var searchAPIButtonPressed: UIButton!
+    @IBOutlet weak var createEventButtonPressed: UIBarButtonItem!
     
     var event: Event?
         
@@ -27,16 +28,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
         
         // Handle the text field’s user input through delegate callbacks.
         titleTextField.delegate = self
+        descriptionTextField.delegate = self
+
         
-        // Set up views if editing an existing Meal.
-        if let event = event {
-            titleTextField.text = event.eventTitle
-            descriptionTextField.text = event.eventDescription
-            datePicker.date = event.eventDateTime
-            
-        }
-        // Enable the Save button only if the text field has a valid Meal name.
-//        checkValidEventParameters()
+        checkValidEventParameters()
 
     }
 
@@ -53,20 +48,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-//        checkValidEventParameters()
+        checkValidEventParameters()
         navigationItem.title = textField.text
     }
     
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//        // Disable the Create button while editing.
-//        createEventButtonPressed.enabled = false
-//    }
-//    
-//    func checkValidEventParameters() {
-//        // Disable the Create button if the text field is empty.
-//        let text = titleTextField.text ?? ""
-//        createEventButtonPressed.enabled = !text.isEmpty
-//    }
+    func textFieldDidBeginEditing(textField: UITextField) {
+        // Disable the Create button while editing.
+        createEventButtonPressed.enabled = false
+    }
+    
+    func checkValidEventParameters() {
+        // Disable the Create button if the text field is empty.
+        let text = titleTextField.text ?? ""
+        createEventButtonPressed.enabled = !text.isEmpty
+    }
     
     
     //MARK: Custom Functions
@@ -83,17 +78,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     // MARK: Contacts Picker
     
     
+    //MARK: Navigation
     
-//    // This method lets you configure a view controller before it's presented.
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if createEventButtonPressed === sender {
-//            let name = titleTextField.text ?? ""
-//            let description = descriptionTextField.text ?? ""
-//            
-//            // Set the event to be passed to GroupDecisionTableViewController after the unwind segue.
-//            event = Event(eventID: String, eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], groupPhoneNumbers: [String])        }
-//    }
-    
+   
+
 
     //MARK: Actions
     
@@ -101,8 +89,38 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func createEventButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func createButtonPressed(sender: UIBarButtonItem) {
+    
+            let title = titleTextField.text!
+            let description = descriptionTextField.text!
+            let dateTime = datePicker.date
+            let venues = ["mcdonalds":1,"dumbos":1,"tacos":1,"teds":1]
+            let phoneNumbers = ["2147081160","2147081160","2147081160"]
+            
+            ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, groupPhoneNumbers: phoneNumbers, completion: { (success, event) -> () in
+                
+                if success {
+                    
+                    let event = self.event
+                    
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    
+                    
+                } else {
+                    // create an alert
+                    let alert = UIAlertController(title: "Oh No!", message: "You need to fill out all the information to create an event", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK :)", style: UIAlertActionStyle.Default, handler: nil))
+                    
+                    // show the alert
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    
+                    
+                }
+            })
         
     }
     
+
 }
