@@ -177,7 +177,7 @@
         <!--Decisions-->
         <scene sceneID="0zE-NU-rvQ">
             <objects>
-                <tableViewController id="i7Z-XB-Ceq" customClass="GroupDecisionsTableViewController" customModule="DeciderApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupDecisionsTableViewController" id="i7Z-XB-Ceq" customClass="GroupDecisionsTableViewController" customModule="DeciderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tXi-hw-geQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -206,7 +206,7 @@
                     <navigationItem key="navigationItem" title="Decisions" id="Mwx-fJ-sPG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ecf-Nh-HQG">
                             <connections>
-                                <segue destination="2lk-FF-Qdb" kind="presentation" id="bfD-Jh-KCw"/>
+                                <segue destination="2lk-FF-Qdb" kind="presentation" identifier="CreateEventViewController" id="bfD-Jh-KCw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -218,7 +218,7 @@
         <!--Create Event-->
         <scene sceneID="xoS-5d-O6W">
             <objects>
-                <viewController id="Dgv-yq-uaZ" customClass="CreateEventViewController" customModule="DeciderApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateEventViewController" id="Dgv-yq-uaZ" customClass="CreateEventViewController" customModule="DeciderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wrJ-Dq-pMq"/>
                         <viewControllerLayoutGuide type="bottom" id="JoJ-bn-7Xu"/>
