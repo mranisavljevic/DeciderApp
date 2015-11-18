@@ -13,12 +13,16 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var participantsCountLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var event: Event?
     
     var venues = [(String, Int)]()
+    
+    var selectedVenues = [NSIndexPath]()
     
     class func identifier() -> String {
         return "DecisionDetailViewController"
@@ -44,6 +48,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         self.titleLabel.text = event.eventTitle
         self.descriptionLabel.text = event.eventDescription
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
+        self.participantsCountLabel.text = "\(event.groupPhoneNumbers.count)"
         for venue in event.venues {
             self.venues.append(venue.0,venue.1)
         }
@@ -58,26 +63,22 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         let selectionCount = self.selectedVenues.count
         switch selectionCount {
         case 0...2:
-            for path in self.selectedVenues {
-                if venuePath == path {
-                    return
-                }
-            }
             self.selectedVenues.append(venuePath)
         default:
-            for i in 0...1 {
-                if venuePath == self.selectedVenues[i] {
-                    return
-                }
-            }
             self.selectedVenues[2] = self.selectedVenues[1]
             self.selectedVenues[1] = self.selectedVenues[0]
             self.selectedVenues[0] = venuePath
         }
     }
     
+    
     @IBAction func voteButtonPressed(sender: UIButton) {
     }
+    
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     //MARK: UICollectionView Datasource & Delegate & Flow Layout Methods
     
@@ -88,13 +89,34 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(DecisionDetailCollectionViewCell.identifier(), forIndexPath: indexPath) as! DecisionDetailCollectionViewCell
         cell.venue = self.venues[indexPath.row]
-        cell.selectionIndicatorLabel.hidden = true
+        switch self.selectedVenues.count {
+        case 3:
+            if indexPath == self.selectedVenues[2] {
+                cell.selectionIndicatorLabel.hidden = true
+            }
+            if indexPath == self.selectedVenues[1] || indexPath == self.selectedVenues[0] {
+                cell.selectionIndicatorLabel.hidden = false
+            }
+        case 1...2:
+            for i in 0...self.selectedVenues.count - 1 {
+                if indexPath == self.selectedVenues[i] {
+                    cell.selectionIndicatorLabel.hidden = false
+                }
+            }
+        default:
+            cell.selectionIndicatorLabel.hidden = true
+        }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let viewWidth = self.view.frame.width
         return CGSizeMake(viewWidth, 100.0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.addNewCellSelection(indexPath)
+        self.venuesCollectionView.reloadItemsAtIndexPaths(selectedVenues)
     }
 
 }

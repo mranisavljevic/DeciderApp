@@ -13,6 +13,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var participantsCountLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
     
@@ -44,6 +45,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         self.titleLabel.text = event.eventTitle
         self.descriptionLabel.text = event.eventDescription
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
+        self.participantsCountLabel.text = "\(event.groupPhoneNumbers.count)"
         for venue in event.venues {
             self.venues.append(venue.0,venue.1)
         }
@@ -54,27 +56,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         return NSDateFormatter.localizedStringFromDate(date, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
     }
     
-    func addNewCellSelection(venuePath: NSIndexPath) {
-        let selectionCount = self.selectedVenues.count
-        switch selectionCount {
-        case 0...2:
-            for path in self.selectedVenues {
-                if venuePath == path {
-                    return
-                }
-            }
-            self.selectedVenues.append(venuePath)
-        default:
-            for i in 0...1 {
-                if venuePath == self.selectedVenues[i] {
-                    return
-                }
-            }
-            self.selectedVenues[2] = self.selectedVenues[1]
-            self.selectedVenues[1] = self.selectedVenues[0]
-            self.selectedVenues[0] = venuePath
-        }
-    }
     
     @IBAction func voteButtonPressed(sender: UIButton) {
     }

@@ -15,10 +15,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var venuesCollectionView: UICollectionView!
     @IBOutlet weak var voteButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     var event: Event?
     
     var venues = [(String, Int)]()
+    
+    var selectedVenues = [NSIndexPath]()
     
     class func identifier() -> String {
         return "DecisionDetailViewController"
@@ -76,8 +79,14 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
+    
     @IBAction func voteButtonPressed(sender: UIButton) {
     }
+    
+    @IBAction func cancelButtonPressed(sender: UIButton) {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     //MARK: UICollectionView Datasource & Delegate & Flow Layout Methods
     
@@ -88,13 +97,34 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(DecisionDetailCollectionViewCell.identifier(), forIndexPath: indexPath) as! DecisionDetailCollectionViewCell
         cell.venue = self.venues[indexPath.row]
-        cell.selectionIndicatorLabel.hidden = true
+        switch self.selectedVenues.count {
+        case 3:
+            if indexPath == self.selectedVenues[2] {
+                cell.selectionIndicatorLabel.hidden = true
+            }
+            if indexPath == self.selectedVenues[1] || indexPath == self.selectedVenues[0] {
+                cell.selectionIndicatorLabel.hidden = false
+            }
+        case 1...2:
+            for i in 0...self.selectedVenues.count - 1 {
+                if indexPath == self.selectedVenues[i] {
+                    cell.selectionIndicatorLabel.hidden = false
+                }
+            }
+        default:
+            cell.selectionIndicatorLabel.hidden = true
+        }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let viewWidth = self.view.frame.width
         return CGSizeMake(viewWidth, 100.0)
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.addNewCellSelection(indexPath)
+        self.venuesCollectionView.reloadItemsAtIndexPaths(selectedVenues)
     }
 
 }

@@ -54,6 +54,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         return NSDateFormatter.localizedStringFromDate(date, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
     }
     
+<<<<<<< HEAD
     func addNewCellSelection(venuePath: NSIndexPath) {
         let selectionCount = self.selectedVenues.count
         switch selectionCount {
@@ -75,6 +76,9 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             self.selectedVenues[0] = venuePath
         }
     }
+    
+=======
+>>>>>>> master
     
     @IBAction func voteButtonPressed(sender: UIButton) {
     }
