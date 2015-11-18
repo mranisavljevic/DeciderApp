@@ -10,33 +10,47 @@ import UIKit
 
 class GroupDecisionsTableViewController: UITableViewController {
     
+    var myPhone = "2064272503" //This needs to be replaced with the user's phone number
+    
+    var events = [Event]() {
+        didSet {
+            print(events.count)
+            self.tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        fetchMyEvents()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
+    
+    func fetchMyEvents() {
+        ParseService.loadMyEvents(self.myPhone) { (success, events) -> () in
+            if success {
+                if let events = events {
+                    self.events = events
+                }
+            } else {
+                print("Error - did not retrieve events")
+            }
+        }
+    }
+    
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.events.count
     }
-
-
-
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(GroupDecisionsTableViewCell.identifier(), forIndexPath: indexPath) as! GroupDecisionsTableViewCell
+        cell.event = self.events[indexPath.row]
+        return cell
+    }
+    
 }
