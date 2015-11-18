@@ -35,6 +35,7 @@
 		90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */; };
 		90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E6728F1BFBCD5000725EFD /* MFMessageService.swift */; };
 		90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */; };
+		90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */; };
 		E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventViewController.swift; sourceTree = "<group>"; };
 		90E6728F1BFBCD5000725EFD /* MFMessageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFMessageService.swift; sourceTree = "<group>"; };
 		90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveService.swift; sourceTree = "<group>"; };
 		E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 			children = (
 				90E672691BFBBDF400725EFD /* Event.swift */,
 				90E672891BFBC2FB00725EFD /* ParseService.swift */,
+				90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */,
 				90E6728F1BFBCD5000725EFD /* MFMessageService.swift */,
 			);
 			name = Model;
@@ -375,6 +378,7 @@
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */,
+				90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
 				902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */,
