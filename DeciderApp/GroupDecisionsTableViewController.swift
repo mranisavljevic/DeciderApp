@@ -21,9 +21,9 @@ class GroupDecisionsTableViewController: UITableViewController {
         
         FourSquareService.searchVenues("Taco") { (success, data) -> () in
             if let data = data {
-                FourSquareService.parseVenueResponse(data, completion: { (success, json) -> () in
-                    if let json = json {
-                        print(json)
+                FourSquareService.parseVenueResponse(data, completion: { (success, venues) -> () in
+                    if let venues = venues {
+                        print(venues)
                     }
                 })
             }
@@ -33,6 +33,8 @@ class GroupDecisionsTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         fetchMyEvents()
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         
         // Set up the refresh control
 //        self.setupRefreshControl()

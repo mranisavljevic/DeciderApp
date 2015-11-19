@@ -37,27 +37,26 @@ class FourSquareService {
         }.resume()
     }
     
-    class func parseVenueResponse(data: NSData, completion: (success: Bool, json: [String : AnyObject]?)->()) {
+    class func parseVenueResponse(data: NSData, completion: (success: Bool, venues: [Venue]?)->()) {
         do {
             if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? [String : AnyObject] {
                 if let response = json["response"] as? [String : AnyObject] {
                     if let venues = response["venues"] as? [[String: AnyObject]] {
-                        guard let venue = venues.first else { return }
-                        if let id = venue["id"] as? String, name = venue["name"] as? String, location = venue["location"] as? [String : AnyObject], address = location["address"] as? String, distance = location["distance"] as? Int, lat = location["lat"] as? Double, long = location["lng"] as? Double, stats = venue["stats"] as? [String : AnyObject], userCount = stats["usersCount"] as? Int {
-                            print(id)
-                            print(name)
-                            print(address)
-                            print(lat)
-                            print(long)
-                            print(distance)
-                            print(userCount)
+                        var venueArray = [Venue]()
+                        for venue in venues {
+                            if let id = venue["id"] as? String, name = venue["name"] as? String, location = venue["location"] as? [String : AnyObject], address = location["address"] as? String, distance = location["distance"] as? Int, lat = location["lat"] as? Double, long = location["lng"] as? Double, stats = venue["stats"] as? [String : AnyObject], userCount = stats["usersCount"] as? Int {
+                                let venue = Venue(fourSquareID: id, name: name, address: address, latitude: lat, longitude: long, imageURL: "", categories: "", distance: distance, ratingImageURL: "", reviewCount: userCount)
+                                venueArray.append(venue)
+                            }
                         }
-                        completion(success: true, json: nil)
+                        if venueArray.count > 0 {
+                            completion(success: true, venues: venueArray)
+                        }
                     }
                 }
             }
         } catch {}
-        completion(success: false, json: nil)
+        completion(success: false, venues: nil)
     }
     
     
