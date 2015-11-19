@@ -62,7 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if success {
                         guard let event = event else { return }
                         detailVC.event = event
-                        homeVC.presentViewController(detailVC, animated: true, completion: nil)
+                        homeVC.navigationController?.pushViewController(detailVC, animated: true)
+//                        homeVC.presentViewController(detailVC, animated: true, completion: nil)
                     }
                 })
             }

@@ -29,12 +29,14 @@ class ParseService {
         eventObject["description"] = eventDescription
         eventObject["dateTime"] = eventDateTime
         eventObject["venues"] = venues
+        eventObject["closed"] = false
         eventObject.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 let query = PFQuery(className: "Event")
                 query.whereKey("dateTime", equalTo: eventDateTime)
                 query.getFirstObjectInBackgroundWithBlock({ (object, error) -> Void in
                     if let object = object {
+                        print (object["closed"])
                         guard let id = object.objectId else { return }
                         if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], closed = object["closed"] as? Bool {
                             let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
