@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SearchControllerDelegate {
+    func didUpdateSelectedVenuesWithVenues(venues: [Venue]?)
+}
+
 class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CheckboxDelegate {
     
     //MARK: - properties
@@ -19,9 +23,13 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var selectedVenues = [Venue]() {
         didSet {
-            print(self.selectedVenues)
+            if let delegate = self.delegate {
+                delegate.didUpdateSelectedVenuesWithVenues(self.selectedVenues)
+            }
         }
     }
+    
+    var delegate: SearchControllerDelegate?
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -105,6 +113,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         self.searchBar.resignFirstResponder()
     }
+    
+    //MARK: CheckboxDelegate Method
 
     func checkboxDidFinishWithSelectedVenue(venue: Venue?) {
         guard let venue = venue else { return }
@@ -114,6 +124,5 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
             self.selectedVenues.append(venue)
         }
     }
-    
     
 }

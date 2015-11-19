@@ -40,7 +40,6 @@
 		E174555A1BFE34FB00851F9D /* Checkbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17455591BFE34FB00851F9D /* Checkbox.swift */; };
 		E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174555B1BFE37AD00851F9D /* SearchController.swift */; };
 		E174555E1BFE37E400851F9D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174555D1BFE37E400851F9D /* SearchCell.swift */; };
-		E17455601BFE44FA00851F9D /* SelectedVenuesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174555F1BFE44FA00851F9D /* SelectedVenuesCollectionView.swift */; };
 		E17455621BFE451100851F9D /* SelectedVenuesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17455611BFE451100851F9D /* SelectedVenuesCell.swift */; };
 		E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -102,7 +101,6 @@
 		E17455591BFE34FB00851F9D /* Checkbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Checkbox.swift; sourceTree = "<group>"; };
 		E174555B1BFE37AD00851F9D /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E174555D1BFE37E400851F9D /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		E174555F1BFE44FA00851F9D /* SelectedVenuesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedVenuesCollectionView.swift; sourceTree = "<group>"; };
 		E17455611BFE451100851F9D /* SelectedVenuesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedVenuesCell.swift; sourceTree = "<group>"; };
 		E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,7 +208,6 @@
 				90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */,
 				E174555B1BFE37AD00851F9D /* SearchController.swift */,
 				E174555D1BFE37E400851F9D /* SearchCell.swift */,
-				E174555F1BFE44FA00851F9D /* SelectedVenuesCollectionView.swift */,
 				E17455611BFE451100851F9D /* SelectedVenuesCell.swift */,
 			);
 			name = Controller;
@@ -405,7 +402,6 @@
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
 				E17455621BFE451100851F9D /* SelectedVenuesCell.swift in Sources */,
 				902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */,
-				E17455601BFE44FA00851F9D /* SelectedVenuesCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

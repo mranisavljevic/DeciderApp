@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     // MARK: Properties
     
@@ -17,8 +17,15 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var searchAPIButtonPressed: UIButton!
     @IBOutlet weak var createEventButtonPressed: UIBarButtonItem!
+    @IBOutlet weak var selectedVenuesCollectionView: UICollectionView!
     
     var event: Event?
+    
+    var selectedVenues = [Venue]() {
+        didSet {
+            print("Got \(self.selectedVenues.count) venues in the create controller!")
+        }
+    }
         
     let messageService = MessageService()
 
@@ -28,6 +35,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
         // Handle the text field’s user input through delegate callbacks.
         titleTextField.delegate = self
         descriptionTextField.delegate = self
+        self.selectedVenuesCollectionView.delegate = self
+        self.selectedVenuesCollectionView.dataSource = self
         self.datePicker.minimumDate = NSDate()
 
         
@@ -80,6 +89,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
         } else {
             print("Can't send message.  Check your settings")
             completion(sent: false)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "searchAPISegue" {
+            let destination = segue.destinationViewController as! SearchController
+            destination.delegate = self
         }
     }
     
@@ -144,6 +160,26 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         })
+    }
+    
+    //MARK: UICollectionView Delegate & Datasource Methods
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.selectedVenues.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelectedVenuesCell", forIndexPath: indexPath) as! SelectedVenuesCell
+        cell.venue = self.selectedVenues[indexPath.row]
+        return cell
+    }
+    
+    //MARK: SearchControllerDelegate Method
+    
+    func didUpdateSelectedVenuesWithVenues(venues: [Venue]?) {
+        if let venues = venues {
+            self.selectedVenues = venues
+        }
     }
     
 
