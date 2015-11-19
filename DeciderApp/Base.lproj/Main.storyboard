@@ -183,21 +183,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrx-AI-7Sp">
-                                            <rect key="frame" x="8" y="8" width="42" height="20.5"/>
+                                            <rect key="frame" x="8" y="8" width="46.5" height="20.5"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-cb-rtH">
-                                            <rect key="frame" x="58" y="7" width="534" height="20.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-cb-rtH">
+                                            <rect key="frame" x="8" y="37" width="583.5" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFB-zH-5u0">
-                                            <rect key="frame" x="8" y="36" width="42" height="20.5"/>
+                                            <rect key="frame" x="542" y="8" width="42" height="20.5"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -206,13 +206,13 @@
                                     </subviews>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstItem="zFB-zH-5u0" firstAttribute="top" secondItem="hrx-AI-7Sp" secondAttribute="bottom" constant="8" id="1Kf-q5-1HW"/>
-                                        <constraint firstItem="cG9-cb-rtH" firstAttribute="leading" secondItem="hrx-AI-7Sp" secondAttribute="trailing" constant="8" id="CT1-30-QJc"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="zFB-zH-5u0" secondAttribute="leading" id="P4g-Vm-ShV"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="cG9-cb-rtH" secondAttribute="trailing" id="QdA-69-z12"/>
-                                        <constraint firstItem="cG9-cb-rtH" firstAttribute="top" secondItem="nco-RM-48y" secondAttribute="topMargin" constant="-1" id="al7-Et-c34"/>
-                                        <constraint firstAttribute="topMargin" secondItem="hrx-AI-7Sp" secondAttribute="top" id="o0t-Qr-HGY"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="hrx-AI-7Sp" secondAttribute="leading" id="tje-Fk-qH8"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="zFB-zH-5u0" secondAttribute="trailing" constant="8" id="16h-L0-7ks"/>
+                                        <constraint firstItem="cG9-cb-rtH" firstAttribute="top" secondItem="zFB-zH-5u0" secondAttribute="bottom" constant="8" id="1fX-gr-CpI"/>
+                                        <constraint firstAttribute="topMargin" secondItem="hrx-AI-7Sp" secondAttribute="top" id="6ws-RK-m67"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="hrx-AI-7Sp" secondAttribute="leading" id="S9A-7e-Xko"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cG9-cb-rtH" secondAttribute="trailing" id="YWy-oS-rT3"/>
+                                        <constraint firstItem="zFB-zH-5u0" firstAttribute="top" secondItem="nco-RM-48y" secondAttribute="topMargin" id="mZH-Td-x4g"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="cG9-cb-rtH" secondAttribute="leading" id="pPI-7r-zJS"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <animations/>

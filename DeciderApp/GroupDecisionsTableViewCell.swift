@@ -14,8 +14,6 @@ class GroupDecisionsTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var datetimeLabel: UILabel!
     
-    
-    
     class func identifier() -> String {
         return "GroupDecisionsTableViewCell"
     }
@@ -25,7 +23,7 @@ class GroupDecisionsTableViewCell: UITableViewCell {
             guard let event = self.event else { return }
             self.titleLabel.text = event.eventTitle
             self.descriptionLabel.text = event.eventDescription
-            self.datetimeLabel.text = "\(event.eventDateTime)"
+            self.datetimeLabel.text = NSDateFormatter.localizedStringFromDate(event.eventDateTime, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
         }
     }
 
