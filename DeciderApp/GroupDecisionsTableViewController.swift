@@ -19,15 +19,15 @@ class GroupDecisionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FourSquareService.searchVenues("Taco") { (success, data) -> () in
-            if let data = data {
-                FourSquareService.parseVenueResponse(data, completion: { (success, venues) -> () in
-                    if let venues = venues {
-                        print(venues)
-                    }
-                })
-            }
-        }
+//        FourSquareService.fetchVenueImage("4be9c56d61aca59369f68200") { (success, data) -> () in
+//            if let data = data {
+//                FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
+//                    if let image = image {
+//                        print(image.description)
+//                    }
+//                })
+//            }
+//        }
     }
     
     override func viewWillAppear(animated: Bool) {
