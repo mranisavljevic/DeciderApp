@@ -165,27 +165,62 @@
             </objects>
             <point key="canvasLocation" x="1762" y="-500"/>
         </scene>
-        <!--Decisions-->
+        <!--Events-->
         <scene sceneID="0zE-NU-rvQ">
             <objects>
                 <tableViewController storyboardIdentifier="GroupDecisionsTableViewController" id="i7Z-XB-Ceq" customClass="GroupDecisionsTableViewController" customModule="DeciderApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tXi-hw-geQ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="28" sectionFooterHeight="28" id="tXi-hw-geQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDecisionsTableViewCell" id="Si5-zM-zqK" customClass="GroupDecisionsTableViewCell" customModule="DeciderApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDecisionsTableViewCell" rowHeight="67" id="fZC-qM-Ugk" customClass="GroupDecisionsTableViewCell" customModule="DeciderApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="67"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Si5-zM-zqK" id="d54-GE-Oko">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="fZC-qM-Ugk" id="nco-RM-48y">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="66.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="255" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrx-AI-7Sp">
+                                            <rect key="frame" x="8" y="8" width="42" height="20.5"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-cb-rtH">
+                                            <rect key="frame" x="58" y="7" width="534" height="20.5"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFB-zH-5u0">
+                                            <rect key="frame" x="8" y="36" width="42" height="20.5"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <animations/>
+                                    <constraints>
+                                        <constraint firstItem="zFB-zH-5u0" firstAttribute="top" secondItem="hrx-AI-7Sp" secondAttribute="bottom" constant="8" id="1Kf-q5-1HW"/>
+                                        <constraint firstItem="cG9-cb-rtH" firstAttribute="leading" secondItem="hrx-AI-7Sp" secondAttribute="trailing" constant="8" id="CT1-30-QJc"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="zFB-zH-5u0" secondAttribute="leading" id="P4g-Vm-ShV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="cG9-cb-rtH" secondAttribute="trailing" id="QdA-69-z12"/>
+                                        <constraint firstItem="cG9-cb-rtH" firstAttribute="top" secondItem="nco-RM-48y" secondAttribute="topMargin" constant="-1" id="al7-Et-c34"/>
+                                        <constraint firstAttribute="topMargin" secondItem="hrx-AI-7Sp" secondAttribute="top" id="o0t-Qr-HGY"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="hrx-AI-7Sp" secondAttribute="leading" id="tje-Fk-qH8"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="wre-Q1-KS3" kind="show" identifier="DecisionDetailViewController" id="DfY-Bq-AIy"/>
+                                    <outlet property="datetimeLabel" destination="zFB-zH-5u0" id="mN9-G4-mrj"/>
+                                    <outlet property="descriptionLabel" destination="cG9-cb-rtH" id="kiM-4h-Wat"/>
+                                    <outlet property="titleLabel" destination="hrx-AI-7Sp" id="pt3-tO-1Fp"/>
+                                    <segue destination="wre-Q1-KS3" kind="show" identifier="DecisionDetailViewController" id="jZV-0E-A0x"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -194,7 +229,7 @@
                             <outlet property="delegate" destination="i7Z-XB-Ceq" id="cho-C7-h9f"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Decisions" id="Mwx-fJ-sPG">
+                    <navigationItem key="navigationItem" title="Events" id="Mwx-fJ-sPG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ecf-Nh-HQG">
                             <connections>
                                 <segue destination="2lk-FF-Qdb" kind="presentation" identifier="CreateEventViewController" id="bfD-Jh-KCw"/>

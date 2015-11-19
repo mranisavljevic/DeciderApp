@@ -10,6 +10,12 @@ import UIKit
 
 class GroupDecisionsTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var datetimeLabel: UILabel!
+    
+    
+    
     class func identifier() -> String {
         return "GroupDecisionsTableViewCell"
     }
@@ -17,7 +23,9 @@ class GroupDecisionsTableViewCell: UITableViewCell {
     var event: Event? {
         didSet {
             guard let event = self.event else { return }
-            self.textLabel?.text = event.eventTitle
+            self.titleLabel.text = event.eventTitle
+            self.descriptionLabel.text = event.eventDescription
+            self.datetimeLabel.text = "\(event.eventDateTime)"
         }
     }
 
