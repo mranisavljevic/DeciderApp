@@ -173,10 +173,11 @@ class ParseService {
         }
     }
     
-    class func closeEvent(eventID: String, completion: (success: Bool)->()) {
+    class func closeEvent(eventID: String, finalSelection: Venue, completion: (success: Bool)->()) {
         let parseObject = PFObject(className: "Event")
         parseObject.objectId = eventID
         parseObject.setValue(true, forKey: "closed")
+        parseObject.setValue(finalSelection.convertToDictionary(), forKey: "finalSelection")
         parseObject.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 completion(success: true)

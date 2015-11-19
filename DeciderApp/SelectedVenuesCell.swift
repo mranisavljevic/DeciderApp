@@ -11,33 +11,21 @@ import UIKit
 class SelectedVenuesCell: UICollectionViewCell {
     
     @IBOutlet weak var selectedVenueImageView: UIImageView!
+    @IBOutlet weak var selectedVenueNameLabel: UILabel!
     
-    var venue: Venue? {
+    var venue: Venue?
+    
+    var image: UIImage? {
         didSet {
-            
+            guard let image = self.image else { return }
+            self.selectedVenueImageView.image = image
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         guard let venue = self.venue else { return }
-            FourSquareService.fetchVenueImage(venue.fourSquareID, completion: { (success, data) -> () in
-                if success {
-                    if let data = data {
-                        FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
-                            if success {
-                                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                                    self.selectedVenueImageView.image = image
-                                })
-                            } else {
-                                print("Error converting image data to image.")
-                            }
-                        })
-                    }
-                } else {
-                    print("Error fetching image data.")
-                }
-            })
-        }
+        self.selectedVenueNameLabel.text = venue.name
+    }
     
 }
