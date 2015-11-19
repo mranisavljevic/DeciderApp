@@ -18,6 +18,16 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        FourSquareService.searchVenues("Taco") { (success, data) -> () in
+            if let data = data {
+                FourSquareService.parseVenueResponse(data, completion: { (success, json) -> () in
+                    if let json = json {
+                        print(json)
+                    }
+                })
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
