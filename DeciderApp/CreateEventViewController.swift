@@ -111,7 +111,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate {
             return
         }
         let dateTime = datePicker.date
-        let venues = ["One Place":0,"Another Place":0,"Some Place":0,"Food Place":0,"Blue Place":0,"Bad Place":0,"Mysterious Place":0]
+        let venue = Venue(fourSquareID: "12345", name: "Miles' Restaurant", address: "1234 E Somewhere St.", latitude: 47.620510, longitude: -122.349690, imageURL: nil, categories: nil, distance: 123, ratingImageURL: nil, reviewCount: 4511 )
+        let venues = [venue]
         
         ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, completion: { (success, event) -> () in
             if success {

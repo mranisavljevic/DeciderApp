@@ -75,7 +75,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         self.greyOutView.alpha = 0.0
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
         for venue in event.venues {
-            self.venues.append(venue.0,venue.1)
+            self.venues.append((venue.name, venue.votes))
         }
         if let _ = self.navigationController {
             navigationItem.rightBarButtonItem = self.finalPollButton

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */; };
 		902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */; };
+		90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A000381BFD6AC500994A27 /* FourSquareService.swift */; };
+		90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A0003A1BFD7CBF00994A27 /* Venue.swift */; };
 		90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E672391BFBBB7100725EFD /* AppDelegate.swift */; };
 		90E6723F1BFBBB7100725EFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90E6723D1BFBBB7100725EFD /* Main.storyboard */; };
 		90E672411BFBBB7100725EFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90E672401BFBBB7100725EFD /* Assets.xcassets */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewCell.swift; sourceTree = "<group>"; };
 		902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailViewController.swift; sourceTree = "<group>"; };
+		90A000381BFD6AC500994A27 /* FourSquareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourSquareService.swift; sourceTree = "<group>"; };
+		90A0003A1BFD7CBF00994A27 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		90E672361BFBBB7100725EFD /* DeciderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeciderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E672391BFBBB7100725EFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90E6723E1BFBBB7100725EFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -211,7 +215,9 @@
 				90E672691BFBBDF400725EFD /* Event.swift */,
 				90E672891BFBC2FB00725EFD /* ParseService.swift */,
 				90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */,
+				90A000381BFD6AC500994A27 /* FourSquareService.swift */,
 				90E6728F1BFBCD5000725EFD /* MFMessageService.swift */,
+				90A0003A1BFD7CBF00994A27 /* Venue.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -369,12 +375,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */,
+				90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */,
 				90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */,
 				90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */,
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */,
 				90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */,
+				90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
 				902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */,

@@ -14,10 +14,10 @@ class Event {
     var eventTitle: String
     var eventDescription: String
     var eventDateTime: NSDate
-    var venues: [String : Int]
+    var venues: [Venue]
     var closed: Bool
     
-    init(eventID: String, eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], closed: Bool = false) {
+    init(eventID: String, eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [Venue], closed: Bool = false) {
         self.eventID = eventID
         self.eventTitle = eventTitle
         self.eventDescription = eventDescription
