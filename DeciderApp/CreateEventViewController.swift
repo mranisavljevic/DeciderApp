@@ -24,6 +24,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     var selectedVenues = [Venue]() {
         didSet {
             print("Got \(self.selectedVenues.count) venues in the create controller!")
+            self.selectedVenuesCollectionView.reloadData()
         }
     }
         
