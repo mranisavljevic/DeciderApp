@@ -17,6 +17,7 @@ class SearchCell: UITableViewCell {
     @IBOutlet weak var reviewCountLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var checkboxButton: Checkbox!
     
     var venue: Venue! {
         didSet {
@@ -38,6 +39,17 @@ class SearchCell: UITableViewCell {
         // Initialization code
         thumbnailImageView.layer.cornerRadius = 5
         thumbnailImageView.clipsToBounds = true
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+        
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

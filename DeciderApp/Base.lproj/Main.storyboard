@@ -305,37 +305,43 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for a restaurant or a venue!" id="QYd-GV-7rd">
+                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <animations/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="130" id="T1K-Xn-3PM" customClass="SearchCell" customModule="DeciderApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="130"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" rowHeight="110" id="T1K-Xn-3PM" customClass="SearchCell" customModule="DeciderApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="136" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T1K-Xn-3PM" id="mZr-jn-UtA">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ATd-cY-iWr">
-                                                    <rect key="frame" x="10" y="10" width="288" height="110"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="venue" translatesAutoresizingMaskIntoConstraints="NO" id="AuV-R8-FlA">
+                                                    <rect key="frame" x="480" y="10" width="110" height="109.5"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="110" id="bjl-p8-5zC"/>
+                                                        <constraint firstAttribute="height" constant="109.5" id="fMB-El-vuU"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ATd-cY-iWr">
+                                                    <rect key="frame" x="10" y="10" width="193" height="80"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="venue" translatesAutoresizingMaskIntoConstraints="NO" id="AuV-R8-FlA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
-                                                            <animations/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="110" id="bjl-p8-5zC"/>
-                                                                <constraint firstAttribute="height" constant="110" id="fMB-El-vuU"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillProportionally" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="47S-dZ-lhA">
-                                                            <rect key="frame" x="130" y="0.0" width="158" height="110"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="47S-dZ-lhA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="193" height="80"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1. Best Tacos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Br-cJ-3X8">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="113" height="29"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="1. Best Tacos everrrrrrrrr" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Br-cJ-3X8">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="193" height="20"/>
                                                                     <animations/>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vYf-Iu-C3N">
-                                                                    <rect key="frame" x="0.0" y="33" width="158" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="24" width="158" height="15"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="rating" translatesAutoresizingMaskIntoConstraints="NO" id="uBN-Q4-aP7">
                                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="15"/>
@@ -356,14 +362,14 @@
                                                                     <animations/>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="100 Summit Ave" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQl-cU-ZKY">
-                                                                    <rect key="frame" x="0.0" y="52" width="111" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="104" height="17"/>
                                                                     <animations/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tacos, Mexican, yum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuj-TG-5Bt">
-                                                                    <rect key="frame" x="0.0" y="80" width="127" height="31"/>
+                                                                    <rect key="frame" x="0.0" y="64" width="127" height="16"/>
                                                                     <animations/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" red="0.59304932735426008" green="0.59304932735426008" blue="0.59304932735426008" alpha="1" colorSpace="calibratedRGB"/>
@@ -375,28 +381,49 @@
                                                     </subviews>
                                                     <animations/>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.07mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzB-jw-Ecs">
-                                                    <rect key="frame" x="544.5" y="12" width="40.5" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.07mi" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzB-jw-Ecs">
+                                                    <rect key="frame" x="336" y="10" width="40.5" height="16"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.7021966087443946" green="0.7021966087443946" blue="0.7021966087443946" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZHA-8l-ot6">
-                                                    <rect key="frame" x="487" y="49" width="51" height="31"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9io-gb-OHj" customClass="Checkbox" customModule="DeciderApp" customModuleProvider="target">
+                                                    <rect key="frame" x="480" y="10" width="110" height="109.5"/>
                                                     <animations/>
-                                                </switch>
+                                                    <color key="backgroundColor" red="0.70175403356552124" green="1" blue="0.23336559534072876" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" red="0.74899989366531372" green="1" blue="0.37641683220863342" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="checkColor">
+                                                            <color key="value" red="1" green="0.20149907469749451" blue="0.56318986415863037" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="checkWidth">
+                                                            <real key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChecked" value="NO"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="gzB-jw-Ecs" firstAttribute="top" secondItem="mZr-jn-UtA" secondAttribute="top" constant="12" id="6UL-vO-yw0"/>
-                                                <constraint firstAttribute="trailing" secondItem="gzB-jw-Ecs" secondAttribute="trailing" constant="15" id="cW8-sl-zHI"/>
+                                                <constraint firstItem="9io-gb-OHj" firstAttribute="height" secondItem="AuV-R8-FlA" secondAttribute="height" id="JGz-cn-rM0"/>
+                                                <constraint firstItem="9io-gb-OHj" firstAttribute="width" secondItem="AuV-R8-FlA" secondAttribute="width" id="Sz1-la-asi"/>
+                                                <constraint firstAttribute="trailing" secondItem="AuV-R8-FlA" secondAttribute="trailing" constant="10" id="Wgh-Ob-iaI"/>
+                                                <constraint firstItem="9io-gb-OHj" firstAttribute="top" secondItem="mZr-jn-UtA" secondAttribute="top" constant="10" id="igS-H0-pfh"/>
+                                                <constraint firstItem="AuV-R8-FlA" firstAttribute="top" secondItem="mZr-jn-UtA" secondAttribute="top" constant="10" id="jmK-dy-VQi"/>
+                                                <constraint firstAttribute="trailing" secondItem="9io-gb-OHj" secondAttribute="trailing" constant="10" id="rQo-K5-GDb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
                                             <outlet property="addressLabel" destination="rQl-cU-ZKY" id="kgC-Qb-a0p"/>
                                             <outlet property="categoryLabel" destination="fuj-TG-5Bt" id="qMT-js-EVj"/>
+                                            <outlet property="checkboxButton" destination="mZr-jn-UtA" id="Hwb-bb-JeG"/>
                                             <outlet property="distanceLabel" destination="gzB-jw-Ecs" id="CfH-sF-8tf"/>
                                             <outlet property="nameLabel" destination="1Br-cJ-3X8" id="ooG-kc-lvb"/>
                                             <outlet property="ratingImageView" destination="uBN-Q4-aP7" id="wqW-dY-h5c"/>
@@ -416,14 +443,17 @@
                             <constraint firstItem="jqm-xV-Ppt" firstAttribute="top" secondItem="bQM-za-1k5" secondAttribute="bottom" constant="20" id="vka-ao-ycl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3wa-hN-5Zj"/>
+                    <navigationItem key="navigationItem" id="3wa-hN-5Zj">
+                        <barButtonItem key="backBarButtonItem" title="back" id="6he-np-Lac"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="QYd-GV-7rd" id="UQY-c0-Fe9"/>
                         <outlet property="searchTableView" destination="bQM-za-1k5" id="6qJ-LG-kSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w27-zL-b4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4063.125" y="139.43661971830986"/>
+            <point key="canvasLocation" x="4063" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ved-MH-Rp6">
