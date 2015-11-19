@@ -58,22 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func displayDetailViewController(eventID: String) {
-//        if let rootVC = self.window?.rootViewController as? UINavigationController, storyboard = rootVC.storyboard {
-//            if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
-//                rootVC.addChildViewController(homeVC)
-//                rootVC.view.addSubview(homeVC.view)
-//                homeVC.didMoveToParentViewController(rootVC)
-//                let detailVC = storyboard.instantiateViewControllerWithIdentifier("DecisionDetailViewController") as! DecisionDetailViewController
-//                ParseService.loadEvent(eventID, completion: { (success, event) -> () in
-//                    if success {
-//                        guard let event = event else { return }
-//                        detailVC.event = event
-//                        homeVC.navigationController?.pushViewController(detailVC, animated: true)
-////                        homeVC.presentViewController(detailVC, animated: true, completion: nil)
-//                    }
-//                })
-//            }
-//        }
         if let navController = self.window?.rootViewController as? UINavigationController, storyboard = navController.storyboard {
             if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
                 let detailVC = storyboard.instantiateViewControllerWithIdentifier("DecisionDetailViewController") as! DecisionDetailViewController
