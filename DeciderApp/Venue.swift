@@ -9,6 +9,7 @@
 import UIKit
 
 class Venue: NSObject {
+    
     let fourSquareID: String
     let name: String
     let address: String?
@@ -33,6 +34,37 @@ class Venue: NSObject {
         self.ratingImageURL = ratingImageURL
         self.reviewCount = reviewCount
         self.votes = votes
+    }
+    
+    func convertToDictionary() -> [String : AnyObject] {
+        var dictionary = [String : AnyObject]()
+        dictionary["fourSquareID"] = self.fourSquareID
+        dictionary["name"] = self.name
+        dictionary["address"] = self.address
+        dictionary["latitude"] = self.latitude
+        dictionary["longitude"] = self.longitude
+        dictionary["imageURL"] = self.imageURL
+        dictionary["categories"] = self.categories
+        dictionary["distance"] = self.distance
+        dictionary["ratingImageURL"] = self.ratingImageURL
+        dictionary["reviewCount"] = self.reviewCount
+        dictionary["votes"] = self.votes
+        return dictionary
+    }
+    
+    class func convertFromDictionary(dictionary: [String : AnyObject]) -> Venue? {
+        guard let id = dictionary["fourSquareID"] as? String, name = dictionary["name"] as? String, votes = dictionary["votes"] as? Int else { return nil }
+        let address = dictionary["address"] as! String?
+        let latitude = dictionary["latitude"] as! Double?
+        let longitude = dictionary["longitude"] as! Double?
+        let imageURL = dictionary["imageURL"] as! String?
+        let categories = dictionary["categories"] as! String?
+        let distance = dictionary["distance"] as! Int?
+        let ratingURL = dictionary["ratingImageURL"] as! String?
+        let reviewCount = dictionary["reviewCount"] as! Int?
+        let venue = Venue(fourSquareID: id, name: name, address: address, latitude: latitude, longitude: longitude, imageURL: imageURL, categories: categories, distance: distance, ratingImageURL: ratingURL, reviewCount: reviewCount, votes: votes)
+        return venue
+        
     }
     
 
