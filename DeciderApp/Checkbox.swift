@@ -134,7 +134,6 @@ class Checkbox: UIView {
     }
     
     // MARK: Programmatic
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInitialization()

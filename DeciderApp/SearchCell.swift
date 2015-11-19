@@ -12,23 +12,35 @@ class SearchCell: UITableViewCell {
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var ratingImageView: UIImageView!
-    @IBOutlet weak var reviewCountLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var reviewCountLabel: UILabel!
     @IBOutlet weak var checkboxButton: Checkbox!
     
-    var venue: Venue! {
+    var venue: Venue? {
         didSet {
+            guard let venue = self.venue else {return}
             nameLabel.text = venue.name
-            //            thumbnailImageView.image = venue.imageURL
-            categoryLabel.text = venue.categories
             addressLabel.text = venue.address
+//            categoryLabel.text = venue.categories
+            distanceLabel.text = "\(venue.distance)"
             reviewCountLabel.text = "\(venue.reviewCount!) Reviews"
-            //            ratingImageView.setImageWithURL(venue.ratingImageURL)
-//            distanceLabel.text = venue.distance
-            
+            FourSquareService.fetchVenueImage(venue.fourSquareID) { (success, data) -> () in
+                
+                if let data = data {
+                    FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
+                        
+                        let queue = NSOperationQueue.mainQueue()
+                        queue.addOperationWithBlock({ () -> Void in
+                            if let image = image {
+                                self.thumbnailImageView.image = image
+                            }
+                        })
+                        
+                    })
+                }
+            }
             
         }
     }

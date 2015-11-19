@@ -11,9 +11,12 @@ import UIKit
 class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     
-    var venues = []
-    
-    
+    var venues = [Venue]() {
+        didSet {
+            self.searchTableView.reloadData()
+        }
+    }
+
     //MARK: - properties
     
     @IBOutlet weak var searchTableView: UITableView!
@@ -27,10 +30,21 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchTableView.delegate = self
         searchTableView.dataSource = self
         
-        
+        FourSquareService.searchVenues("tacos") { (success, data) -> () in
+            if let data = data {
+                FourSquareService.parseVenueResponse(data, completion: { (success, venues) -> () in
+                    if let venues = venues{
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            self.venues = venues
+
+                        })
+                    }
+                })
+            }
+        }
     }
     
-    override func didReceiveMemoryWarning() {3
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -43,38 +57,16 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SearchCell", forIndexPath: indexPath) as! SearchCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Search Cell", forIndexPath: indexPath) as! SearchCell
         
-        cell.venue = venues[indexPath.row] as! Venue
+        cell.venue = self.venues[indexPath.row]
         
         return cell
     }
     
     
-    // MARK: UISearchBarDelegate
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        print(searchBar.text)
-        //        if let searchTerm = searchBar.text {
-        //            if String.validateInput(searchTerm) {
-        //                self.update(searchTerm)
-        //            } else {
-        //                let alert = UIAlertController(title: "No Bueno", message: "Your search for '\(searchBar.text!)' is no bueno.", preferredStyle: .Alert)
-        //                let action = UIAlertAction(title: "lol", style: .Cancel, handler: nil)
-        //                alert.addAction(action)
-        //                presentViewController(alert, animated: true, completion: nil)
-        //            }
-        //        }
-    }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        self.searchBar.resignFirstResponder()
-    }
-    
-    func searchBarShouldEndEditing(searchBar: UISearchBar) -> Bool {
-        self.searchBar.resignFirstResponder()
-        return true
-    }
-    
+
     
     
     
