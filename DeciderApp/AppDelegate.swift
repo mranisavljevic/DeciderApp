@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    
     func displayDetailViewController(eventID: String) {
 //        if let rootVC = self.window?.rootViewController as? UINavigationController, storyboard = rootVC.storyboard {
 //            if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
