@@ -23,7 +23,7 @@ class ParseService {
 //        }
 //    }
     
-    class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [String : Int], completion: (success: Bool, event: Event?)->()) {
+    class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [Venue], completion: (success: Bool, event: Event?)->()) {
         let eventObject = PFObject(className: "Event")
         eventObject["title"] = eventTitle
         eventObject["description"] = eventDescription
@@ -38,7 +38,7 @@ class ParseService {
                     if let object = object {
                         print (object["closed"])
                         guard let id = object.objectId else { return }
-                        if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], closed = object["closed"] as? Bool {
+                        if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [Venue], closed = object["closed"] as? Bool {
                             let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
                             completion(success: true, event: event)
                         }
@@ -58,7 +58,7 @@ class ParseService {
         query.getObjectInBackgroundWithId(eventID) { (object, error) -> Void in
             if let object = object {
                 guard let id = object.objectId else { return }
-                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [String : Int], closed = object["closed"] as? Bool {
+                if let title = object["title"] as? String, description = object["description"] as? String, dateTime = object["dateTime"] as? NSDate, venues = object["venues"] as? [Venue], closed = object["closed"] as? Bool {
                     let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
                     completion(success: true, event: event)
                 }
@@ -84,7 +84,7 @@ class ParseService {
             if let events = objects {
                 for event in events {
                     guard let id = event.objectId else { return }
-                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [String : Int], closed = event["closed"] as? Bool {
+                    if let title = event["title"] as? String, description = event["description"] as? String, dateTime = event["dateTime"] as? NSDate, venues = event["venues"] as? [Venue], closed = event["closed"] as? Bool {
                             let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: venues, closed: closed)
                             eventsArray.append(parsedEvent)
                     }
@@ -108,24 +108,38 @@ class ParseService {
     }
     
     class func updateVotes(eventID: String, venues: [(String, Int)], completion: (success: Bool)->()) {
-        var venueObject = [String : Int]()
-        for venue in venues {
-            venueObject[venue.0] = venue.1
-        }
-        let parseObject = PFObject(className: "Event")
-        parseObject.objectId = eventID
-        parseObject.setValue(venueObject, forKey: "venues")
-        parseObject.saveInBackgroundWithBlock { (success, error) -> Void in
-            if success {
-                completion(success: true)
-            } else {
-                if let error = error {
-                    print("Error: \(error.code)")
+        let query = PFQuery(className: "Event")
+        query.whereKey("objectId", equalTo: eventID)
+        query.getFirstObjectInBackgroundWithBlock { (object, error) -> Void in
+            if let event = object {
+                guard let eventVenues = event["venues"] as? [Venue] else { return }
+                var venueObject = [Venue]()
+                for venue in venues {
+                    for eventVenue in eventVenues {
+                        if venue.0 == eventVenue.name {
+                            eventVenue.votes = venue.1
+                            venueObject.append(eventVenue)
+                        }
+                    }
                 }
-                completion(success: false)
+                let parseObject = PFObject(className: "Event")
+                parseObject.objectId = eventID
+                parseObject.setValue(venueObject, forKey: "venues")
+                parseObject.saveInBackgroundWithBlock { (success, error) -> Void in
+                    if success {
+                        completion(success: true)
+                    } else {
+                        if let error = error {
+                            print("Error: \(error.code)")
+                        }
+                        completion(success: false)
+                    }
+                }
+            }
+            if let _ = error {
+                print("Error fetching object")
             }
         }
-        
     }
     
     class func closeEvent(eventID: String, completion: (success: Bool)->()) {

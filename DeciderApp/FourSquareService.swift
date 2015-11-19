@@ -92,7 +92,7 @@ class FourSquareService {
                         var venueArray = [Venue]()
                         for venue in venues {
                             if let id = venue["id"] as? String, name = venue["name"] as? String, location = venue["location"] as? [String : AnyObject], address = location["address"] as? String, distance = location["distance"] as? Int, lat = location["lat"] as? Double, long = location["lng"] as? Double, stats = venue["stats"] as? [String : AnyObject], userCount = stats["usersCount"] as? Int {
-                                let venue = Venue(fourSquareID: id, name: name, address: address, latitude: lat, longitude: long, imageURL: "", categories: "", distance: distance, ratingImageURL: "", reviewCount: userCount)
+                                let venue = Venue(fourSquareID: id, name: name, address: address, latitude: lat, longitude: long, imageURL: "", categories: "", distance: distance, ratingImageURL: "", reviewCount: userCount, votes: 0)
                                 venueArray.append(venue)
                             }
                         }

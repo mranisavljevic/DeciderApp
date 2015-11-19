@@ -19,8 +19,9 @@ class Venue: NSObject {
     let distance: Int?
     let ratingImageURL: String?
     let reviewCount: Int?
+    var votes: Int
     
-    init (fourSquareID: String, name: String, address: String?, latitude: Double?, longitude: Double?, imageURL: String?, categories: String?, distance: Int?, ratingImageURL: String?, reviewCount: Int?) {
+    init (fourSquareID: String, name: String, address: String?, latitude: Double?, longitude: Double?, imageURL: String?, categories: String?, distance: Int?, ratingImageURL: String?, reviewCount: Int?, votes: Int = 0) {
         self.fourSquareID = fourSquareID
         self.name = name
         self.address = address
@@ -31,6 +32,7 @@ class Venue: NSObject {
         self.distance = distance
         self.ratingImageURL = ratingImageURL
         self.reviewCount = reviewCount
+        self.votes = votes
     }
     
 
