@@ -510,10 +510,10 @@
             </objects>
             <point key="canvasLocation" x="3971" y="164"/>
         </scene>
-        <!--View Controller-->
+        <!--Final Selection View Controller-->
         <scene sceneID="2hh-Qd-8FC">
             <objects>
-                <viewController storyboardIdentifier="FinalSelectionViewController" id="MHg-fg-ZY3" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FinalSelectionViewController" id="MHg-fg-ZY3" customClass="FinalSelectionViewController" customModule="DeciderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yny-y4-G08"/>
                         <viewControllerLayoutGuide type="bottom" id="rkc-3B-5Bo"/>
@@ -521,13 +521,94 @@
                     <view key="view" contentMode="scaleToFill" id="9tl-Xg-Bma">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-xu-l0G">
+                                <rect key="frame" x="278" y="28" width="45" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="3pX-Rm-J93"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tGW-rb-NSj">
+                                <rect key="frame" x="180" y="57" width="240" height="133"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="bLJ-Jp-tEE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kP-6A-wpb">
+                                <rect key="frame" x="268" y="198" width="63" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXD-Az-nye">
+                                <rect key="frame" x="250" y="238" width="100.5" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ais-f7-0RU">
+                                <rect key="frame" x="256.5" y="279" width="88" height="20.5"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vde-12-zTW">
+                                <rect key="frame" x="297" y="505" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6vn-bq-aJB">
+                                <rect key="frame" x="116" y="330" width="378" height="112"/>
+                                <animations/>
+                                <date key="date" timeIntervalSinceReferenceDate="469667896.34248602">
+                                    <!--2015-11-19 23:18:16 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NXD-Az-nye" firstAttribute="centerX" secondItem="6kP-6A-wpb" secondAttribute="centerX" id="2bI-3R-J0d"/>
+                            <constraint firstItem="NXD-Az-nye" firstAttribute="top" secondItem="6kP-6A-wpb" secondAttribute="bottom" constant="8" id="7CO-HN-ZBr"/>
+                            <constraint firstItem="rkc-3B-5Bo" firstAttribute="top" secondItem="tGW-rb-NSj" secondAttribute="bottom" constant="410" id="7Or-Ch-6XO"/>
+                            <constraint firstItem="6kP-6A-wpb" firstAttribute="centerX" secondItem="tGW-rb-NSj" secondAttribute="centerX" id="BmN-Pq-A8P"/>
+                            <constraint firstItem="6kP-6A-wpb" firstAttribute="top" secondItem="tGW-rb-NSj" secondAttribute="bottom" constant="8" id="IGT-ka-0kQ"/>
+                            <constraint firstItem="tGW-rb-NSj" firstAttribute="centerX" secondItem="JY9-xu-l0G" secondAttribute="centerX" id="PGE-ep-NxP"/>
+                            <constraint firstItem="ais-f7-0RU" firstAttribute="centerX" secondItem="NXD-Az-nye" secondAttribute="centerX" id="SV1-rm-KAz"/>
+                            <constraint firstItem="tGW-rb-NSj" firstAttribute="top" secondItem="JY9-xu-l0G" secondAttribute="bottom" constant="8" id="VhQ-bq-56d"/>
+                            <constraint firstItem="NXD-Az-nye" firstAttribute="top" secondItem="6kP-6A-wpb" secondAttribute="bottom" constant="20" id="YEp-Vc-hkM"/>
+                            <constraint firstItem="JY9-xu-l0G" firstAttribute="top" secondItem="Yny-y4-G08" secondAttribute="bottom" constant="8" id="Z4M-JH-iiQ"/>
+                            <constraint firstItem="JY9-xu-l0G" firstAttribute="top" secondItem="Yny-y4-G08" secondAttribute="bottom" constant="42" id="cO6-Hk-Oca"/>
+                            <constraint firstItem="JY9-xu-l0G" firstAttribute="top" secondItem="Yny-y4-G08" secondAttribute="bottom" constant="42" id="fDN-gP-6DM"/>
+                            <constraint firstItem="NXD-Az-nye" firstAttribute="top" secondItem="6kP-6A-wpb" secondAttribute="bottom" constant="20" id="gf3-kR-kNi"/>
+                            <constraint firstItem="ais-f7-0RU" firstAttribute="centerX" secondItem="NXD-Az-nye" secondAttribute="centerX" id="hSh-2n-HZU"/>
+                            <constraint firstItem="ais-f7-0RU" firstAttribute="top" secondItem="NXD-Az-nye" secondAttribute="bottom" constant="20" id="hvo-8O-O8U"/>
+                            <constraint firstItem="6kP-6A-wpb" firstAttribute="top" secondItem="tGW-rb-NSj" secondAttribute="bottom" constant="8" id="pel-lQ-nQJ"/>
+                            <constraint firstItem="NXD-Az-nye" firstAttribute="top" secondItem="6kP-6A-wpb" secondAttribute="bottom" constant="8" id="ssX-6m-VWa"/>
+                            <constraint firstItem="JY9-xu-l0G" firstAttribute="centerX" secondItem="9tl-Xg-Bma" secondAttribute="centerX" id="vmv-Iv-bCg"/>
+                            <constraint firstItem="NXD-Az-nye" firstAttribute="top" secondItem="6kP-6A-wpb" secondAttribute="bottom" constant="20" id="z2d-Nu-gOJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="cO6-Hk-Oca"/>
+                                <exclude reference="fDN-gP-6DM"/>
+                                <exclude reference="7CO-HN-ZBr"/>
+                                <exclude reference="ssX-6m-VWa"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Uz-q5-hcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4650" y="165"/>
+            <point key="canvasLocation" x="4627" y="164"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ved-MH-Rp6">
