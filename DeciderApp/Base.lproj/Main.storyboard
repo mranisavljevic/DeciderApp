@@ -457,6 +457,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="M9c-DI-G8x" id="GOS-ND-jYG"/>
                         <outlet property="searchTableView" destination="Gj0-kT-Yph" id="OSi-gg-vgk"/>
                     </connections>
                 </viewController>
