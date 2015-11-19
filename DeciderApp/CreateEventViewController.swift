@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: Properties
     
@@ -23,17 +23,20 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     
     var selectedVenues = [Venue]() {
         didSet {
-            print("Got \(self.selectedVenues.count) venues in the create controller!")
             self.selectedVenuesCollectionView.reloadData()
+            for _ in 0..<self.selectedVenues.count {
+                self.selectedVenueImages.append(nil)
+            }
         }
     }
+    
+    var selectedVenueImages = [UIImage?]()
         
     let messageService = MessageService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Handle the text field’s user input through delegate callbacks.
         titleTextField.delegate = self
         descriptionTextField.delegate = self
         self.selectedVenuesCollectionView.delegate = self
@@ -52,7 +55,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        // Hide the keyboard.
         textField.resignFirstResponder()
         return true
     }
@@ -63,12 +65,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        // Disable the Create button while editing.
         createEventButtonPressed.enabled = false
     }
     
     func checkValidEventParameters() {
-        // Disable the Create button if the text field is empty.
         let text = titleTextField.text ?? ""
         createEventButtonPressed.enabled = !text.isEmpty
     }
@@ -100,14 +100,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         }
     }
     
-    // MARK: Contacts Picker
-    
-    
-    //MARK: Navigation
-    
-   
-
-
     //MARK: Actions
     
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
@@ -117,20 +109,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     @IBAction func createButtonPressed(sender: UIBarButtonItem) {
         
         guard let title = titleTextField.text, description = descriptionTextField.text else {
-            // create an alert
             let alert = UIAlertController(title: "Oh No!", message: "You need to fill out all the information to create an event", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            // add an action (button)
             alert.addAction(UIAlertAction(title: "OK :)", style: UIAlertActionStyle.Default, handler: nil))
-            
-            // show the alert
             self.presentViewController(alert, animated: true, completion: nil)
             return
         }
         let dateTime = datePicker.date
-        let venue = Venue(fourSquareID: "12345", name: "Miles' Restaurant", address: "1234 E Somewhere St.", latitude: 47.620510, longitude: -122.349690, imageURL: nil, categories: nil, distance: 123, ratingImageURL: nil, reviewCount: 4511 )
-        let venues = [venue]
-        
+        let venues = self.selectedVenues
         ParseService.saveEvent(title, eventDescription: description, eventDateTime: dateTime, venues: venues, completion: { (success, event) -> () in
             if success {
                 if let event = event {
@@ -151,13 +136,8 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
                     })
                 }
             } else {
-                // create an alert
                 let alert = UIAlertController(title: "Oh No!", message: "You need to fill out all the information to create an event", preferredStyle: UIAlertControllerStyle.Alert)
-                
-                // add an action (button)
                 alert.addAction(UIAlertAction(title: "OK :)", style: UIAlertActionStyle.Default, handler: nil))
-                
-                // show the alert
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         })
@@ -171,8 +151,43 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelectedVenuesCell", forIndexPath: indexPath) as! SelectedVenuesCell
+        cell.selectedVenueImageView.image = nil
         cell.venue = self.selectedVenues[indexPath.row]
+        if let image = self.selectedVenueImages[indexPath.row] {
+            cell.image = image
+        } else {
+            FourSquareService.fetchVenueImage(self.selectedVenues[indexPath.row].fourSquareID, completion: { (success, data) -> () in
+                if success {
+                    if let data = data {
+                        FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
+                            if success {
+                                guard let image = image else { return }
+                                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                                    cell.image = image
+                                    self.selectedVenueImages[indexPath.row] = image
+                                })
+                            } else {
+                                cell.image = UIImage(named: "venue")
+                            }
+                        })
+                    }
+                } else {
+                    cell.image = UIImage(named: "venue")
+                    print("Error fetching image data.")
+                }
+            })
+        }
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let viewHeight = collectionView.frame.height
+        let size = (viewHeight > 100 ? 100 : viewHeight)
+        return CGSizeMake(size, size)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 10.0
     }
     
     //MARK: SearchControllerDelegate Method

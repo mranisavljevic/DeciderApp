@@ -14,7 +14,6 @@ protocol SearchControllerDelegate {
 
 class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CheckboxDelegate {
     
-    //MARK: - properties
     var venues = [Venue]() {
         didSet {
             self.searchTableView.reloadData()
@@ -43,6 +42,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchTableView.dataSource = self
         searchBar.delegate = self
         
+        searchBar.placeholder = "Tacos"
+        
         FourSquareService.searchVenues("tacos") { (success, data) -> () in
             if let data = data {
                 FourSquareService.parseVenueResponse(data, completion: { (success, venues) -> () in
@@ -59,7 +60,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: - table view functions
@@ -94,7 +94,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                         if let venues = venues{
                             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                                 self.venues = venues
-                                
                             })
                         }
                     })
@@ -104,11 +103,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
     }
-    
-//    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-//        self.searchBar.resignFirstResponder()
-//
-//    }
 
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
         self.searchBar.resignFirstResponder()

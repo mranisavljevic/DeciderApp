@@ -27,6 +27,14 @@ class MessageService: NSObject, MFMessageComposeViewControllerDelegate {
         return messageComposeViewController
     }
     
+    func sendFinalMessageComposeViewController(event: Event) -> MFMessageComposeViewController {
+        let messageComposeViewController = MFMessageComposeViewController()
+        let url = "decider://final=\(event.eventID)"
+        messageComposeViewController.messageComposeDelegate = self
+        messageComposeViewController.body = "Your Decider friends have chosen a place to go! Please follow the link to find out more: \(url)"
+        return messageComposeViewController
+    }
+    
     
     func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
         if let completion = self.completion {

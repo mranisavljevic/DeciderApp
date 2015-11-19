@@ -11,18 +11,6 @@ import Parse
 
 class ParseService {
     
-//    class func saveOneEventForTesting() {
-//        let title = "Dinner"
-//        let eventDescription = "Let's get dinner after class!"
-//        let eventDateTime = NSDate()
-//        let venues = ["IHOP":1,"Taco Bell":1,"Burger King":1,"Other Gross Stuff":1]
-//        let groupPhones = ["2064272503","5555555555","5551234567"]
-//        ParseService.saveEvent(title, eventDescription: eventDescription, eventDateTime: eventDateTime, venues: venues, groupPhoneNumbers: groupPhones) { (success, event) -> () in
-//            print("Success: \(success)")
-//            print("Error: \(event?.eventID)")
-//        }
-//    }
-    
     class func saveEvent(eventTitle: String, eventDescription: String, eventDateTime: NSDate, venues: [Venue], completion: (success: Bool, event: Event?)->()) {
         let eventObject = PFObject(className: "Event")
         eventObject["title"] = eventTitle
@@ -48,7 +36,7 @@ class ParseService {
                                     convertedVenues.append(convertedVenue)
                                 }
                             }
-                            let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: convertedVenues, closed: closed)
+                            let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: convertedVenues, finalSelection: nil, closed: closed)
                             completion(success: true, event: event)
                         }
                     }
@@ -74,7 +62,11 @@ class ParseService {
                             convertedVenues.append(convertedVenue)
                         }
                     }
-                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: convertedVenues, closed: closed)
+                    var finalVenueSelection: Venue? = nil
+                    if let finalVenue = object["finalSelection"] as? [String : AnyObject] {
+                        finalVenueSelection = Venue.convertFromDictionary(finalVenue)
+                    }
+                    let event = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: convertedVenues, finalSelection: finalVenueSelection, closed: closed)
                     completion(success: true, event: event)
                 }
             } else {
@@ -84,10 +76,6 @@ class ParseService {
                 completion(success: false, event: nil)
             }
         }
-    }
-    
-    class func loadEventFromOpenURL(code: String, completion: ()->()) {
-        
     }
     
     class func loadMyEvents(eventIDs: [String], completion: (success: Bool, events: [Event]?)->()) {
@@ -106,7 +94,11 @@ class ParseService {
                                 convertedVenues.append(convertedVenue)
                             }
                         }
-                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: convertedVenues, closed: closed)
+                        var finalSelection: Venue? = nil
+                        if let final = event["finalSelection"] as? [String : AnyObject] {
+                            finalSelection = Venue.convertFromDictionary(final)
+                        }
+                            let parsedEvent = Event(eventID: id, eventTitle: title, eventDescription: description, eventDateTime: dateTime, venues: convertedVenues, finalSelection: finalSelection, closed: closed)
                             eventsArray.append(parsedEvent)
                     }
                     if eventsArray.count > 0 {
@@ -173,10 +165,11 @@ class ParseService {
         }
     }
     
-    class func closeEvent(eventID: String, completion: (success: Bool)->()) {
+    class func closeEvent(eventID: String, finalSelection: Venue, completion: (success: Bool)->()) {
         let parseObject = PFObject(className: "Event")
         parseObject.objectId = eventID
         parseObject.setValue(true, forKey: "closed")
+        parseObject.setValue(finalSelection.convertToDictionary(), forKey: "finalSelection")
         parseObject.saveInBackgroundWithBlock { (success, error) -> Void in
             if success {
                 completion(success: true)

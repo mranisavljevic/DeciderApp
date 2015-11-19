@@ -45,29 +45,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         let stringURL = "\(url)"
-        let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
-        Archiver.saveNewEventID(parseID)
-        displayDetailViewController(parseID)
+        if stringURL.containsString("id=") {
+            let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
+            Archiver.saveNewEventID(parseID)
+            displayDetailViewController(parseID)
+        } else if stringURL.containsString("final=") {
+            let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://final=", withString: "")
+            Archiver.saveNewEventID(parseID)
+            displayFinalSelectionViewController(parseID)
+        }
         return true
     }
     
     func displayDetailViewController(eventID: String) {
-//        if let rootVC = self.window?.rootViewController as? UINavigationController, storyboard = rootVC.storyboard {
-//            if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
-//                rootVC.addChildViewController(homeVC)
-//                rootVC.view.addSubview(homeVC.view)
-//                homeVC.didMoveToParentViewController(rootVC)
-//                let detailVC = storyboard.instantiateViewControllerWithIdentifier("DecisionDetailViewController") as! DecisionDetailViewController
-//                ParseService.loadEvent(eventID, completion: { (success, event) -> () in
-//                    if success {
-//                        guard let event = event else { return }
-//                        detailVC.event = event
-//                        homeVC.navigationController?.pushViewController(detailVC, animated: true)
-////                        homeVC.presentViewController(detailVC, animated: true, completion: nil)
-//                    }
-//                })
-//            }
-//        }
         if let navController = self.window?.rootViewController as? UINavigationController, storyboard = navController.storyboard {
             if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
                 let detailVC = storyboard.instantiateViewControllerWithIdentifier("DecisionDetailViewController") as! DecisionDetailViewController
@@ -77,6 +67,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         detailVC.event = event
                         navController.pushViewController(homeVC, animated: true)
                         navController.pushViewController(detailVC, animated: true)
+                    }
+                })
+            }
+        }
+    }
+    
+    func displayFinalSelectionViewController(eventID: String) {
+        if let navController = self.window?.rootViewController as? UINavigationController, storyboard = navController.storyboard {
+            if let homeVC = storyboard.instantiateViewControllerWithIdentifier("GroupDecisionsTableViewController") as? GroupDecisionsTableViewController {
+                let detailVC = storyboard.instantiateViewControllerWithIdentifier("DecisionDetailViewController") as! DecisionDetailViewController
+                let finalVC = storyboard.instantiateViewControllerWithIdentifier("FinalSelectionViewController") as! FinalSelectionViewController
+                ParseService.loadEvent(eventID, completion: { (success, event) -> () in
+                    if success {
+                        guard let event = event else { return }
+                        detailVC.event = event
+                        finalVC.eventID = event.eventID
+                        navController.pushViewController(homeVC, animated: true)
+                        navController.pushViewController(detailVC, animated: true)
+                        detailVC.presentViewController(finalVC, animated: true, completion: nil)
                     }
                 })
             }
