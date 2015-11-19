@@ -10,7 +10,7 @@ import UIKit
 
 protocol CheckboxDelegate {
     
-    func checkboxDidFinishWithSelectedVenue(venues: Venue?)
+    func checkboxDidFinishWithSelectedVenue(venue: Venue?)
     
 }
 
@@ -145,6 +145,7 @@ class Checkbox: UIView {
     
     var indexPath: NSIndexPath?
     var datasource: [Venue]?
+    var delegate: CheckboxDelegate?
     
     init(frame: CGRect, indexPath: NSIndexPath) {
         self.indexPath = indexPath
@@ -165,8 +166,11 @@ class Checkbox: UIView {
     // MARK: - Tap Event
     func didTapView(sender: AnyObject) {
         isChecked = !isChecked
-        
-        print(self.indexPath)
+        if let delegate = self.delegate {
+            guard let datasource = self.datasource, indexPath = self.indexPath else { return }
+            delegate.checkboxDidFinishWithSelectedVenue(datasource[indexPath.row])
+        }
+//        print(self.indexPath)
     }
 }
 
