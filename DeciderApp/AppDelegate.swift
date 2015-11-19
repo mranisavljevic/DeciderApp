@@ -45,9 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
         let stringURL = "\(url)"
-        let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
-        Archiver.saveNewEventID(parseID)
-        displayDetailViewController(parseID)
+        if stringURL.containsString("id=") {
+            let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
+            Archiver.saveNewEventID(parseID)
+            displayDetailViewController(parseID)
+        } else if stringURL.containsString("final=") {
+            let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://final=", withString: "")
+            Archiver.saveNewEventID(parseID)
+            displayDetailViewController(parseID)
+        }
         return true
     }
     

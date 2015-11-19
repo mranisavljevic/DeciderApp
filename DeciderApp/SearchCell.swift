@@ -27,21 +27,17 @@ class SearchCell: UITableViewCell {
             distanceLabel.text = "\(venue.distance)"
             reviewCountLabel.text = "\(venue.reviewCount!) Reviews"
             FourSquareService.fetchVenueImage(venue.fourSquareID) { (success, data) -> () in
-                
                 if let data = data {
                     FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
-                        
                         let queue = NSOperationQueue.mainQueue()
                         queue.addOperationWithBlock({ () -> Void in
                             if let image = image {
                                 self.thumbnailImageView.image = image
                             }
                         })
-                        
                     })
                 }
             }
-            
         }
     }
     
