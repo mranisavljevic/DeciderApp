@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TNr-fd-RRh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TNr-fd-RRh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -254,8 +254,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jUV-dh-M7M">
-                                <rect key="frame" x="20" y="124" width="560" height="490"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="jUV-dh-M7M">
+                                <rect key="frame" x="20" y="124" width="560" height="456"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YqU-jE-k4p">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
@@ -284,26 +284,43 @@
                                             <segue destination="AhC-cG-7xG" kind="show" identifier="searchAPISegue" id="Qvh-JN-BCk"/>
                                         </connections>
                                     </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-is-QjN">
-                                        <rect key="frame" x="0.0" y="362" width="560" height="128"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NrS-is-QjN">
+                                        <rect key="frame" x="0.0" y="362" width="560" height="94"/>
                                         <animations/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rss-nv-R0s">
-                                            <size key="itemSize" width="50" height="50"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rss-nv-R0s">
+                                            <size key="itemSize" width="100" height="100"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qor-hB-u9a">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectedVenuesCell" id="qor-hB-u9a" customClass="SelectedVenuesCell" customModule="DeciderApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="-3" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHT-Z7-9tx">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                            <animations/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="100" id="Gr5-0g-sqm"/>
+                                                                <constraint firstAttribute="height" constant="100" id="Yh9-nk-FS2"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <animations/>
+                                                <constraints>
+                                                    <constraint firstItem="dHT-Z7-9tx" firstAttribute="centerY" secondItem="qor-hB-u9a" secondAttribute="centerY" id="FjE-E9-lEY"/>
+                                                    <constraint firstItem="dHT-Z7-9tx" firstAttribute="centerX" secondItem="qor-hB-u9a" secondAttribute="centerX" id="pw3-pk-VZe"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="selectedVenueImageView" destination="dHT-Z7-9tx" id="FJg-XJ-OGr"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -324,9 +341,12 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="NrS-is-QjN" secondAttribute="leading" id="265-Xz-il3"/>
                             <constraint firstItem="jUV-dh-M7M" firstAttribute="leading" secondItem="DUS-J1-08s" secondAttribute="leadingMargin" id="3Xy-TX-cdO"/>
+                            <constraint firstItem="JoJ-bn-7Xu" firstAttribute="top" secondItem="NrS-is-QjN" secondAttribute="bottom" constant="20" id="DCL-C0-fya"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jUV-dh-M7M" secondAttribute="trailing" id="YwB-Gn-7oN"/>
                             <constraint firstItem="jUV-dh-M7M" firstAttribute="top" secondItem="wrJ-Dq-pMq" secondAttribute="bottom" constant="60" id="fxG-ai-Fqy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NrS-is-QjN" secondAttribute="trailing" id="q4T-ff-qoE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Event" id="KNJ-AP-5rr">
@@ -346,6 +366,7 @@
                         <outlet property="datePicker" destination="MFt-bn-9a8" id="IBr-Rn-Qd4"/>
                         <outlet property="descriptionTextField" destination="iv0-4N-aH7" id="btk-OC-DZv"/>
                         <outlet property="searchAPIButtonPressed" destination="uHH-Bu-aKm" id="PLo-ic-lDp"/>
+                        <outlet property="selectedVenuesCollectionView" destination="NrS-is-QjN" id="Sgk-Q9-kVN"/>
                         <outlet property="titleTextField" destination="YqU-jE-k4p" id="rWH-UD-fVk"/>
                     </connections>
                 </viewController>
@@ -488,6 +509,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zig-p9-Jl2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3971" y="164"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2hh-Qd-8FC">
+            <objects>
+                <viewController storyboardIdentifier="FinalSelectionViewController" id="MHg-fg-ZY3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yny-y4-G08"/>
+                        <viewControllerLayoutGuide type="bottom" id="rkc-3B-5Bo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9tl-Xg-Bma">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Uz-q5-hcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4650" y="165"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ved-MH-Rp6">
