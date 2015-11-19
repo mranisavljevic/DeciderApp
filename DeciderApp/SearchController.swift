@@ -10,14 +10,12 @@ import UIKit
 
 class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
-    
+    //MARK: - properties
     var venues = [Venue]() {
         didSet {
             self.searchTableView.reloadData()
         }
     }
-
-    //MARK: - properties
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -29,6 +27,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        searchBar.delegate = self
         
         FourSquareService.searchVenues("tacos") { (success, data) -> () in
             if let data = data {
@@ -64,8 +63,38 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         return cell
     }
     
+    //MARK:  - UISearchBarDelegate
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        self.searchBar.resignFirstResponder()
+        
+        if searchBar.text?.characters.count > 0 {
+            guard let searchTerm = searchBar.text else {return}
+            FourSquareService.searchVenues(searchTerm) { (success, data) -> () in
+                if let data = data {
+                    FourSquareService.parseVenueResponse(data, completion: { (success, venues) -> () in
+                        if let venues = venues{
+                            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                                self.venues = venues
+                                
+                            })
+                        }
+                    })
+                }
+            }
+            
+        }
+        
+    }
     
+//    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+//        self.searchBar.resignFirstResponder()
+//
+//    }
+
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        self.searchBar.resignFirstResponder()
+    }
 
     
     
