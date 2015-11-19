@@ -60,6 +60,9 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         cell.venue = self.venues[indexPath.row]
         
+        cell.checkboxButton.indexPath = indexPath
+        cell.checkboxButton.datasource = self.venues
+        
         return cell
     }
     

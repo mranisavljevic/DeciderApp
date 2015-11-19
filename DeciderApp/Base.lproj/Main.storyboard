@@ -461,6 +461,7 @@
                                         <animations/>
                                         <connections>
                                             <outlet property="addressLabel" destination="7t7-bc-38J" id="QQH-kq-SgQ"/>
+                                            <outlet property="checkboxButton" destination="8Mh-iq-Ybf" id="6E2-RJ-OLC"/>
                                             <outlet property="distanceLabel" destination="kLx-Oj-mOq" id="PeO-L3-H7O"/>
                                             <outlet property="nameLabel" destination="tHO-r3-udm" id="uiw-cX-ilX"/>
                                             <outlet property="reviewCountLabel" destination="nRa-ht-FLS" id="9w7-Jw-ZJ1"/>

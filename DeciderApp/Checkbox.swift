@@ -8,9 +8,17 @@
 
 import UIKit
 
+protocol CheckboxDelegate {
+    
+    func checkboxDidFinishWithSelectedVenue(venues: Venue?)
+    
+}
 
 @IBDesignable
 class Checkbox: UIView {
+    
+    
+    
     // MARK: - Border Properties
     @IBInspectable var borderWidth: CGFloat = 1 {
         didSet {
@@ -134,18 +142,31 @@ class Checkbox: UIView {
     }
     
     // MARK: Programmatic
+    
+    var indexPath: NSIndexPath?
+    var datasource: [Venue]?
+    
+    init(frame: CGRect, indexPath: NSIndexPath) {
+        self.indexPath = indexPath
+        super.init(frame: frame)
+    }
+    
     override init(frame: CGRect) {
+        self.indexPath = nil
         super.init(frame: frame)
         commonInitialization()
     }
     
     required init(coder aDecoder: NSCoder) {
+        self.indexPath = nil
         super.init(coder: aDecoder)!
     }
     
     // MARK: - Tap Event
     func didTapView(sender: AnyObject) {
         isChecked = !isChecked
+        
+        print(self.indexPath)
     }
 }
 
