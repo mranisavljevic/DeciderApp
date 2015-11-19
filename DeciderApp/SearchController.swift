@@ -8,12 +8,18 @@
 
 import UIKit
 
-class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, CheckboxDelegate {
     
     //MARK: - properties
     var venues = [Venue]() {
         didSet {
             self.searchTableView.reloadData()
+        }
+    }
+    
+    var selectedVenues = [Venue]() {
+        didSet {
+            print(self.selectedVenues)
         }
     }
     
@@ -62,6 +68,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         cell.checkboxButton.indexPath = indexPath
         cell.checkboxButton.datasource = self.venues
+        cell.checkboxButton.delegate = self
         
         return cell
     }
@@ -99,7 +106,14 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         self.searchBar.resignFirstResponder()
     }
 
-    
+    func checkboxDidFinishWithSelectedVenue(venue: Venue?) {
+        guard let venue = venue else { return }
+        if let index = self.selectedVenues.indexOf(venue) {
+            self.selectedVenues.removeAtIndex(index)
+        } else {
+            self.selectedVenues.append(venue)
+        }
+    }
     
     
 }
