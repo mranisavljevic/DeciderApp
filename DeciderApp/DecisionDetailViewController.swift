@@ -152,7 +152,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         return sortedVenues
     }
     
-    func selectFinalVenue() -> String {
+    func selectFinalVenue() -> Venue? {
+        guard let event = self.event else { return nil }
         let sortedVenues = sortVenuesByPopularity()
         var topVenues = [(String, Int)]()
         for venue in sortedVenues {
@@ -167,7 +168,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
         }
         let randomIndex = Int(rand()) % topVenues.count
-        return topVenues[randomIndex].0
+        let finalSelectionName = topVenues[randomIndex].0
+        for venue in event.venues {
+            if venue.name == finalSelectionName {
+                return venue
+            }
+        }
+        return nil
     }
     
     func unhideFinalizeButtonIfNeeded() {
@@ -187,7 +194,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func finishButtonPressed() {
-        print("The winning venue is: \(selectFinalVenue())")
+        guard let winningVenue = self.selectFinalVenue() else { return }
+        print("The winning venue is: \(winningVenue.name)")
         guard let event = self.event else { return }
         ParseService.closeEvent(event.eventID) { (success) -> () in
             if success {

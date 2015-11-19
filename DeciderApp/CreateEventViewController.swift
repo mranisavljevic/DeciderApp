@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: Properties
     
@@ -25,8 +25,13 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         didSet {
             print("Got \(self.selectedVenues.count) venues in the create controller!")
             self.selectedVenuesCollectionView.reloadData()
+            for _ in 0..<self.selectedVenues.count {
+                self.selectedVenueImages.append(nil)
+            }
         }
     }
+    
+    var selectedVenueImages = [UIImage?]()
         
     let messageService = MessageService()
 
@@ -171,8 +176,42 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SelectedVenuesCell", forIndexPath: indexPath) as! SelectedVenuesCell
+        cell.selectedVenueImageView.image = nil
         cell.venue = self.selectedVenues[indexPath.row]
+        if let image = self.selectedVenueImages[indexPath.row] {
+            cell.image = image
+        } else {
+            FourSquareService.fetchVenueImage(self.selectedVenues[indexPath.row].fourSquareID, completion: { (success, data) -> () in
+                if success {
+                    if let data = data {
+                        FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
+                            if success {
+                                guard let image = image else { return }
+                                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                                    cell.image = image
+                                    self.selectedVenueImages[indexPath.row] = image
+                                })
+                            } else {
+                                cell.image = UIImage(named: "venue")
+                                //                                print("Error converting image data to image.")
+                            }
+                        })
+                    }
+                } else {
+                    cell.image = UIImage(named: "venue")
+                    print("Error fetching image data.")
+                }
+            })
+        }
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(100, 100)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 10.0
     }
     
     //MARK: SearchControllerDelegate Method

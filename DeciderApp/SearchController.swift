@@ -29,6 +29,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+//    var selectedVenueImages = [UIImage]()
+    
     var delegate: SearchControllerDelegate?
     
     @IBOutlet weak var searchTableView: UITableView!
@@ -94,7 +96,6 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
                         if let venues = venues{
                             NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                                 self.venues = venues
-                                
                             })
                         }
                     })
