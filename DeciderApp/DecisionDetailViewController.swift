@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class DecisionDetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -46,6 +47,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             self.venuesCollectionView.reloadItemsAtIndexPaths(self.selectedVenueIndexPaths)
         }
     }
+    
+    let messageService = MessageService()
     
     class func identifier() -> String {
         return "DecisionDetailViewController"
@@ -152,7 +155,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         return sortedVenues
     }
     
-    func selectFinalVenue() -> String {
+    func selectFinalVenue() -> Venue? {
+        guard let event = self.event else { return nil }
         let sortedVenues = sortVenuesByPopularity()
         var topVenues = [(String, Int)]()
         for venue in sortedVenues {
@@ -167,7 +171,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
         }
         let randomIndex = Int(rand()) % topVenues.count
-        return topVenues[randomIndex].0
+        let finalSelectionName = topVenues[randomIndex].0
+        for venue in event.venues {
+            if venue.name == finalSelectionName {
+                return venue
+            }
+        }
+        return nil
     }
     
     func unhideFinalizeButtonIfNeeded() {
@@ -187,9 +197,10 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     }
     
     func finishButtonPressed() {
-        print("The winning venue is: \(selectFinalVenue())")
+        guard let winningVenue = self.selectFinalVenue() else { return }
+        print("The winning venue is: \(winningVenue.name)")
         guard let event = self.event else { return }
-        ParseService.closeEvent(event.eventID) { (success) -> () in
+        ParseService.closeEvent(event.eventID, finalSelection: winningVenue) { (success) -> () in
             if success {
                 event.closed = true
                 print("The voting has been closed")
@@ -199,7 +210,27 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                 UIView.animateWithDuration(0.4, animations: { () -> Void in
                     self.greyOutView.alpha = 0.65
                 })
+                self.sendFinalMessage(event, completion: { (sent) -> () in
+                    //Maybe we need to add a 'resend message' button to let the user retry?
+                })
             }
+        }
+    }
+    
+    func sendFinalMessage(event: Event, completion: (sent: Bool)->()) {
+        if messageService.canSendText() {
+            let messageViewController = messageService.sendFinalMessageComposeViewController(event)
+            messageService.completion = { (sent) -> () in
+                if sent {
+                    completion(sent: true)
+                } else {
+                    completion(sent: false)
+                }
+            }
+            self.presentViewController(messageViewController, animated: true, completion: nil)
+        } else {
+            print("Can't send message. Check your settings")
+            completion(sent: false)
         }
     }
     

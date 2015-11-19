@@ -203,15 +203,15 @@
 			children = (
 				90E672391BFBBB7100725EFD /* AppDelegate.swift */,
 				90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */,
+				E17455611BFE451100851F9D /* SelectedVenuesCell.swift */,
 				E17455591BFE34FB00851F9D /* Checkbox.swift */,
 				E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */,
 				902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */,
 				902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */,
-				90F698E61BFE5D3E0094BFE5 /* FinalSelectionViewController.swift */,
 				90FB34A51BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift */,
+				90F698E61BFE5D3E0094BFE5 /* FinalSelectionViewController.swift */,
 				E174555B1BFE37AD00851F9D /* SearchController.swift */,
 				E174555D1BFE37E400851F9D /* SearchCell.swift */,
-				E17455611BFE451100851F9D /* SelectedVenuesCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
