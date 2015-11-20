@@ -28,8 +28,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
                 self.selectedVenueImages.append(nil)
             }
         }
-    
     }
+    
+    
+    
     
     var selectedVenueImages = [UIImage?]()
         
@@ -46,6 +48,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
 
         
         checkValidEventParameters()
+        
+        UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
+
 
     }
 

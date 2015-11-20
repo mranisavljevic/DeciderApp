@@ -232,7 +232,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="Mwx-fJ-sPG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ecf-Nh-HQG">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="2lk-FF-Qdb" kind="presentation" identifier="CreateEventViewController" id="bfD-Jh-KCw"/>
                             </connections>
@@ -352,13 +352,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Create Event" id="KNJ-AP-5rr">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="aAe-SS-feu">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="0.98611361994219648" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="Dgv-yq-uaZ" id="lm9-nY-7d9"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="KVG-M4-61m">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="createButtonPressed:" destination="Dgv-yq-uaZ" id="xhc-TT-cVd"/>
                             </connections>
@@ -459,13 +459,16 @@
                                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                            <real key="value" value="2"/>
+                                                            <real key="value" value="3"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="checkWidth">
-                                                            <real key="value" value="2"/>
+                                                            <real key="value" value="6"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="value" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="checkColor">
+                                                            <color key="value" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>

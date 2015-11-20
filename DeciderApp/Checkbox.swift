@@ -119,6 +119,8 @@ class Checkbox: UIView {
     private func renderLayer() {
         layer.borderWidth = borderWidth
         layer.borderColor = borderColor.CGColor
+        layer.cornerRadius = 5
+
     }
     
     private var tap: UITapGestureRecognizer?
