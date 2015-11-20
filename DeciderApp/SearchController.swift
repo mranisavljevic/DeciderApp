@@ -30,7 +30,11 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var placeholderText = ""
     
-    var delegate: SearchControllerDelegate?
+    var delegate: SearchControllerDelegate? {
+        didSet {
+            print(delegate)
+        }
+    }
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!

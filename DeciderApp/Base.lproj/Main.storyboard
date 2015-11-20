@@ -301,7 +301,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="AhC-cG-7xG" kind="show" id="C9m-Sd-VbG"/>
+                                                    <segue destination="AhC-cG-7xG" kind="show" identifier="searchAPISegue" id="C9m-Sd-VbG"/>
                                                 </connections>
                                             </button>
                                         </subviews>
