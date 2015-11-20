@@ -30,6 +30,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         }
     }
     
+    
+    
+    
     var selectedVenueImages = [UIImage?]()
         
     let messageService = MessageService()
@@ -45,6 +48,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
 
         
         checkValidEventParameters()
+        
+        UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
+
 
     }
 

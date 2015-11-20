@@ -30,6 +30,19 @@ class GroupDecisionsTableViewController: UITableViewController {
 //        }
     }
     
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .ScaleAspectFit
+        let image = UIImage(named: "logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         fetchMyEvents()
