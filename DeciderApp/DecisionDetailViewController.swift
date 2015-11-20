@@ -21,6 +21,8 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     let finalPollButton = UIBarButtonItem(title: "Finalize", style: UIBarButtonItemStyle.Done, target: nil, action: "finishButtonPressed")
     
+    let finalSelectionButton = UIBarButtonItem(title: "Selection", style: UIBarButtonItemStyle.Done, target: nil, action: "selectionButtonPressed")
+    
     var event: Event?
     
     var venues = [(String, Int)]() {
@@ -31,13 +33,19 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                 self.greyOutView.alpha = 0.65
                 self.voteButton.enabled = false
             }
+            print("Venues set.  Count: \(venues.count)")
         }
     }
     
     var selectedVenues = [Int]() {
         didSet {
             if self.selectedVenues.count > 0 {
-                navigationItem.rightBarButtonItem?.enabled = false
+                guard let event = self.event else { return }
+                if event.closed == false {
+                    navigationItem.rightBarButtonItem?.enabled = true
+                } else {
+                    navigationItem.rightBarButtonItem?.enabled = false
+                }
             }
         }
     }
@@ -81,16 +89,24 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         self.greyOutView.hidden = true
         self.greyOutView.alpha = 0.0
         self.dateTimeLabel.text = formatDateToString(event.eventDateTime)
+        var venueList = [(String, Int)]()
         for venue in event.venues {
-            self.venues.append((venue.name, venue.votes))
+            venueList.append((venue.name, venue.votes))
         }
+        self.venues = venueList
         if let _ = self.navigationController {
-            navigationItem.rightBarButtonItem = self.finalPollButton
-            self.finalPollButton.target = self
-            navigationItem.rightBarButtonItem?.enabled = false
+            switch event.closed {
+            case true:
+                navigationItem.rightBarButtonItem = self.finalSelectionButton
+                self.finalPollButton.target = self
+                navigationItem.rightBarButtonItem?.enabled = true
+            default:
+                navigationItem.rightBarButtonItem = self.finalPollButton
+                self.finalPollButton.target = self
+                navigationItem.rightBarButtonItem?.enabled = false
+            }
         }
         self.venuesCollectionView.reloadData()
-        self.unhideFinalizeButtonIfNeeded()
     }
     
     func formatDateToString(date: NSDate) -> String {
@@ -219,6 +235,10 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         }
     }
     
+    func selectionButtonPressed() {
+        self.performSegueWithIdentifier("FinalSelectionViewController", sender: self)
+    }
+    
     func sendFinalMessage(event: Event, completion: (sent: Bool)->()) {
         if messageService.canSendText() {
             let messageViewController = messageService.sendFinalMessageComposeViewController(event)
@@ -269,11 +289,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     //MARK: UICollectionView Datasource & Delegate & Flow Layout Methods
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(venues.count)
         return venues.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(DecisionDetailCollectionViewCell.identifier(), forIndexPath: indexPath) as! DecisionDetailCollectionViewCell
+        cell.selectionIndicatorLabel.hidden = true
         cell.venue = self.venues[indexPath.row]
         switch self.selectedVenues.count {
         case 3:
