@@ -232,6 +232,7 @@
                                 <connections>
                                     <outlet property="datetimeLabel" destination="zFB-zH-5u0" id="mN9-G4-mrj"/>
                                     <outlet property="descriptionLabel" destination="cG9-cb-rtH" id="kiM-4h-Wat"/>
+                                    <outlet property="pinImageView" destination="FI4-PZ-cer" id="hvR-Ab-BmL"/>
                                     <outlet property="titleLabel" destination="hrx-AI-7Sp" id="pt3-tO-1Fp"/>
                                     <segue destination="wre-Q1-KS3" kind="show" identifier="DecisionDetailViewController" id="jZV-0E-A0x"/>
                                 </connections>

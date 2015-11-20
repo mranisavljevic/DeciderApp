@@ -77,6 +77,12 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(GroupDecisionsTableViewCell.identifier(), forIndexPath: indexPath) as! GroupDecisionsTableViewCell
+        if let filledPinImage = UIImage(named: "pin-fill"), emptyPinImage = UIImage(named: "pin-no-fill") {
+            cell.pinImageView.image = filledPinImage
+            if self.events[indexPath.row].closed == true {
+                cell.pinImageView.image = emptyPinImage
+            }
+        }
         cell.event = self.events[indexPath.row]
         return cell
     }
