@@ -25,11 +25,6 @@ class SearchCell: UITableViewCell {
             nameLabel.text = venue.name
             addressLabel.text = address
             distanceLabel.text = "\(String(format: "%.2f", Float(distance) * 0.00062)) mi"
-//            let string = String(format: "%.2f", Float(distance) * 0.00062)
-            
-            
-//            println(String(format: "%.3f", totalWorkTimeInHours))
-            
             reviewCountLabel.text = "\(reviews) Reviews"
             FourSquareService.fetchVenueImage(venue.fourSquareID) { (success, data) -> () in
                 if let data = data {
