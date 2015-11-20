@@ -53,9 +53,35 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
 
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setDummyImages()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.selectedVenues = [Venue]()
+        self.selectedVenueImages = [UIImage?]()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setDummyImages() {
+        if self.selectedVenues.count == 0 {
+            guard let image = UIImage(named: "venue") else { return }
+            let dummyVenue = Venue(fourSquareID: "Dummy", name: "Dummy", address: nil, latitude: nil, longitude: nil, imageURL: nil, categories: nil, distance: nil, ratingImageURL: nil, reviewCount: nil)
+            var images = [UIImage?]()
+            var venues = [Venue]()
+            for _ in 1...4 {
+                images.append(image)
+                venues.append(dummyVenue)
+            }
+            self.selectedVenueImages = images
+            self.selectedVenues = venues
+        }
     }
     
     
