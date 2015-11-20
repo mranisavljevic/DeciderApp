@@ -9,30 +9,50 @@
 import UIKit
 
 class FinalSelectionViewController: UIViewController {
+    
     @IBOutlet weak var eventNameLabel: UILabel!
-    
     @IBOutlet weak var eventImageLabel: UIImageView!
-    
     @IBOutlet weak var eventAddressLabel: UILabel!
-    
     @IBOutlet weak var eventTitleLabel: UILabel!
-    
-    
     @IBOutlet weak var eventDescriptionLabel: UILabel!
-    
     @IBOutlet weak var eventDateLabel: UILabel!
     
-    
-    @IBAction func dismissButton(sender: AnyObject) {
-    }
     
     class func identifier() -> String {
         return "FinalSelectionViewController"
     }
     
-    var event: Event?
+    var event: Event? {
+        didSet {
+            guard let event = self.event else { return }
+            self.eventTitleLabel.text = event.eventTitle
+            self.eventDescriptionLabel.text = event.eventDescription
+            self.eventDateLabel.text = NSDateFormatter.localizedStringFromDate(event.eventDateTime, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
+        }
+    }
     
-    var venue: Venue?
+    var venue: Venue? {
+        didSet {
+            guard let venue = self.venue else { return }
+            self.eventNameLabel.text = venue.name
+            self.eventAddressLabel.text = venue.address
+            FourSquareService.fetchVenueImage(venue.fourSquareID) { (success, data) -> () in
+                if success {
+                    if let data = data {
+                        FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
+                            if success {
+                                if let image = image {
+                                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                                        self.eventImageLabel.image = image
+                                    })
+                                }
+                            }
+                        })
+                    }
+                }
+            }
+        }
+    }
     
     var eventID: String?
 
@@ -60,5 +80,10 @@ class FinalSelectionViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func dismissButtonPressed(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
 }

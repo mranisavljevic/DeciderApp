@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         finalVC.eventID = event.eventID
                         navController.pushViewController(homeVC, animated: true)
                         navController.pushViewController(detailVC, animated: true)
-                        detailVC.presentViewController(finalVC, animated: true, completion: nil)
+//                        detailVC.performSegueWithIdentifier("FinalSelectionViewController", sender: self)
                     }
                 })
             }
