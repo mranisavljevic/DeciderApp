@@ -9,17 +9,56 @@
 import UIKit
 
 class FinalSelectionViewController: UIViewController {
+    @IBOutlet weak var eventNameLabel: UILabel!
+    
+    @IBOutlet weak var eventImageLabel: UIImageView!
+    
+    @IBOutlet weak var eventAddressLabel: UILabel!
+    
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    
+    
+    @IBOutlet weak var eventDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var eventDateLabel: UILabel!
+    
+    
+    @IBAction func dismissButton(sender: AnyObject) {
+    }
     
     class func identifier() -> String {
         return "FinalSelectionViewController"
     }
+    
+    var event: Event?
+    
+    var venue: Venue?
+    
+    var eventID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setUpView() {
+        guard let eventID = self.eventID else { return }
+        ParseService.loadEvent(eventID) { (success, event) -> () in
+            if success {
+                if let loadedEvent = event {
+                    if let loadedVenue = loadedEvent.finalSelection {
+                        self.event = loadedEvent
+                        self.venue = loadedVenue
+                    }
+                }
+            } else {
+                print("Error loading event.")
+            }
+        }
     }
 
 }

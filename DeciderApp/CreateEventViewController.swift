@@ -182,7 +182,9 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(100, 100)
+        let viewHeight = collectionView.frame.height
+        let size = (viewHeight > 100 ? 100 : viewHeight)
+        return CGSizeMake(size, size)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
