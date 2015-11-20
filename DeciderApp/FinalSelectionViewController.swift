@@ -39,7 +39,7 @@ class FinalSelectionViewController: UIViewController {
             FourSquareService.fetchVenueImage(venue.fourSquareID) { (success, data) -> () in
                 if success {
                     if let data = data {
-                        FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in
+                        FourSquareService.fetchImageFromFetchRequest(data, imageDimensions: "500x500", completion: { (success, image) -> () in
                             if success {
                                 if let image = image {
                                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
