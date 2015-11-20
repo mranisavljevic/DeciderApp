@@ -28,6 +28,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
+    var placeholderText = ""
+    
     var delegate: SearchControllerDelegate?
     
     @IBOutlet weak var searchTableView: UITableView!
@@ -42,9 +44,14 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchTableView.dataSource = self
         searchBar.delegate = self
         
-        searchBar.placeholder = "Tacos"
+        var placeholderOptions = ["Tacos","Burgers","Pizza","Coffee","Snacks","Food Truck","Surprise Me"]
         
-        FourSquareService.searchVenues("tacos") { (success, data) -> () in
+        if self.placeholderText.characters.count == 0 {
+            self.placeholderText = placeholderOptions[Int(rand()) % placeholderOptions.count]
+        }
+        self.searchBar.placeholder = self.placeholderText
+        let searchTerm = self.placeholderText.stringByReplacingOccurrencesOfString(" ", withString: "")
+        FourSquareService.searchVenues(searchTerm) { (success, data) -> () in
             if let data = data {
                 FourSquareService.parseVenueResponse(data, completion: { (success, venues) -> () in
                     if let venues = venues{

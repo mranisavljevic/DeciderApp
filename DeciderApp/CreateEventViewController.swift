@@ -129,6 +129,11 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         if segue.identifier == "searchAPISegue" {
             let destination = segue.destinationViewController as! SearchController
             destination.delegate = self
+            if let searchTerm = self.titleTextField.text {
+                if searchTerm.characters.count > 0 {
+                    destination.placeholderText = searchTerm
+                }
+            }
         }
     }
     
