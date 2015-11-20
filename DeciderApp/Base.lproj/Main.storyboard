@@ -159,6 +159,7 @@
                         <outlet property="titleLabel" destination="6nv-Sg-dF5" id="ta2-Jd-eML"/>
                         <outlet property="venuesCollectionView" destination="YlY-Vz-i5b" id="PkZ-5W-pFX"/>
                         <outlet property="voteButton" destination="JhR-Ou-8Tp" id="9O5-h2-fhg"/>
+                        <segue destination="MHg-fg-ZY3" kind="presentation" identifier="FinalSelectionViewController" id="S5t-gN-j2U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1q4-gR-zbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -558,7 +559,7 @@
                                 <animations/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="dismissButton:" destination="MHg-fg-ZY3" eventType="touchUpInside" id="Fqo-sY-ZPH"/>
+                                    <action selector="dismissButtonPressed:" destination="MHg-fg-ZY3" eventType="touchUpInside" id="zkD-xd-AmR"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHd-sn-BJb">
