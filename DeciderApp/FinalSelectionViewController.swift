@@ -9,6 +9,22 @@
 import UIKit
 
 class FinalSelectionViewController: UIViewController {
+    @IBOutlet weak var eventNameLabel: UILabel!
+    
+    @IBOutlet weak var eventImageLabel: UIImageView!
+    
+    @IBOutlet weak var eventAddressLabel: UILabel!
+    
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    
+    
+    @IBOutlet weak var eventDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var eventDateLabel: UILabel!
+    
+    
+    @IBAction func dismissButton(sender: AnyObject) {
+    }
     
     class func identifier() -> String {
         return "FinalSelectionViewController"
