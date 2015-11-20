@@ -66,6 +66,32 @@ class FourSquareService {
         completion(success: false, image: nil)
     }
     
+    class func fetchImageFromFetchRequest(requestData: NSData, imageDimensions: String, completion: (success: Bool, image: UIImage?)->()) {
+        do {
+            if let root = try NSJSONSerialization.JSONObjectWithData(requestData, options: NSJSONReadingOptions.MutableContainers) as? [String : AnyObject] {
+                if let response = root["response"] as? [String : AnyObject], photos = response["photos"] as? [String : AnyObject], items = photos["items"] as? [[String : AnyObject]], photo = items.first, prefix = photo["prefix"] as? String, suffix = photo["suffix"] as? String {
+                    let imageURLString = "\(prefix)\(imageDimensions)\(suffix)"
+                    guard let imageURL = NSURL(string: imageURLString) else {
+                        completion(success: false, image: nil)
+                        return
+                    }
+                    let queue = NSOperationQueue()
+                    queue.addOperationWithBlock({ () -> Void in
+                        guard let imageData = NSData(contentsOfURL: imageURL), image = UIImage(data: imageData) else {
+                            completion(success: false, image: nil)
+                            return
+                        }
+                        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                            completion(success: true, image: image)
+                        })
+                    })
+                }
+            }
+            
+        } catch {}
+        completion(success: false, image: nil)
+    }
+    
     class func searchVenues(queryString: String, completion: (success: Bool, data: NSData?)->()) {
         let urlString = "\(foursquareVenueSearchURL)?client_id=\(foursquareAPIClientID)&client_secret=\(foursquareAPIClientSecret)&ll=\(cfLatLong)&v=\(apiVersion)&query=\(queryString)"
         guard let url = NSURL(string: urlString) else { return }
