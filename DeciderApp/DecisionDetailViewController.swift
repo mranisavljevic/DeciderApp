@@ -58,6 +58,10 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         super.viewDidLoad()
         self.venuesCollectionView.dataSource = self
         self.venuesCollectionView.delegate = self
+        guard let event = self.event else { return }
+        if event.closed {
+            self.performSegueWithIdentifier("FinalSelectionViewController", sender: self)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -231,6 +235,14 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         } else {
             print("Can't send message. Check your settings")
             completion(sent: false)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "FinalSelectionViewController" {
+            let destination = segue.destinationViewController as! FinalSelectionViewController
+            guard let event = self.event else { return }
+            destination.eventID = event.eventID
         }
     }
     
