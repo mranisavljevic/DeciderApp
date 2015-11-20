@@ -44,10 +44,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         descriptionTextField.delegate = self
         self.selectedVenuesCollectionView.delegate = self
         self.selectedVenuesCollectionView.dataSource = self
+        self.selectedVenuesCollectionView.backgroundColor = UIColor.lightGrayColor()
         self.datePicker.minimumDate = NSDate()
 
         
-        checkValidEventParameters()
         
         UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
 
@@ -57,6 +57,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setDummyImages()
+        checkValidEventParameters()
     }
     
     override func viewDidDisappear(animated: Bool) {
@@ -92,7 +93,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        checkValidEventParameters()
         navigationItem.title = textField.text
     }
     
@@ -102,7 +102,11 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     
     func checkValidEventParameters() {
         let text = titleTextField.text ?? ""
-        createEventButtonPressed.enabled = !text.isEmpty
+        var validEventsSet = false
+        if let firstVenue = self.selectedVenues.first {
+            validEventsSet = firstVenue.name != "Dummy"
+        }
+        createEventButtonPressed.enabled = !text.isEmpty && validEventsSet
     }
     
     
