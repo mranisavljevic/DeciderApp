@@ -11,6 +11,27 @@ import UIKit
 extension UINavigationBar {
     class func setNavBar(navBar: UINavigationBar) {
         navBar.barTintColor = UIColor.lightPurpleColor()
+
+        
+    }
+}
+
+
+
+class NavigationController: UINavigationController, UIViewControllerTransitioningDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Status bar white font
+        self.navigationBar.tintColor = UIColor.whiteColor()
+    }
+}
+
+
+extension UINavigationItem {
+    class func setItem(Item: UINavigationItem) {
+        Item.titleView?.tintColor = UIColor.whiteColor()
     }
 }
 
@@ -27,6 +48,10 @@ extension UIColor {
     
     class func lightPurpleColor() -> UIColor {
         return UIColor(red: 73.0/255.0, green: 67.0/255.0, blue: 230.0/255.0, alpha: 1.0)
+    }
+    
+    class func darkPurpleColor() -> UIColor {
+        return UIColor(red: 18.0/255.0, green: 15.0/255.0, blue: 95.0/255.0, alpha: 1.0)
     }
     
 }

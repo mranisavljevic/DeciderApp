@@ -24,8 +24,11 @@ class GroupDecisionsTableViewCell: UITableViewCell {
             self.titleLabel.text = event.eventTitle
             self.descriptionLabel.text = event.eventDescription
             self.datetimeLabel.text = NSDateFormatter.localizedStringFromDate(event.eventDateTime, dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.ShortStyle)
+            self.descriptionLabel.text = event.eventDescription
         }
     }
+    
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
