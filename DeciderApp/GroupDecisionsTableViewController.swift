@@ -131,6 +131,7 @@ class GroupDecisionsTableViewController: UITableViewController {
         dispatch_after(popTime, dispatch_get_main_queue()) { () -> Void in
             // When done requesting/reloading/processing invoke endRefreshing, to close the control
             self.refreshControl!.endRefreshing()
+            print("running")
         }
         // -- FINISHED SOMETHING AWESOME, WOO! --
     }
