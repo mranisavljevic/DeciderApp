@@ -44,18 +44,45 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         descriptionTextField.delegate = self
         self.selectedVenuesCollectionView.delegate = self
         self.selectedVenuesCollectionView.dataSource = self
+        self.selectedVenuesCollectionView.backgroundColor = UIColor.lightGrayColor()
         self.datePicker.minimumDate = NSDate()
 
         
-        checkValidEventParameters()
         
         UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
 
 
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setDummyImages()
+        checkValidEventParameters()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.selectedVenues = [Venue]()
+        self.selectedVenueImages = [UIImage?]()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setDummyImages() {
+        if self.selectedVenues.count == 0 {
+            guard let image = UIImage(named: "venue") else { return }
+            let dummyVenue = Venue(fourSquareID: "Dummy", name: "Dummy", address: nil, latitude: nil, longitude: nil, imageURL: nil, categories: nil, distance: nil, ratingImageURL: nil, reviewCount: nil)
+            var images = [UIImage?]()
+            var venues = [Venue]()
+            for _ in 1...4 {
+                images.append(image)
+                venues.append(dummyVenue)
+            }
+            self.selectedVenueImages = images
+            self.selectedVenues = venues
+        }
     }
     
     
@@ -66,7 +93,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        checkValidEventParameters()
         navigationItem.title = textField.text
     }
     
@@ -76,7 +102,11 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     
     func checkValidEventParameters() {
         let text = titleTextField.text ?? ""
-        createEventButtonPressed.enabled = !text.isEmpty
+        var validEventsSet = false
+        if let firstVenue = self.selectedVenues.first {
+            validEventsSet = firstVenue.name != "Dummy"
+        }
+        createEventButtonPressed.enabled = !text.isEmpty && validEventsSet
     }
     
     
@@ -103,6 +133,11 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         if segue.identifier == "searchAPISegue" {
             let destination = segue.destinationViewController as! SearchController
             destination.delegate = self
+            if let searchTerm = self.titleTextField.text {
+                if searchTerm.characters.count > 0 {
+                    destination.placeholderText = searchTerm
+                }
+            }
         }
     }
     

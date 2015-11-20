@@ -13,6 +13,7 @@ class GroupDecisionsTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var datetimeLabel: UILabel!
+    @IBOutlet weak var pinImageView: UIImageView!
     
     class func identifier() -> String {
         return "GroupDecisionsTableViewCell"

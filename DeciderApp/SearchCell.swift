@@ -21,11 +21,11 @@ class SearchCell: UITableViewCell {
     var venue: Venue? {
         didSet {
             guard let venue = self.venue else {return}
+            guard let address = venue.address, distance = venue.distance, reviews = venue.reviewCount else { return }
             nameLabel.text = venue.name
-            addressLabel.text = venue.address
-//            categoryLabel.text = venue.categories
-            distanceLabel.text = "\(venue.distance)"
-            reviewCountLabel.text = "\(venue.reviewCount!) Reviews"
+            addressLabel.text = address
+            distanceLabel.text = "\(String(format: "%.2f", Float(distance) * 0.00062)) mi"
+            reviewCountLabel.text = "\(reviews) Reviews"
             FourSquareService.fetchVenueImage(venue.fourSquareID) { (success, data) -> () in
                 if let data = data {
                     FourSquareService.fetchImageFromFetchRequest(data, completion: { (success, image) -> () in

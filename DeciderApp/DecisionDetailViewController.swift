@@ -202,12 +202,10 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     func finishButtonPressed() {
         guard let winningVenue = self.selectFinalVenue() else { return }
-        print("The winning venue is: \(winningVenue.name)")
         guard let event = self.event else { return }
         ParseService.closeEvent(event.eventID, finalSelection: winningVenue) { (success) -> () in
             if success {
                 event.closed = true
-                print("The voting has been closed")
                 self.greyOutView.hidden = false
                 self.unhideFinalizeButtonIfNeeded()
                 self.voteButton.enabled = false
