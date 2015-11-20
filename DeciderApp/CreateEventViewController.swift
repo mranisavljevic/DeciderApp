@@ -28,6 +28,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
                 self.selectedVenueImages.append(nil)
             }
         }
+    
     }
     
     var selectedVenueImages = [UIImage?]()

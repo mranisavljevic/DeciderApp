@@ -232,6 +232,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Events" id="Mwx-fJ-sPG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ecf-Nh-HQG">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="2lk-FF-Qdb" kind="presentation" identifier="CreateEventViewController" id="bfD-Jh-KCw"/>
                             </connections>
@@ -351,11 +352,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Create Event" id="KNJ-AP-5rr">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="aAe-SS-feu">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="Dgv-yq-uaZ" id="lm9-nY-7d9"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="KVG-M4-61m">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="createButtonPressed:" destination="Dgv-yq-uaZ" id="xhc-TT-cVd"/>
                             </connections>

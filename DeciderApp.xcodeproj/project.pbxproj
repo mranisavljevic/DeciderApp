@@ -42,6 +42,7 @@
 		E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174555B1BFE37AD00851F9D /* SearchController.swift */; };
 		E174555E1BFE37E400851F9D /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E174555D1BFE37E400851F9D /* SearchCell.swift */; };
 		E17455621BFE451100851F9D /* SelectedVenuesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17455611BFE451100851F9D /* SelectedVenuesCell.swift */; };
+		E17455641BFE936E00851F9D /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17455631BFE936E00851F9D /* ClassExtensions.swift */; };
 		E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +105,7 @@
 		E174555B1BFE37AD00851F9D /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		E174555D1BFE37E400851F9D /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		E17455611BFE451100851F9D /* SelectedVenuesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedVenuesCell.swift; sourceTree = "<group>"; };
+		E17455631BFE936E00851F9D /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +206,7 @@
 				90E672391BFBBB7100725EFD /* AppDelegate.swift */,
 				90E6728D1BFBCA4A00725EFD /* CreateEventViewController.swift */,
 				E17455611BFE451100851F9D /* SelectedVenuesCell.swift */,
+				E17455631BFE936E00851F9D /* ClassExtensions.swift */,
 				E17455591BFE34FB00851F9D /* Checkbox.swift */,
 				E185F6681BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift */,
 				902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */,
@@ -394,6 +397,7 @@
 				E174555E1BFE37E400851F9D /* SearchCell.swift in Sources */,
 				90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */,
 				90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */,
+				E17455641BFE936E00851F9D /* ClassExtensions.swift in Sources */,
 				E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */,
 				90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */,
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
