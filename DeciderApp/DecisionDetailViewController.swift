@@ -33,7 +33,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                 self.greyOutView.alpha = 0.65
                 self.voteButton.enabled = false
             }
-            print("Venues set.  Count: \(venues.count)")
         }
     }
     
@@ -98,7 +97,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             switch event.closed {
             case true:
                 navigationItem.rightBarButtonItem = self.finalSelectionButton
-                self.finalPollButton.target = self
+                self.finalSelectionButton.target = self
                 navigationItem.rightBarButtonItem?.enabled = true
             default:
                 navigationItem.rightBarButtonItem = self.finalPollButton
@@ -289,7 +288,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     //MARK: UICollectionView Datasource & Delegate & Flow Layout Methods
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(venues.count)
         return venues.count
     }
     
