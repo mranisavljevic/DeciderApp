@@ -18,6 +18,7 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        YelpAPIService.searchVenues("Pizza")
     }
     
     
