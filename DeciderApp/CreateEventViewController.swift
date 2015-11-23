@@ -30,9 +30,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         }
     }
     
-    
-    
-    
     var selectedVenueImages = [UIImage?]()
         
     let messageService = MessageService()
@@ -133,6 +130,12 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         if segue.identifier == "searchAPISegue" {
             if let destination = segue.destinationViewController as? SearchController {
                 destination.delegate = self
+                if let dummy = self.selectedVenues.first {
+                    if dummy.name == "Dummy" {
+                        self.selectedVenues = [Venue]()
+                    }
+                }
+                destination.selectedVenues = self.selectedVenues
                 if let searchTerm = self.titleTextField.text {
                     if searchTerm.characters.count > 0 {
                         destination.placeholderText = searchTerm

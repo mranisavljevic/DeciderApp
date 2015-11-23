@@ -82,7 +82,10 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Search Cell", forIndexPath: indexPath) as! SearchCell
-        
+        cell.checkboxButton.isChecked = false
+        if let _ = self.selectedVenues.indexOf(self.venues[indexPath.row]) {
+            cell.checkboxButton.isChecked = true
+        }
         cell.venue = self.venues[indexPath.row]
         
         cell.checkboxButton.indexPath = indexPath
