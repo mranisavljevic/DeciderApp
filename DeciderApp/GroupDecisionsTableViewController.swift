@@ -18,6 +18,7 @@ class GroupDecisionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        YelpAPIService.searchVenues("Pizza")
     }
     
     
@@ -38,9 +39,6 @@ class GroupDecisionsTableViewController: UITableViewController {
         fetchMyEvents()
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        // Set up the refresh control
-        self.setupRefreshControl()
     }
     
     override func didReceiveMemoryWarning() {
@@ -70,7 +68,6 @@ class GroupDecisionsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.events.count
     }
     
@@ -93,101 +90,6 @@ class GroupDecisionsTableViewController: UITableViewController {
                 destination.event = cell.event
             }
         }
-    }
-    
-    //MARK: - Refresh properties
-    
-    var refreshLoadingView : UIView!
-    var refreshColorView : UIView!
-
-    var isRefreshAnimating = false
-
-
-    
-    //MARK: - Refresh control
-
-    
-    func setupRefreshControl() {
-        
-        // Programmatically inserting a UIRefreshControl
-        self.refreshControl = UIRefreshControl()
-        
-        // Setup the color view, which will display the rainbowed background
-        self.refreshColorView = UIView(frame: self.refreshControl!.bounds)
-        self.refreshColorView.backgroundColor = UIColor.clearColor()
-        self.refreshColorView.alpha = 0.30
-
-        // Color the original spinner icon
-        self.refreshControl!.tintColor = UIColor.whiteColor()
-        
-        // Add the loading and colors views to our refresh control
-        self.refreshControl!.addSubview(self.refreshColorView)
-        
-        // Initalize flags
-        self.isRefreshAnimating = false;
-        
-        // When activated, invoke our refresh function
-        self.refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
-    }
-    
-    func refresh(){
-        let delayInSeconds = 2.4;
-        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)));
-        dispatch_after(popTime, dispatch_get_main_queue()) { () -> Void in
-            // When done requesting/reloading/processing invoke endRefreshing, to close the control
-            self.refreshControl!.endRefreshing()
-            print("running")
-        }
-        // -- FINISHED SOMETHING AWESOME, WOO! --
-    }
-    
-    func resetAnimation() {
-        
-        // Reset our flags and background color
-        self.isRefreshAnimating = false;
-        self.refreshColorView.backgroundColor = UIColor.whiteColor()
-    }
-    
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        // If we're refreshing and the animation is not playing, then play the animation
-        if (self.refreshControl!.refreshing && !self.isRefreshAnimating) {
-            self.animateRefreshView()
-        }
-        
-    }
-    
-    func animateRefreshView() {
-        
-        // Background color to loop through for our color view
-        var colorArray = [UIColor.redColor(), UIColor.blueColor(), UIColor.purpleColor(), UIColor.cyanColor(), UIColor.orangeColor(), UIColor.magentaColor()]
-        
-        // In Swift, static variables must be members of a struct or class
-        struct ColorIndex {
-            static var colorIndex = 0
-        }
-        
-        // Flag that we are animating
-        self.isRefreshAnimating = true;
-        
-        UIView.animateWithDuration(
-            Double(0.3),
-            delay: Double(0.0),
-            options: UIViewAnimationOptions.CurveLinear,
-            animations: {
-                // Change the background color
-                self.refreshColorView!.backgroundColor = colorArray[ColorIndex.colorIndex]
-                ColorIndex.colorIndex = (ColorIndex.colorIndex + 1) % colorArray.count
-            },
-            completion: { finished in
-                // If still refreshing, keep spinning, else reset
-                if (self.refreshControl!.refreshing) {
-                    self.animateRefreshView()
-                }else {
-                    self.resetAnimation()
-                }
-            }
-        )
     }
     
 }

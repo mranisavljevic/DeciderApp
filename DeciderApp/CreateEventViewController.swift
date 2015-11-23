@@ -30,9 +30,6 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         }
     }
     
-    
-    
-    
     var selectedVenueImages = [UIImage?]()
         
     let messageService = MessageService()
@@ -46,12 +43,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         self.selectedVenuesCollectionView.dataSource = self
         self.selectedVenuesCollectionView.backgroundColor = UIColor.whiteColor()
         self.datePicker.minimumDate = NSDate()
-
-        
-        
         UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
-
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -89,15 +81,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if textField.tag == 0 {
+            self.descriptionTextField.becomeFirstResponder()
+        }
         return true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        navigationItem.title = textField.text
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        createEventButtonPressed.enabled = false
     }
     
     func checkValidEventParameters() {
@@ -133,6 +120,12 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         if segue.identifier == "searchAPISegue" {
             if let destination = segue.destinationViewController as? SearchController {
                 destination.delegate = self
+                if let dummy = self.selectedVenues.first {
+                    if dummy.name == "Dummy" {
+                        self.selectedVenues = [Venue]()
+                    }
+                }
+                destination.selectedVenues = self.selectedVenues
                 if let searchTerm = self.titleTextField.text {
                     if searchTerm.characters.count > 0 {
                         destination.placeholderText = searchTerm
