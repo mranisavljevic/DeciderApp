@@ -30,7 +30,8 @@ class YelpAPIService {
         request.addValue("HMAC-SHA1", forHTTPHeaderField: "oauth_signature_method")
         request.addValue(timestamp, forHTTPHeaderField: "oauth_timestamp")
         request.addValue("sadfljerfpoih4kn", forHTTPHeaderField: "oauth_nonce")
-        request.addValue("\(kYelpAPIConsumerSecret)&\(kYelpAPITokenSecret)", forHTTPHeaderField: "oauth_signature")
+        let signature = buildURLSafeSignature(YelpAPIService())
+        request.addValue("\(signature)", forHTTPHeaderField: "oauth_signature")
         
         NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
             if let response = response as? NSHTTPURLResponse {
@@ -40,12 +41,12 @@ class YelpAPIService {
                 print(data?.debugDescription)
             }
         }.resume()
-    }
     
+    }
 
     
     
-}
+
 
 //oauth_consumer_key	Your OAuth consumer key (from Manage API Access).
 //oauth_token	The access token obtained (from Manage API Access).
@@ -53,31 +54,48 @@ class YelpAPIService {
 //oauth_signature	The generated request signature, signed with the oauth_token_secret obtained (from Manage API Access).
 //oauth_timestamp	Timestamp for the request in seconds since the Unix epoch.
 //oauth_nonce	A unique string randomly generated per request.
-//
-//
-//
-//extension String {
-//    
-//    func urlEncode() -> String {
-//        let urlEncoded = self.stringByReplacingOccurrencesOfString(" ", withString: "+")
-//        return urlEncoded.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
-//    }
-//    
-//    func hmacSha1(key: String) -> NSData {
-//        
-//        let dataToDigest = self.dataUsingEncoding(NSUTF8StringEncoding)
-//        let secretKey = key.dataUsingEncoding(NSUTF8StringEncoding)
-//        
-//        let digestLength = Int(CC_SHA1_DIGEST_LENGTH)
-//        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLength)
-//        
-//        CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA1), secretKey!.bytes, secretKey!.length, dataToDigest!.bytes, dataToDigest!.length, result)
-//        
-//        return NSData(bytes: result, length: digestLength)
-//        
-//    }
-//    
+
+
+    func buildURLSafeSignature() -> String {
+    
+    let stringToSign = kYelpAPIConsumerSecret+"&"
+    let sha1Digest = stringToSign.hmacSha1(kYelpAPITokenSecret)
+    let base64Encoded = sha1Digest.base64EncodedDataWithOptions(NSDataBase64EncodingOptions())
+    
+    return (NSString(data: base64Encoded, encoding: NSUTF8StringEncoding) as! String).urlEncode()
+}
+
+//private func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
+    
+//    var session = NSURLSession.sharedSession()
+    
+//    let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+//        if let responseError = error {
+//            completion(data: nil, error: responseError)
+//        } else if let httpResponse = response as? NSHTTPURLResponse {
+//            if httpResponse.statusCode != 200 {
+//                var statusError = NSError(domain:"com.iteachcoding", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
+//                completion(data: nil, error: statusError)
+//            } else {
+//                completion(data: data, error: nil)
+//            }
+//        }
+//    })
+    
+//    loadDataTask.resume()
 //}
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
