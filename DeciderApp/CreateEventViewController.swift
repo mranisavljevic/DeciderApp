@@ -43,12 +43,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         self.selectedVenuesCollectionView.dataSource = self
         self.selectedVenuesCollectionView.backgroundColor = UIColor.whiteColor()
         self.datePicker.minimumDate = NSDate()
-
-        
-        
         UINavigationBar.setNavBar((self.navigationController?.navigationBar)!)
-
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,15 +81,10 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if textField.tag == 0 {
+            self.descriptionTextField.becomeFirstResponder()
+        }
         return true
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        navigationItem.title = textField.text
-    }
-    
-    func textFieldDidBeginEditing(textField: UITextField) {
-        createEventButtonPressed.enabled = false
     }
     
     func checkValidEventParameters() {
