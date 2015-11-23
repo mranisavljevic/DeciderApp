@@ -67,7 +67,10 @@ class FinalSelectionViewController: UIViewController {
     
     func setUpView() {
         self.view.backgroundColor = UIColor.lightPurpleColor()
-        self.eventImageLabel.layer.cornerRadius = 10.0
+        self.eventImageLabel.layer.cornerRadius = 15.0
+        self.eventImageLabel.layer.borderWidth = 2.0
+        self.eventImageLabel.layer.borderColor = UIColor.whiteColor().CGColor
+        
         guard let eventID = self.eventID else { return }
         ParseService.loadEvent(eventID) { (success, event) -> () in
             if success {

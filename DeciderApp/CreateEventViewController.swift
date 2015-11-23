@@ -44,7 +44,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
         descriptionTextField.delegate = self
         self.selectedVenuesCollectionView.delegate = self
         self.selectedVenuesCollectionView.dataSource = self
-        self.selectedVenuesCollectionView.backgroundColor = UIColor.lightGrayColor()
+        self.selectedVenuesCollectionView.backgroundColor = UIColor.whiteColor()
         self.datePicker.minimumDate = NSDate()
 
         
