@@ -30,11 +30,7 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var placeholderText = ""
     
-    var delegate: SearchControllerDelegate? {
-        didSet {
-            print(delegate)
-        }
-    }
+    var delegate: SearchControllerDelegate?
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -47,6 +43,9 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchTableView.delegate = self
         searchTableView.dataSource = self
         searchBar.delegate = self
+        
+        searchTableView.estimatedRowHeight = 10;
+        searchTableView.rowHeight = UITableViewAutomaticDimension;
         
         var placeholderOptions = ["Tacos","Burgers","Pizza","Coffee","Snacks","Food Truck","Surprise Me"]
         
