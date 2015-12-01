@@ -13,7 +13,13 @@ class SelectedVenuesCell: UICollectionViewCell {
     @IBOutlet weak var selectedVenueImageView: UIImageView!
     @IBOutlet weak var selectedVenueNameLabel: UILabel!
     
-    var venue: Venue?
+    var venue: Venue? {
+        didSet {
+            guard let venue = self.venue else { return }
+            self.selectedVenueNameLabel.text = venue.name == "Dummy" ? "" : venue.name
+            self.layoutSubviews()
+        }
+    }
     
     var image: UIImage? {
         didSet {
@@ -24,8 +30,6 @@ class SelectedVenuesCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        guard let venue = self.venue else { return }
-        self.selectedVenueNameLabel.text = venue.name
     }
     
 }

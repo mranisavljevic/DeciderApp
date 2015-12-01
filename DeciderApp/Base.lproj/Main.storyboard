@@ -344,17 +344,38 @@
                                                                 <constraint firstAttribute="height" constant="100" id="Yh9-nk-FS2"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpf-NF-JPm">
+                                                            <rect key="frame" x="0.5" y="0.0" width="100" height="100"/>
+                                                            <animations/>
+                                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnA-EE-exG">
+                                                            <rect key="frame" x="8" y="8" width="84" height="84"/>
+                                                            <animations/>
+                                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <animations/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="bnA-EE-exG" secondAttribute="bottom" id="3YE-SG-zEB"/>
+                                                    <constraint firstItem="Tpf-NF-JPm" firstAttribute="centerX" secondItem="dHT-Z7-9tx" secondAttribute="centerX" id="6Zn-no-sTY"/>
+                                                    <constraint firstItem="bnA-EE-exG" firstAttribute="leading" secondItem="qor-hB-u9a" secondAttribute="leadingMargin" id="Cgn-Pp-32P"/>
                                                     <constraint firstItem="dHT-Z7-9tx" firstAttribute="centerY" secondItem="qor-hB-u9a" secondAttribute="centerY" id="FjE-E9-lEY"/>
+                                                    <constraint firstItem="bnA-EE-exG" firstAttribute="top" secondItem="qor-hB-u9a" secondAttribute="topMargin" id="KAe-EN-yln"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="bnA-EE-exG" secondAttribute="trailing" id="RxD-Js-jXn"/>
+                                                    <constraint firstItem="Tpf-NF-JPm" firstAttribute="centerY" secondItem="dHT-Z7-9tx" secondAttribute="centerY" id="bnE-rs-tln"/>
                                                     <constraint firstItem="dHT-Z7-9tx" firstAttribute="centerX" secondItem="qor-hB-u9a" secondAttribute="centerX" id="pw3-pk-VZe"/>
+                                                    <constraint firstItem="Tpf-NF-JPm" firstAttribute="width" secondItem="dHT-Z7-9tx" secondAttribute="width" id="sBW-Oi-L88"/>
+                                                    <constraint firstItem="Tpf-NF-JPm" firstAttribute="height" secondItem="dHT-Z7-9tx" secondAttribute="height" id="wTt-xM-LN7"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="selectedVenueImageView" destination="dHT-Z7-9tx" id="FJg-XJ-OGr"/>
+                                                    <outlet property="selectedVenueNameLabel" destination="bnA-EE-exG" id="ZhD-nC-WeR"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
