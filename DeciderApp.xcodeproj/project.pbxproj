@@ -151,6 +151,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90B88FBA1C0D6F0200B045CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				90E672401BFBBB7100725EFD /* Assets.xcassets */,
+				90E672451BFBBB7100725EFD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		90E6722D1BFBBB7100725EFD = {
 			isa = PBXGroup;
 			children = (
@@ -179,9 +188,7 @@
 				90E672671BFBBB8A00725EFD /* Controller */,
 				90E6726B1BFBBE0100725EFD /* Model */,
 				90E672681BFBBB9200725EFD /* View */,
-				90E672401BFBBB7100725EFD /* Assets.xcassets */,
-				90E672421BFBBB7100725EFD /* LaunchScreen.storyboard */,
-				90E672451BFBBB7100725EFD /* Info.plist */,
+				90B88FBA1C0D6F0200B045CD /* Supporting Files */,
 			);
 			path = DeciderApp;
 			sourceTree = "<group>";
@@ -227,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				90E6723D1BFBBB7100725EFD /* Main.storyboard */,
+				90E672421BFBBB7100725EFD /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
