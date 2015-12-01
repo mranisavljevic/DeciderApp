@@ -78,6 +78,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUpView()
+        self.checkifOpenForVoting()
         self.venues = self.sortVenuesByPopularity()
     }
     
@@ -106,6 +107,21 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             }
         }
         self.venuesCollectionView.reloadData()
+    }
+    
+    func checkifOpenForVoting() {
+        guard let event = self.event else { return }
+        if let voted = Archiver.retrieveVotedIDs() {
+            for id in voted {
+                if id == event.eventID {
+                    self.greyOutView.hidden = false
+                    self.voteButton.enabled = false
+                    UIView.animateWithDuration(0.4, animations: { () -> Void in
+                        self.greyOutView.alpha = 0.65
+                    })
+                }
+            }
+        }
     }
     
     func formatDateToString(date: NSDate) -> String {
@@ -268,11 +284,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         if self.venues.count > 0 {
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
+                    Archiver.saveNewVotedID(event.eventID)
                     self.venues = self.sortVenuesByPopularity()
                     self.selectedVenues = [Int]()
                     self.selectedVenueIndexPaths = [NSIndexPath]()
                     self.venuesCollectionView.reloadItemsAtIndexPaths(self.venuesCollectionView.indexPathsForVisibleItems())
                     self.unhideFinalizeButtonIfNeeded()
+                    self.checkifOpenForVoting()
                 } else {
                     print("Voting unsuccessful")
                 }
