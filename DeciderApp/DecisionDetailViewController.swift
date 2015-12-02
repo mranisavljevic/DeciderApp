@@ -340,7 +340,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if let event = self.event {
-            if event.closed == true {
+            if event.closed == true || !self.voteButton.enabled {
                 return
             }
         }

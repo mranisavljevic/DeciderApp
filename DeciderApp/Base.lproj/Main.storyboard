@@ -123,7 +123,7 @@
                                     <action selector="voteButtonPressed:" destination="wre-Q1-KS3" eventType="touchUpInside" id="ShF-nG-JGe"/>
                                 </connections>
                             </button>
-                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fy-F3-7um">
+                            <view userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fy-F3-7um">
                                 <rect key="frame" x="0.0" y="184" width="600" height="370"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
