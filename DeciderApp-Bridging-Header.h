@@ -9,6 +9,8 @@
 #ifndef DeciderApp_Bridging_Header_h
 #define DeciderApp_Bridging_Header_h
 #import <CommonCrypto/CommonHMAC.h>
+#import <CommonCrypto/CommonDigest.h>
+#import "NSString+NSHash.h"
 
 
 #endif /* DeciderApp_Bridging_Header_h */
