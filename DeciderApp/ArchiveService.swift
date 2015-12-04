@@ -51,6 +51,31 @@ class Archiver: NSObject, NSCoding {
         }
     }
     
+    class func retrieveVotedIDs() -> [String]? {
+        if let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last {
+            if let eventIDs = NSKeyedUnarchiver.unarchiveObjectWithFile(path + "/voted") as? [String] {
+                return eventIDs
+            }
+        }
+        return nil
+    }
+    
+    class func saveVotedIDs(eventIDs: [String]) {
+        if let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true).last {
+            NSKeyedArchiver.archiveRootObject(eventIDs, toFile: path + "/voted")
+        }
+    }
+    
+    class func saveNewVotedID(eventID: String) {
+        if let existingEvents = Archiver.retrieveVotedIDs() {
+            var events = existingEvents
+            events.append(eventID)
+            Archiver.saveVotedIDs(events)
+        } else {
+            Archiver.saveVotedIDs(["\(eventID)"])
+        }
+    }
+    
 }
 
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */; };
 		902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */; };
+		902C4AD81C100024003E6241 /* NSString+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C4AD71C100024003E6241 /* NSString+NSHash.m */; };
 		9062CAD41C02D43F00A9ABD8 /* YelpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9062CAD31C02D43F00A9ABD8 /* YelpAPIService.swift */; };
 		90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A000381BFD6AC500994A27 /* FourSquareService.swift */; };
 		90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A0003A1BFD7CBF00994A27 /* Venue.swift */; };
@@ -67,6 +68,8 @@
 /* Begin PBXFileReference section */
 		902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewCell.swift; sourceTree = "<group>"; };
 		902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailViewController.swift; sourceTree = "<group>"; };
+		902C4AD61C100024003E6241 /* NSString+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSHash.h"; sourceTree = "<group>"; };
+		902C4AD71C100024003E6241 /* NSString+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSHash.m"; sourceTree = "<group>"; };
 		9062CAD31C02D43F00A9ABD8 /* YelpAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpAPIService.swift; sourceTree = "<group>"; };
 		9062CAD61C02DE0000A9ABD8 /* DeciderApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeciderApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		90A000381BFD6AC500994A27 /* FourSquareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourSquareService.swift; sourceTree = "<group>"; };
@@ -151,6 +154,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90B88FBA1C0D6F0200B045CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				90E672401BFBBB7100725EFD /* Assets.xcassets */,
+				90E672451BFBBB7100725EFD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		90E6722D1BFBBB7100725EFD = {
 			isa = PBXGroup;
 			children = (
@@ -179,9 +191,7 @@
 				90E672671BFBBB8A00725EFD /* Controller */,
 				90E6726B1BFBBE0100725EFD /* Model */,
 				90E672681BFBBB9200725EFD /* View */,
-				90E672401BFBBB7100725EFD /* Assets.xcassets */,
-				90E672421BFBBB7100725EFD /* LaunchScreen.storyboard */,
-				90E672451BFBBB7100725EFD /* Info.plist */,
+				90B88FBA1C0D6F0200B045CD /* Supporting Files */,
 			);
 			path = DeciderApp;
 			sourceTree = "<group>";
@@ -227,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				90E6723D1BFBBB7100725EFD /* Main.storyboard */,
+				90E672421BFBBB7100725EFD /* LaunchScreen.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -241,6 +252,8 @@
 				90A000381BFD6AC500994A27 /* FourSquareService.swift */,
 				90E6728F1BFBCD5000725EFD /* MFMessageService.swift */,
 				90A0003A1BFD7CBF00994A27 /* Venue.swift */,
+				902C4AD61C100024003E6241 /* NSString+NSHash.h */,
+				902C4AD71C100024003E6241 /* NSString+NSHash.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -406,6 +419,7 @@
 				E17455641BFE936E00851F9D /* ClassExtensions.swift in Sources */,
 				E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */,
 				90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */,
+				902C4AD81C100024003E6241 /* NSString+NSHash.m in Sources */,
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */,
