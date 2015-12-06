@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("eAvAPVVpjSwOP9Phyzc7mmbPrAXkWOxLNbc8ZagC", clientKey: "qI4InWZyw7fPtkkJnDpLsjPPK7ni8o2MeAsMduWC")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        FacebookOAuthService.sharedService.requestAcessToken()
         return true
     }
     
@@ -34,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://final=", withString: "")
             Archiver.saveNewEventID(parseID)
             displayFinalSelectionViewController(parseID)
+        } else if stringURL.containsString("access_token=") {
+            print(stringURL)
         }
         return true
     }

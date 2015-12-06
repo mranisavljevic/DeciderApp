@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol SearchControllerDelegate {
     func didUpdateSelectedVenuesWithVenues(venues: [Venue]?)
@@ -32,6 +33,8 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     var delegate: SearchControllerDelegate?
     
+    let locationManager = CLLocationManager()
+    
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -43,6 +46,10 @@ class SearchController: UIViewController, UITableViewDelegate, UITableViewDataSo
         searchTableView.delegate = self
         searchTableView.dataSource = self
         searchBar.delegate = self
+        
+        if CLLocationManager.locationServicesEnabled() {
+            
+        }
         
         searchTableView.estimatedRowHeight = 10;
         searchTableView.rowHeight = UITableViewAutomaticDimension;
