@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("eAvAPVVpjSwOP9Phyzc7mmbPrAXkWOxLNbc8ZagC", clientKey: "qI4InWZyw7fPtkkJnDpLsjPPK7ni8o2MeAsMduWC")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-        FacebookOAuthService.sharedService.requestAcessToken()
         return true
     }
     
