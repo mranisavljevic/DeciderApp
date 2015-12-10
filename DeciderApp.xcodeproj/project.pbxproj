@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */; };
 		902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */; };
-		902C4AD81C100024003E6241 /* NSString+NSHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 902C4AD71C100024003E6241 /* NSString+NSHash.m */; };
-		9062CAD41C02D43F00A9ABD8 /* YelpAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9062CAD31C02D43F00A9ABD8 /* YelpAPIService.swift */; };
 		90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A000381BFD6AC500994A27 /* FourSquareService.swift */; };
 		90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A0003A1BFD7CBF00994A27 /* Venue.swift */; };
 		90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E672391BFBBB7100725EFD /* AppDelegate.swift */; };
@@ -68,10 +66,6 @@
 /* Begin PBXFileReference section */
 		902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewCell.swift; sourceTree = "<group>"; };
 		902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailViewController.swift; sourceTree = "<group>"; };
-		902C4AD61C100024003E6241 /* NSString+NSHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSHash.h"; sourceTree = "<group>"; };
-		902C4AD71C100024003E6241 /* NSString+NSHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSHash.m"; sourceTree = "<group>"; };
-		9062CAD31C02D43F00A9ABD8 /* YelpAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpAPIService.swift; sourceTree = "<group>"; };
-		9062CAD61C02DE0000A9ABD8 /* DeciderApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeciderApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		90A000381BFD6AC500994A27 /* FourSquareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourSquareService.swift; sourceTree = "<group>"; };
 		90A0003A1BFD7CBF00994A27 /* Venue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		90E672361BFBBB7100725EFD /* DeciderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeciderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,7 +160,6 @@
 		90E6722D1BFBBB7100725EFD = {
 			isa = PBXGroup;
 			children = (
-				9062CAD61C02DE0000A9ABD8 /* DeciderApp-Bridging-Header.h */,
 				90E672381BFBBB7100725EFD /* DeciderApp */,
 				90E6724D1BFBBB7200725EFD /* DeciderAppTests */,
 				90E672581BFBBB7200725EFD /* DeciderAppUITests */,
@@ -248,12 +241,9 @@
 				90E672691BFBBDF400725EFD /* Event.swift */,
 				90E672891BFBC2FB00725EFD /* ParseService.swift */,
 				90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */,
-				9062CAD31C02D43F00A9ABD8 /* YelpAPIService.swift */,
 				90A000381BFD6AC500994A27 /* FourSquareService.swift */,
 				90E6728F1BFBCD5000725EFD /* MFMessageService.swift */,
 				90A0003A1BFD7CBF00994A27 /* Venue.swift */,
-				902C4AD61C100024003E6241 /* NSString+NSHash.h */,
-				902C4AD71C100024003E6241 /* NSString+NSHash.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -411,7 +401,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9062CAD41C02D43F00A9ABD8 /* YelpAPIService.swift in Sources */,
 				90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */,
 				E174555E1BFE37E400851F9D /* SearchCell.swift in Sources */,
 				90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */,
@@ -419,7 +408,6 @@
 				E17455641BFE936E00851F9D /* ClassExtensions.swift in Sources */,
 				E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */,
 				90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */,
-				902C4AD81C100024003E6241 /* NSString+NSHash.m in Sources */,
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */,
