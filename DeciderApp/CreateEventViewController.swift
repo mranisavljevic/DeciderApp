@@ -157,7 +157,7 @@ class CreateEventViewController: UIViewController, UITextFieldDelegate, SearchCo
                     self.sendMessage(event, completion: { (sent) -> () in
                         if sent {
 //                            Archiver.saveNewEventID(event.eventID)
-                            SavedEvent.saveEvent(event.eventID, isVoted: false, isMyEvent: true, completion: { (success) -> () in
+                            SavedEvent.saveEvent(event, isVoted: false, isMyEvent: true, completion: { (success) -> () in
                                 //
                             })
                             if let navController = self.navigationController {

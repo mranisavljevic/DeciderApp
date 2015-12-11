@@ -2,7 +2,7 @@
 //  SavedEvent+CoreDataProperties.swift
 //  DeciderApp
 //
-//  Created by Miles Ranisavljevic on 12/10/15.
+//  Created by Miles Ranisavljevic on 12/11/15.
 //  Copyright © 2015 creeperspeak. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,8 +14,8 @@ import CoreData
 
 extension SavedEvent {
 
-    @NSManaged var eventId: String?
-    @NSManaged var isVoted: NSNumber?
     @NSManaged var isMyEvent: NSNumber?
+    @NSManaged var isVoted: NSNumber?
+    @NSManaged var event: Event?
 
 }

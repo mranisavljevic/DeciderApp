@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Event {
+class Event: NSObject, NSCoding {
     
     let eventID: String
     var eventTitle: String
@@ -26,6 +26,15 @@ class Event {
         self.venues = venues
         self.finalSelection = finalSelection
         self.closed = closed
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        guard let event = aDecoder.decodeObjectForKey("event") as? Event else { return nil }
+        self.init(eventID: event.eventID, eventTitle: event.eventTitle, eventDescription: event.eventDescription, eventDateTime: event.eventDateTime, venues: event.venues,finalSelection: event.finalSelection, closed: event.closed)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self, forKey: "event")
     }
     
 }

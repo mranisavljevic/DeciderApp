@@ -36,22 +36,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let stringURL = "\(url)"
         if stringURL.containsString("id=") {
             let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
-//            Archiver.saveNewEventID(parseID)
-            SavedEvent.saveEvent(parseID, isVoted: false, isMyEvent: false, completion: { (success) -> () in
-                //
+            ParseService.loadEvent(parseID, completion: { (success, event) -> () in
+                if success {
+                    if let fetchedEvent = event {
+                        SavedEvent.saveEvent(fetchedEvent, isVoted: false, isMyEvent: false, completion: { (success) -> () in
+                            self.displayDetailViewController(parseID)
+                        })
+                    }
+                }
             })
-            displayDetailViewController(parseID)
         } else if stringURL.containsString("final=") {
             let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://final=", withString: "")
-//            Archiver.saveNewEventID(parseID)
             SavedEvent.fetchEventWithId(parseID, completion: { (success, savedEvent) -> () in
                 if savedEvent == nil {
-                    SavedEvent.saveEvent(parseID, isVoted: false, isMyEvent: false, completion: { (success) -> () in
-                        //
+                    ParseService.loadEvent(parseID, completion: { (success, event) -> () in
+                        if success {
+                            if let fetchedEvent = event {
+                                SavedEvent.saveEvent(fetchedEvent, isVoted: false, isMyEvent: false, completion: { (success) -> () in
+                                    self.displayFinalSelectionViewController(parseID)
+                                })
+                            }
+                        }
                     })
                 }
             })
-            self.displayFinalSelectionViewController(parseID)
         }
         return true
     }
@@ -111,7 +119,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("DeciderApp.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            let options = [NSMigratePersistentStoresAutomaticallyOption : true, NSInferMappingModelAutomaticallyOption : true]
+            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
         } catch {
             // Report any error we got.
             var dict = [String: AnyObject]()

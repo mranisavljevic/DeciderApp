@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		900568591C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 900568571C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld */; };
-		9005685D1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9005685B1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift */; };
-		9005685E1C1A68A700A2502D /* SavedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9005685C1C1A68A700A2502D /* SavedEvent.swift */; };
 		9005689F1C1A8C2100A2502D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9005689D1C1A8C2100A2502D /* Fabric.framework */; };
 		900568A01C1A8C2100A2502D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9005689E1C1A8C2100A2502D /* Crashlytics.framework */; };
+		901454711C1B3E72008AA99B /* SavedEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9014546F1C1B3E72008AA99B /* SavedEvent+CoreDataProperties.swift */; };
+		901454721C1B3E72008AA99B /* SavedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901454701C1B3E72008AA99B /* SavedEvent.swift */; };
 		902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */; };
 		902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */; };
 		90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A000381BFD6AC500994A27 /* FourSquareService.swift */; };
@@ -69,10 +69,11 @@
 
 /* Begin PBXFileReference section */
 		900568581C1A675700A2502D /* DeciderCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeciderCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		9005685B1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedEvent+CoreDataProperties.swift"; path = "../SavedEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9005685C1C1A68A700A2502D /* SavedEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavedEvent.swift; path = ../SavedEvent.swift; sourceTree = "<group>"; };
 		9005689D1C1A8C2100A2502D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		9005689E1C1A8C2100A2502D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		9014546A1C1B3BAD008AA99B /* DeciderCoreDataModel1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeciderCoreDataModel1.1.xcdatamodel; sourceTree = "<group>"; };
+		9014546F1C1B3E72008AA99B /* SavedEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SavedEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		901454701C1B3E72008AA99B /* SavedEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedEvent.swift; sourceTree = "<group>"; };
 		902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewCell.swift; sourceTree = "<group>"; };
 		902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailViewController.swift; sourceTree = "<group>"; };
 		90A000381BFD6AC500994A27 /* FourSquareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourSquareService.swift; sourceTree = "<group>"; };
@@ -160,9 +161,9 @@
 		9005685A1C1A67A300A2502D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				9014546F1C1B3E72008AA99B /* SavedEvent+CoreDataProperties.swift */,
+				901454701C1B3E72008AA99B /* SavedEvent.swift */,
 				900568571C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld */,
-				9005685B1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift */,
-				9005685C1C1A68A700A2502D /* SavedEvent.swift */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -448,20 +449,20 @@
 				E174555E1BFE37E400851F9D /* SearchCell.swift in Sources */,
 				90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */,
 				900568591C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld in Sources */,
-				9005685E1C1A68A700A2502D /* SavedEvent.swift in Sources */,
 				90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */,
 				E17455641BFE936E00851F9D /* ClassExtensions.swift in Sources */,
 				E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */,
 				90E672901BFBCD5000725EFD /* MFMessageService.swift in Sources */,
+				901454721C1B3E72008AA99B /* SavedEvent.swift in Sources */,
 				E185F6691BFBD5BD004D9EF9 /* GroupDecisionsTableViewController.swift in Sources */,
 				90E6728E1BFBCA4A00725EFD /* CreateEventViewController.swift in Sources */,
 				902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */,
 				90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */,
 				90F698E71BFE5D3E0094BFE5 /* FinalSelectionViewController.swift in Sources */,
 				90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */,
-				9005685D1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				E174555A1BFE34FB00851F9D /* Checkbox.swift in Sources */,
+				901454711C1B3E72008AA99B /* SavedEvent+CoreDataProperties.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
 				E17455621BFE451100851F9D /* SelectedVenuesCell.swift in Sources */,
 				902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */,
@@ -608,6 +609,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -733,9 +735,10 @@
 		900568571C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9014546A1C1B3BAD008AA99B /* DeciderCoreDataModel1.1.xcdatamodel */,
 				900568581C1A675700A2502D /* DeciderCoreDataModel.xcdatamodel */,
 			);
-			currentVersion = 900568581C1A675700A2502D /* DeciderCoreDataModel.xcdatamodel */;
+			currentVersion = 9014546A1C1B3BAD008AA99B /* DeciderCoreDataModel1.1.xcdatamodel */;
 			path = DeciderCoreDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

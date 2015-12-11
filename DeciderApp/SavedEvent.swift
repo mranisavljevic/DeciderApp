@@ -2,7 +2,7 @@
 //  SavedEvent.swift
 //  DeciderApp
 //
-//  Created by Miles Ranisavljevic on 12/10/15.
+//  Created by Miles Ranisavljevic on 12/11/15.
 //  Copyright © 2015 creeperspeak. All rights reserved.
 //
 
@@ -11,12 +11,12 @@ import CoreData
 
 
 class SavedEvent: NSManagedObject {
-
-    class func saveEvent(eventId: String,isVoted:Bool, isMyEvent: Bool, completion: (success: Bool)->()) {
+    
+    class func saveEvent(event: Event, isVoted:Bool, isMyEvent: Bool, completion: (success: Bool)->()) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext
         guard let newEvent = NSEntityDescription.insertNewObjectForEntityForName("SavedEvent", inManagedObjectContext: context) as? SavedEvent else { return }
-        newEvent.eventId = eventId
+        newEvent.event = event
         newEvent.isVoted = isVoted
         newEvent.isMyEvent = isMyEvent
         do {
@@ -24,7 +24,7 @@ class SavedEvent: NSManagedObject {
         } catch {
             completion(success: false)
         }
-        SavedEvent.fetchEventWithId(eventId) { (success, savedEvent) -> () in
+        SavedEvent.fetchEventWithId(event.eventID) { (success, savedEvent) -> () in
             completion(success: success)
         }
     }
@@ -33,7 +33,7 @@ class SavedEvent: NSManagedObject {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext
         let eventFetch = NSFetchRequest(entityName: "SavedEvent")
-        eventFetch.predicate = NSPredicate(format: "eventId == %@", eventId)
+        eventFetch.predicate = NSPredicate(format: "event.eventID == %@", eventId)
         do {
             guard let fetchedEvents = try context.executeFetchRequest(eventFetch) as? [SavedEvent] else {
                 completion(success: false, savedEvent: nil)
@@ -100,5 +100,4 @@ class SavedEvent: NSManagedObject {
             return
         }
     }
-
 }

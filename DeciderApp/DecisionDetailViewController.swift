@@ -142,7 +142,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         SavedEvent.fetchVotedEvents { (success, events) -> () in
             if let voted = events {
                 for votedEvent in voted {
-                    if votedEvent.eventId == event.eventID {
+                    if votedEvent.event?.eventID == event.eventID {
                         self.greyOutView.hidden = false
                         self.voteButton.enabled = false
                         UIView.animateWithDuration(0.4, animations: { () -> Void in
@@ -316,16 +316,17 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
                     SavedEvent.voteEventWithId(event.eventID, completion: { (success) -> () in
-                        //
+                        if success {
+                            self.venues = self.sortVenuesByPopularity()
+                            self.selectedVenues = [Int]()
+                            self.selectedVenueIndexPaths = [NSIndexPath]()
+                            self.venuesCollectionView.reloadItemsAtIndexPaths(self.venuesCollectionView.indexPathsForVisibleItems())
+                            self.unhideFinalizeButtonIfNeeded()
+                            self.checkifOpenForVoting()
+                        } else {
+                            print("Voting unsuccessful")
+                        }
                     })
-                    self.venues = self.sortVenuesByPopularity()
-                    self.selectedVenues = [Int]()
-                    self.selectedVenueIndexPaths = [NSIndexPath]()
-                    self.venuesCollectionView.reloadItemsAtIndexPaths(self.venuesCollectionView.indexPathsForVisibleItems())
-                    self.unhideFinalizeButtonIfNeeded()
-                    self.checkifOpenForVoting()
-                } else {
-                    print("Voting unsuccessful")
                 }
             })
         }
