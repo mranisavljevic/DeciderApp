@@ -33,6 +33,8 @@ class SearchCell: UITableViewCell {
                         queue.addOperationWithBlock({ () -> Void in
                             if let image = image {
                                 self.thumbnailImageView.image = image
+                            } else {
+                                self.thumbnailImageView.image = UIImage(named: "venue")
                             }
                         })
                     })
