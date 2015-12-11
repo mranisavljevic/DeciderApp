@@ -1,0 +1,83 @@
+//
+//  SavedEvent.swift
+//  DeciderApp
+//
+//  Created by Miles Ranisavljevic on 12/10/15.
+//  Copyright © 2015 creeperspeak. All rights reserved.
+//
+
+import Foundation
+import CoreData
+
+
+class SavedEvent: NSManagedObject {
+
+    class func saveEvent(eventId: String,isVoted:Bool, isMyEvent: Bool, completion: (success: Bool)->()) {
+        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        guard let newEvent = NSEntityDescription.insertNewObjectForEntityForName("SavedEvent", inManagedObjectContext: context) as? SavedEvent else { return }
+        newEvent.eventId = eventId
+        newEvent.isVoted = isVoted
+        newEvent.isMyEvent = isMyEvent
+        do {
+            try context.save()
+        } catch {
+            completion(success: false)
+        }
+        SavedEvent.fetchEventWithId(eventId) { (success, savedEvent) -> () in
+            completion(success: success)
+        }
+    }
+    
+    class func fetchEventWithId(eventId: String, completion: (success: Bool, savedEvent: SavedEvent?)->()) {
+        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        let eventFetch = NSFetchRequest(entityName: "SavedEvent")
+        eventFetch.predicate = NSPredicate(format: "eventId == %@", eventId)
+        do {
+            guard let fetchedEvents = try context.executeFetchRequest(eventFetch) as? [SavedEvent] else {
+                completion(success: false, savedEvent: nil)
+                return
+            }
+            if let fetchedEvent = fetchedEvents.first {
+                completion(success: true, savedEvent: fetchedEvent)
+            }
+        } catch {
+            completion(success: false, savedEvent: nil)
+            return
+        }
+    }
+    
+    class func fetchEvents(completion: (success: Bool, events: [SavedEvent]?)->()) {
+        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        let eventFetch = NSFetchRequest(entityName: "SavedEvent")
+        do {
+            guard let fetchedEvents = try context.executeFetchRequest(eventFetch) as? [SavedEvent] else {
+                completion(success: false, events: nil)
+                return
+            }
+            completion(success: true, events: fetchedEvents)
+        } catch {
+            completion(success: false, events: nil)
+            return
+        }
+    }
+    
+    class func voteEventWithId(eventId: String, completion: (success: Bool) -> ()) {
+        SavedEvent.fetchEventWithId(eventId) { (success, savedEvent) -> () in
+            guard let event = savedEvent else {
+                completion(success: false)
+                return
+            }
+            event.isVoted = true
+            let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+            do {
+                try context.save()
+                completion(success: true)
+                return
+            } catch {
+                completion(success: false)
+                return
+            }
+        }
+    }
+
+}

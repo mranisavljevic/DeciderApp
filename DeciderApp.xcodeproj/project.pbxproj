@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900568591C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 900568571C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld */; };
+		9005685D1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9005685B1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift */; };
+		9005685E1C1A68A700A2502D /* SavedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9005685C1C1A68A700A2502D /* SavedEvent.swift */; };
 		902910E81BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */; };
 		902910EA1BFBFA4F00D2E0AF /* DecisionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */; };
 		90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A000381BFD6AC500994A27 /* FourSquareService.swift */; };
@@ -28,7 +31,6 @@
 		90E6727B1BFBC1DA00725EFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E6727A1BFBC1DA00725EFD /* QuartzCore.framework */; };
 		90E6727D1BFBC1E200725EFD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E6727C1BFBC1E200725EFD /* Security.framework */; };
 		90E6727F1BFBC1E900725EFD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E6727E1BFBC1E900725EFD /* Social.framework */; };
-		90E672811BFBC1EF00725EFD /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672801BFBC1EF00725EFD /* StoreKit.framework */; };
 		90E672831BFBC1F600725EFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672821BFBC1F600725EFD /* SystemConfiguration.framework */; };
 		90E672851BFBC1FC00725EFD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672841BFBC1FC00725EFD /* libz.tbd */; };
 		90E672871BFBC20400725EFD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E672861BFBC20400725EFD /* libsqlite3.tbd */; };
@@ -64,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		900568581C1A675700A2502D /* DeciderCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeciderCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		9005685B1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SavedEvent+CoreDataProperties.swift"; path = "../SavedEvent+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9005685C1C1A68A700A2502D /* SavedEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SavedEvent.swift; path = ../SavedEvent.swift; sourceTree = "<group>"; };
 		902910E71BFBE4EE00D2E0AF /* GroupDecisionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDecisionsTableViewCell.swift; sourceTree = "<group>"; };
 		902910E91BFBFA4F00D2E0AF /* DecisionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionDetailViewController.swift; sourceTree = "<group>"; };
 		90A000381BFD6AC500994A27 /* FourSquareService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourSquareService.swift; sourceTree = "<group>"; };
@@ -91,7 +96,6 @@
 		90E6727A1BFBC1DA00725EFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90E6727C1BFBC1E200725EFD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		90E6727E1BFBC1E900725EFD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		90E672801BFBC1EF00725EFD /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		90E672821BFBC1F600725EFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		90E672841BFBC1FC00725EFD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		90E672861BFBC20400725EFD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -117,7 +121,6 @@
 				90E672871BFBC20400725EFD /* libsqlite3.tbd in Frameworks */,
 				90E672851BFBC1FC00725EFD /* libz.tbd in Frameworks */,
 				90E672831BFBC1F600725EFD /* SystemConfiguration.framework in Frameworks */,
-				90E672811BFBC1EF00725EFD /* StoreKit.framework in Frameworks */,
 				90E6727F1BFBC1E900725EFD /* Social.framework in Frameworks */,
 				90E6727D1BFBC1E200725EFD /* Security.framework in Frameworks */,
 				90E6727B1BFBC1DA00725EFD /* QuartzCore.framework in Frameworks */,
@@ -148,6 +151,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9005685A1C1A67A300A2502D /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				900568571C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld */,
+				9005685B1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift */,
+				9005685C1C1A68A700A2502D /* SavedEvent.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		90B88FBA1C0D6F0200B045CD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +251,7 @@
 		90E6726B1BFBBE0100725EFD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9005685A1C1A67A300A2502D /* Core Data */,
 				90E672691BFBBDF400725EFD /* Event.swift */,
 				90E672891BFBC2FB00725EFD /* ParseService.swift */,
 				90FB34A71BFC38C000AE31B5 /* ArchiveService.swift */,
@@ -256,7 +270,6 @@
 				90E6726C1BFBC18100725EFD /* Bolts.framework */,
 				90E6726D1BFBC18100725EFD /* Parse.framework */,
 				90E672821BFBC1F600725EFD /* SystemConfiguration.framework */,
-				90E672801BFBC1EF00725EFD /* StoreKit.framework */,
 				90E6727E1BFBC1E900725EFD /* Social.framework */,
 				90E6727C1BFBC1E200725EFD /* Security.framework */,
 				90E6727A1BFBC1DA00725EFD /* QuartzCore.framework */,
@@ -338,6 +351,11 @@
 					90E672351BFBBB7100725EFD = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = C49MT2F2AS;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					90E672491BFBBB7200725EFD = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -404,6 +422,8 @@
 				90E6728A1BFBC2FB00725EFD /* ParseService.swift in Sources */,
 				E174555E1BFE37E400851F9D /* SearchCell.swift in Sources */,
 				90A0003B1BFD7CBF00994A27 /* Venue.swift in Sources */,
+				900568591C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld in Sources */,
+				9005685E1C1A68A700A2502D /* SavedEvent.swift in Sources */,
 				90FB34A61BFC07B100AE31B5 /* DecisionDetailCollectionViewCell.swift in Sources */,
 				E17455641BFE936E00851F9D /* ClassExtensions.swift in Sources */,
 				E174555C1BFE37AD00851F9D /* SearchController.swift in Sources */,
@@ -414,6 +434,7 @@
 				90FB34A81BFC38C000AE31B5 /* ArchiveService.swift in Sources */,
 				90F698E71BFE5D3E0094BFE5 /* FinalSelectionViewController.swift in Sources */,
 				90A000391BFD6AC500994A27 /* FourSquareService.swift in Sources */,
+				9005685D1C1A68A700A2502D /* SavedEvent+CoreDataProperties.swift in Sources */,
 				90E6726A1BFBBDF400725EFD /* Event.swift in Sources */,
 				E174555A1BFE34FB00851F9D /* Checkbox.swift in Sources */,
 				90E6723A1BFBBB7100725EFD /* AppDelegate.swift in Sources */,
@@ -682,6 +703,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		900568571C1A675700A2502D /* DeciderCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				900568581C1A675700A2502D /* DeciderCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 900568581C1A675700A2502D /* DeciderCoreDataModel.xcdatamodel */;
+			path = DeciderCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90E6722E1BFBBB7100725EFD /* Project object */;
 }
