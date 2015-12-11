@@ -83,5 +83,22 @@ class SavedEvent: NSManagedObject {
             }
         }
     }
+    
+    class func fetchVotedEvents(completion: (success: Bool, events: [SavedEvent]?)->()) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext
+        let eventFetch = NSFetchRequest(entityName: "SavedEvent")
+        eventFetch.predicate = NSPredicate(format: "isVoted == %@", true)
+        do {
+            guard let fetchedEvents = try context.executeFetchRequest(eventFetch) as? [SavedEvent] else {
+                completion(success: false, events: nil)
+                return
+            }
+            completion(success: true, events: fetchedEvents)
+        } catch {
+            completion(success: false, events: nil)
+            return
+        }
+    }
 
 }
