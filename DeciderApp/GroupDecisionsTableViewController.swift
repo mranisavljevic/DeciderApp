@@ -58,9 +58,6 @@ class GroupDecisionsTableViewController: UITableViewController {
     }
     
     func unarchiveEventIDs() -> [String]? {
-//        if let eventIDs = Archiver.retrieveEventIDs() {
-//            return eventIDs
-        //        }
         var eventIds: [String] = []
         SavedEvent.fetchEvents { (success, events) -> () in
             if success {

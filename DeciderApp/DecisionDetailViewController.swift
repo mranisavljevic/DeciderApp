@@ -68,6 +68,18 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         guard let event = self.event else { return }
         if event.closed {
             self.performSegueWithIdentifier("FinalSelectionViewController", sender: self)
+        } else {
+            SavedEvent.fetchEventWithId(event.eventID) { (success, savedEvent) -> () in
+                if success {
+                    if let savedEvent = savedEvent {
+                        if let mine = savedEvent.isMyEvent {
+                            if mine == false {
+                                self.navigationItem.rightBarButtonItem = nil
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -111,8 +123,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     func checkifOpenForVoting() {
         guard let event = self.event else { return }
-//        if let voted = Archiver.retrieveVotedIDs() {
-//            SavedEvent.fetchEvents({ (success, events) -> () in
         SavedEvent.fetchVotedEvents { (success, events) -> () in
             if let voted = events {
                 for votedEvent in voted {
@@ -127,8 +137,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                 
             }
         }
-//            })
-        //        }
     }
     
     func formatDateToString(date: NSDate) -> String {
@@ -291,7 +299,6 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         if self.venues.count > 0 {
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
-//                    Archiver.saveNewVotedID(event.eventID)
                     SavedEvent.voteEventWithId(event.eventID, completion: { (success) -> () in
                         //
                     })
