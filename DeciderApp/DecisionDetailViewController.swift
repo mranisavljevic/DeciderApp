@@ -290,7 +290,7 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
 //                    Archiver.saveNewVotedID(event.eventID)
-                    SavedEvent.saveEvent(event.eventID, isVoted: true, isMyEvent: false, completion: { (success) -> () in
+                    SavedEvent.voteEventWithId(event.eventID, completion: { (success) -> () in
                         //
                     })
                     self.venues = self.sortVenuesByPopularity()

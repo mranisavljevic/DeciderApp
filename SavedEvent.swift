@@ -6,14 +6,15 @@
 //  Copyright © 2015 creeperspeak. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 
 class SavedEvent: NSManagedObject {
 
     class func saveEvent(eventId: String,isVoted:Bool, isMyEvent: Bool, completion: (success: Bool)->()) {
-        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext
         guard let newEvent = NSEntityDescription.insertNewObjectForEntityForName("SavedEvent", inManagedObjectContext: context) as? SavedEvent else { return }
         newEvent.eventId = eventId
         newEvent.isVoted = isVoted
@@ -29,7 +30,8 @@ class SavedEvent: NSManagedObject {
     }
     
     class func fetchEventWithId(eventId: String, completion: (success: Bool, savedEvent: SavedEvent?)->()) {
-        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext
         let eventFetch = NSFetchRequest(entityName: "SavedEvent")
         eventFetch.predicate = NSPredicate(format: "eventId == %@", eventId)
         do {
@@ -47,7 +49,8 @@ class SavedEvent: NSManagedObject {
     }
     
     class func fetchEvents(completion: (success: Bool, events: [SavedEvent]?)->()) {
-        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext
         let eventFetch = NSFetchRequest(entityName: "SavedEvent")
         do {
             guard let fetchedEvents = try context.executeFetchRequest(eventFetch) as? [SavedEvent] else {
@@ -68,7 +71,8 @@ class SavedEvent: NSManagedObject {
                 return
             }
             event.isVoted = true
-            let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let context = appDelegate.managedObjectContext
             do {
                 try context.save()
                 completion(success: true)
