@@ -111,17 +111,22 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     func checkifOpenForVoting() {
         guard let event = self.event else { return }
-        if let voted = Archiver.retrieveVotedIDs() {
-            for id in voted {
-                if id == event.eventID {
-                    self.greyOutView.hidden = false
-                    self.voteButton.enabled = false
-                    UIView.animateWithDuration(0.4, animations: { () -> Void in
-                        self.greyOutView.alpha = 0.65
-                    })
+//        if let voted = Archiver.retrieveVotedIDs() {
+            SavedEvent.fetchEvents({ (success, events) -> () in
+                if let voted = events {
+                    for id in voted {
+                        if id == event.eventID {
+                            self.greyOutView.hidden = false
+                            self.voteButton.enabled = false
+                            UIView.animateWithDuration(0.4, animations: { () -> Void in
+                                self.greyOutView.alpha = 0.65
+                            })
+                        }
+                    }
+
                 }
-            }
-        }
+            })
+        //        }
     }
     
     func formatDateToString(date: NSDate) -> String {
@@ -284,7 +289,10 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         if self.venues.count > 0 {
             ParseService.updateVotes(event.eventID, venues: self.venues, completion: { (success) -> () in
                 if success {
-                    Archiver.saveNewVotedID(event.eventID)
+//                    Archiver.saveNewVotedID(event.eventID)
+                    SavedEvent.saveEvent(event.eventID, isVoted: true, isMyEvent: false, completion: { (success) -> () in
+                        //
+                    })
                     self.venues = self.sortVenuesByPopularity()
                     self.selectedVenues = [Int]()
                     self.selectedVenueIndexPaths = [NSIndexPath]()

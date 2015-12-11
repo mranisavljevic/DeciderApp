@@ -33,12 +33,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let stringURL = "\(url)"
         if stringURL.containsString("id=") {
             let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://id=", withString: "")
-            Archiver.saveNewEventID(parseID)
+//            Archiver.saveNewEventID(parseID)
+            SavedEvent.saveEvent(parseID, isVoted: false, isMyEvent: false, completion: { (success) -> () in
+                //
+            })
             displayDetailViewController(parseID)
         } else if stringURL.containsString("final=") {
             let parseID = stringURL.stringByReplacingOccurrencesOfString("decider://final=", withString: "")
-            Archiver.saveNewEventID(parseID)
-            displayFinalSelectionViewController(parseID)
+//            Archiver.saveNewEventID(parseID)
+            SavedEvent.fetchEventWithId(parseID, completion: { (success, savedEvent) -> () in
+                if savedEvent == nil {
+                    SavedEvent.saveEvent(parseID, isVoted: false, isMyEvent: false, completion: { (success) -> () in
+                        //
+                    })
+                }
+            })
+            self.displayFinalSelectionViewController(parseID)
         }
         return true
     }
