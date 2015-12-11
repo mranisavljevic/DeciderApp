@@ -23,7 +23,20 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
     
     let finalSelectionButton = UIBarButtonItem(title: "Selection", style: UIBarButtonItemStyle.Done, target: nil, action: "selectionButtonPressed")
     
-    var event: Event?
+    var event: Event? {
+        didSet {
+            guard let thisEvent = self.event else { return }
+            SavedEvent.fetchEventWithId(thisEvent.eventID, completion: { (success, savedEvent) -> () in
+                if success {
+                    if let fetchedEvent = savedEvent {
+                        self.savedEvent = fetchedEvent
+                    }
+                }
+            })
+        }
+    }
+    
+    var savedEvent: SavedEvent?
     
     var venues = [(String, Int)]() {
         didSet {
@@ -68,17 +81,18 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         guard let event = self.event else { return }
         if event.closed {
             self.performSegueWithIdentifier("FinalSelectionViewController", sender: self)
-        } else {
-            SavedEvent.fetchEventWithId(event.eventID) { (success, savedEvent) -> () in
-                if success {
-                    if let savedEvent = savedEvent, mine = savedEvent.isMyEvent {
-                        if mine == false {
-                            self.navigationItem.rightBarButtonItem = nil
-                        }
-                    }
-                }
-            }
         }
+//        else {
+//            SavedEvent.fetchEventWithId(event.eventID) { (success, savedEvent) -> () in
+//                if success {
+//                    if let savedEvent = savedEvent, mine = savedEvent.isMyEvent {
+//                        if mine == false {
+//                            self.navigationItem.rightBarButtonItem = nil
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,9 +125,13 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
                 self.finalSelectionButton.target = self
                 navigationItem.rightBarButtonItem?.enabled = true
             default:
-                navigationItem.rightBarButtonItem = self.finalPollButton
-                self.finalPollButton.target = self
-                navigationItem.rightBarButtonItem?.enabled = false
+                if let savedEvent = self.savedEvent, isMine = savedEvent.isMyEvent {
+                    if isMine == true {
+                        navigationItem.rightBarButtonItem = self.finalPollButton
+                        self.finalPollButton.target = self
+                        navigationItem.rightBarButtonItem?.enabled = false
+                    }
+                }
             }
         }
         self.venuesCollectionView.reloadData()
