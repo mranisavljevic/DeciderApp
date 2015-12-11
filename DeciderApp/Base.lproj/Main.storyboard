@@ -52,11 +52,6 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <view key="backgroundView" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" fixedFrame="YES" id="7Fy-F3-7um">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="370"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DecisionDetailCollectionViewCell" id="TKV-Ss-lHs" customClass="DecisionDetailCollectionViewCell" customModule="DeciderApp" customModuleProvider="target">
                                         <rect key="frame" x="106" y="0.0" width="388" height="100"/>
@@ -118,6 +113,10 @@
                                     <action selector="voteButtonPressed:" destination="wre-Q1-KS3" eventType="touchUpInside" id="ShF-nG-JGe"/>
                                 </connections>
                             </button>
+                            <view userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fy-F3-7um">
+                                <rect key="frame" x="0.0" y="184" width="600" height="370"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -127,13 +126,17 @@
                             <constraint firstItem="JhR-Ou-8Tp" firstAttribute="top" secondItem="YlY-Vz-i5b" secondAttribute="bottom" constant="8" symbolic="YES" id="Dk6-Ei-44U"/>
                             <constraint firstItem="YlY-Vz-i5b" firstAttribute="top" secondItem="pNH-l1-iLM" secondAttribute="bottom" constant="8" symbolic="YES" id="Dw3-Mg-Wss"/>
                             <constraint firstItem="JhR-Ou-8Tp" firstAttribute="centerX" secondItem="8kR-0d-YPZ" secondAttribute="centerX" id="Ffa-qs-wU4"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="top" secondItem="YlY-Vz-i5b" secondAttribute="top" id="GEI-Ai-Qdm"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="bottom" secondItem="YlY-Vz-i5b" secondAttribute="bottom" id="GV9-Ik-sly"/>
                             <constraint firstItem="As8-j3-m4w" firstAttribute="centerX" secondItem="pNH-l1-iLM" secondAttribute="centerX" id="POV-fW-VA6"/>
                             <constraint firstItem="4Ss-1M-zzw" firstAttribute="top" secondItem="JhR-Ou-8Tp" secondAttribute="bottom" constant="8" symbolic="YES" id="RiM-3d-1lp"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="trailing" secondItem="YlY-Vz-i5b" secondAttribute="trailing" id="TNK-we-CTE"/>
                             <constraint firstItem="6nv-Sg-dF5" firstAttribute="centerX" secondItem="4Rd-dV-sHI" secondAttribute="centerX" id="UXK-x9-frY"/>
                             <constraint firstItem="As8-j3-m4w" firstAttribute="top" secondItem="4Rd-dV-sHI" secondAttribute="bottom" constant="8" symbolic="YES" id="Va8-2J-NHN"/>
                             <constraint firstAttribute="trailing" secondItem="YlY-Vz-i5b" secondAttribute="trailing" id="WTk-FU-Y6Z"/>
                             <constraint firstItem="YlY-Vz-i5b" firstAttribute="leading" secondItem="8kR-0d-YPZ" secondAttribute="leading" id="gm0-lB-4Ag"/>
                             <constraint firstItem="6nv-Sg-dF5" firstAttribute="top" secondItem="5LX-ml-9jO" secondAttribute="bottom" constant="8" symbolic="YES" id="j81-UJ-3L8"/>
+                            <constraint firstItem="7Fy-F3-7um" firstAttribute="leading" secondItem="YlY-Vz-i5b" secondAttribute="leading" id="kPN-Vn-NKL"/>
                             <constraint firstItem="4Rd-dV-sHI" firstAttribute="centerX" secondItem="As8-j3-m4w" secondAttribute="centerX" id="q5I-ln-DX7"/>
                             <constraint firstItem="4Rd-dV-sHI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8kR-0d-YPZ" secondAttribute="leadingMargin" constant="8" id="xhE-69-nOE"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="4Rd-dV-sHI" secondAttribute="trailing" constant="8" id="yfY-AT-NJE"/>
