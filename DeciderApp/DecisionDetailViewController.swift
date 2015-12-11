@@ -71,11 +71,9 @@ class DecisionDetailViewController: UIViewController, UICollectionViewDataSource
         } else {
             SavedEvent.fetchEventWithId(event.eventID) { (success, savedEvent) -> () in
                 if success {
-                    if let savedEvent = savedEvent {
-                        if let mine = savedEvent.isMyEvent {
-                            if mine == false {
-                                self.navigationItem.rightBarButtonItem = nil
-                            }
+                    if let savedEvent = savedEvent, mine = savedEvent.isMyEvent {
+                        if mine == false {
+                            self.navigationItem.rightBarButtonItem = nil
                         }
                     }
                 }

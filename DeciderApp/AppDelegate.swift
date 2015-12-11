@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import CoreData
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.setApplicationId("eAvAPVVpjSwOP9Phyzc7mmbPrAXkWOxLNbc8ZagC", clientKey: "qI4InWZyw7fPtkkJnDpLsjPPK7ni8o2MeAsMduWC")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        Fabric.with([Crashlytics.self])
         return true
     }
     
