@@ -63,8 +63,8 @@ class GroupDecisionsTableViewController: UITableViewController {
             if success {
                 guard let fetchedEvents = events else { return }
                 for event in fetchedEvents {
-                    guard let savedEvent = event.event else { return }
-                    eventIds.append(savedEvent.eventID)
+                    guard let savedEventId = event.eventId as? String else { return }
+                    eventIds.append(savedEventId)
                 }
             }
         }

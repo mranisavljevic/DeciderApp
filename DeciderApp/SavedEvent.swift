@@ -40,7 +40,6 @@ class SavedEvent: NSManagedObject {
                 completion(success: false, savedEvent: nil)
                 return
             }
-            print(fetchedEvents)
             if let fetchedEvent = fetchedEvents.first {
                 completion(success: true, savedEvent: fetchedEvent)
             }
