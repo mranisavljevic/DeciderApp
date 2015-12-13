@@ -17,6 +17,7 @@ class SavedEvent: NSManagedObject {
         let context = appDelegate.managedObjectContext
         guard let newEvent = NSEntityDescription.insertNewObjectForEntityForName("SavedEvent", inManagedObjectContext: context) as? SavedEvent else { return }
         newEvent.event = event
+        newEvent.eventId = event.eventID
         newEvent.isVoted = isVoted
         newEvent.isMyEvent = isMyEvent
         do {
@@ -33,12 +34,13 @@ class SavedEvent: NSManagedObject {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext
         let eventFetch = NSFetchRequest(entityName: "SavedEvent")
-        eventFetch.predicate = NSPredicate(format: "event.eventID == %@", eventId)
+        eventFetch.predicate = NSPredicate(format: "eventId == %@", eventId)
         do {
             guard let fetchedEvents = try context.executeFetchRequest(eventFetch) as? [SavedEvent] else {
                 completion(success: false, savedEvent: nil)
                 return
             }
+            print(fetchedEvents)
             if let fetchedEvent = fetchedEvents.first {
                 completion(success: true, savedEvent: fetchedEvent)
             }

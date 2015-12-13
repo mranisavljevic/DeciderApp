@@ -17,5 +17,6 @@ extension SavedEvent {
     @NSManaged var isMyEvent: NSNumber?
     @NSManaged var isVoted: NSNumber?
     @NSManaged var event: Event?
+    @NSManaged var eventId: NSString?
 
 }

@@ -6,9 +6,9 @@
 //  Copyright © 2015 creeperspeak. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-class Venue: NSObject {
+final class Venue: NSObject, NSCoding {
     
     let fourSquareID: String
     let name: String
@@ -22,7 +22,7 @@ class Venue: NSObject {
     let reviewCount: Int?
     var votes: Int
     
-    init (fourSquareID: String, name: String, address: String?, latitude: Double?, longitude: Double?, imageURL: String?, categories: String?, distance: Int?, ratingImageURL: String?, reviewCount: Int?, votes: Int = 0) {
+    init(fourSquareID: String, name: String, address: String?, latitude: Double?, longitude: Double?, imageURL: String?, categories: String?, distance: Int?, ratingImageURL: String?, reviewCount: Int?, votes: Int = 0) {
         self.fourSquareID = fourSquareID
         self.name = name
         self.address = address
@@ -34,6 +34,25 @@ class Venue: NSObject {
         self.ratingImageURL = ratingImageURL
         self.reviewCount = reviewCount
         self.votes = votes
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        guard let fourSquareID = aDecoder.decodeObjectForKey("fourSquareID") as? String, name = aDecoder.decodeObjectForKey("name") as? String, address = aDecoder.decodeObjectForKey("address") as? String?, latitude = aDecoder.decodeObjectForKey("latitude") as? Double?, longitude = aDecoder.decodeObjectForKey("longitude") as? Double?, imageURL = aDecoder.decodeObjectForKey("imageURL") as? String?, categories = aDecoder.decodeObjectForKey("categories") as? String?, distance = aDecoder.decodeObjectForKey("distance") as? Int?, ratingImageURL = aDecoder.decodeObjectForKey("ratingImageURL") as? String?, reviewCount = aDecoder.decodeObjectForKey("reviewCount") as? Int?, votes = aDecoder.decodeObjectForKey("votes") as? Int else { return nil }
+        self.init(fourSquareID: fourSquareID, name: name, address: address, latitude: latitude, longitude: longitude, imageURL: imageURL, categories: categories, distance: distance, ratingImageURL: ratingImageURL, reviewCount: reviewCount, votes: votes)
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.fourSquareID, forKey: "fourSquareID")
+        aCoder.encodeObject(self.name, forKey: "name")
+        aCoder.encodeObject(self.address, forKey: "address")
+        aCoder.encodeObject(self.latitude, forKey: "latitude")
+        aCoder.encodeObject(self.longitude, forKey: "longitude")
+        aCoder.encodeObject(self.imageURL, forKey: "imageURL")
+        aCoder.encodeObject(self.categories, forKey: "categories")
+        aCoder.encodeObject(self.distance, forKey: "distance")
+        aCoder.encodeObject(self.ratingImageURL, forKey: "ratingImageURL")
+        aCoder.encodeObject(self.reviewCount, forKey: "reviewCount")
+        aCoder.encodeObject(self.votes, forKey: "votes")
     }
     
     func convertToDictionary() -> [String : AnyObject] {
