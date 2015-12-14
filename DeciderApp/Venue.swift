@@ -38,6 +38,7 @@ final class Venue: NSObject, NSCoding {
     
     required convenience init?(coder aDecoder: NSCoder) {
         guard let fourSquareID = aDecoder.decodeObjectForKey("fourSquareID") as? String, name = aDecoder.decodeObjectForKey("name") as? String, address = aDecoder.decodeObjectForKey("address") as? String?, latitude = aDecoder.decodeObjectForKey("latitude") as? Double?, longitude = aDecoder.decodeObjectForKey("longitude") as? Double?, imageURL = aDecoder.decodeObjectForKey("imageURL") as? String?, categories = aDecoder.decodeObjectForKey("categories") as? String?, distance = aDecoder.decodeObjectForKey("distance") as? Int?, ratingImageURL = aDecoder.decodeObjectForKey("ratingImageURL") as? String?, reviewCount = aDecoder.decodeObjectForKey("reviewCount") as? Int?, votes = aDecoder.decodeObjectForKey("votes") as? Int else { return nil }
+        
         self.init(fourSquareID: fourSquareID, name: name, address: address, latitude: latitude, longitude: longitude, imageURL: imageURL, categories: categories, distance: distance, ratingImageURL: ratingImageURL, reviewCount: reviewCount, votes: votes)
     }
     

@@ -29,13 +29,8 @@ class Event: NSObject, NSCoding {
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        guard let eventId = aDecoder.decodeObjectForKey("eventId") as? String else { return nil }
-        guard let eventTitle = aDecoder.decodeObjectForKey("eventTitle") as? String else { return nil }
-        guard let eventDescription = aDecoder.decodeObjectForKey("eventDescription") as? String else { return nil }
-        guard let eventDateTime = aDecoder.decodeObjectForKey("eventDateTime") as? NSDate else { return nil }
-        guard let venues = aDecoder.decodeObjectForKey("venues") as? [Venue] else { return nil }
-        guard let finalSelection = aDecoder.decodeObjectForKey("finalSelection") as? Venue else { return nil }
-        guard let closed = aDecoder.decodeObjectForKey("closed") as? Bool else { return nil }
+        guard let eventId = aDecoder.decodeObjectForKey("eventId") as? String, eventTitle = aDecoder.decodeObjectForKey("eventTitle") as? String, eventDescription = aDecoder.decodeObjectForKey("eventDescription") as? String, eventDateTime = aDecoder.decodeObjectForKey("eventDateTime") as? NSDate, venues = aDecoder.decodeObjectForKey("venues") as? [Venue], finalSelection = aDecoder.decodeObjectForKey("finalSelection") as? Venue, closed = aDecoder.decodeObjectForKey("closed") as? Bool else { return nil }
+        
         self.init(eventID: eventId, eventTitle: eventTitle, eventDescription: eventDescription, eventDateTime: eventDateTime, venues: venues,finalSelection: finalSelection, closed: closed)
     }
     
